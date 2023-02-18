@@ -1,4 +1,4 @@
-all: diem
+all: diem nsdate
 
 bin:
 	mkdir -p bin
@@ -6,6 +6,9 @@ bin:
 diem: bin
 	${CC} -framework Foundation diem.m -o bin/diem 
 
-install: diem
+nsdate: 
+	${CC} -framework Foundation nsdate.m -o bin/nsdate 
+
+install: diem nsdate
 	mkdir -p ${HOME}/local/bin
 	cp bin/* ${HOME}/local/bin/
