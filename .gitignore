@@ -1,1 +1,4 @@
 bin/
+diem/diem.xcodeproj/project.xcworkspace/xcuserdata
+diem/diem.xcodeproj/xcuserdata
+.DS_Store
