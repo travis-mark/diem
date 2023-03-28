@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1FAD1B7B29D12A690059DDA1 /* diemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B7A29D12A690059DDA1 /* diemApp.swift */; };
-		1FAD1B7D29D12A690059DDA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B7C29D12A690059DDA1 /* ContentView.swift */; };
 		1FAD1B7F29D12A6A0059DDA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B7E29D12A6A0059DDA1 /* Assets.xcassets */; };
 		1FAD1B8229D12A6A0059DDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8129D12A6A0059DDA1 /* Preview Assets.xcassets */; };
 		1FAD1B8829D12A6A0059DDA1 /* diem Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1FAD1B8D29D12A6A0059DDA1 /* diemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8C29D12A6A0059DDA1 /* diemApp.swift */; };
-		1FAD1B8F29D12A6A0059DDA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8E29D12A6A0059DDA1 /* ContentView.swift */; };
 		1FAD1B9129D12A6B0059DDA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B9029D12A6B0059DDA1 /* Assets.xcassets */; };
 		1FAD1B9429D12A6B0059DDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -45,12 +43,10 @@
 /* Begin PBXFileReference section */
 		1FAD1B7729D12A690059DDA1 /* diem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B7A29D12A690059DDA1 /* diemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diemApp.swift; sourceTree = "<group>"; };
-		1FAD1B7C29D12A690059DDA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1FAD1B7E29D12A6A0059DDA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FAD1B8129D12A6A0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "diem Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B8C29D12A6A0059DDA1 /* diemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diemApp.swift; sourceTree = "<group>"; };
-		1FAD1B8E29D12A6A0059DDA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1FAD1B9029D12A6B0059DDA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				1FAD1B7A29D12A690059DDA1 /* diemApp.swift */,
-				1FAD1B7C29D12A690059DDA1 /* ContentView.swift */,
 				1FAD1B7E29D12A6A0059DDA1 /* Assets.xcassets */,
 				1FAD1B8029D12A6A0059DDA1 /* Preview Content */,
 			);
@@ -114,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				1FAD1B8C29D12A6A0059DDA1 /* diemApp.swift */,
-				1FAD1B8E29D12A6A0059DDA1 /* ContentView.swift */,
 				1FAD1B9029D12A6B0059DDA1 /* Assets.xcassets */,
 				1FAD1B9229D12A6B0059DDA1 /* Preview Content */,
 			);
@@ -231,7 +225,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FAD1B7D29D12A690059DDA1 /* ContentView.swift in Sources */,
 				1FAD1B7B29D12A690059DDA1 /* diemApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,7 +233,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FAD1B8F29D12A6A0059DDA1 /* ContentView.swift in Sources */,
 				1FAD1B8D29D12A6A0059DDA1 /* diemApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
