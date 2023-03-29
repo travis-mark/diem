@@ -20,7 +20,46 @@ func string(from date: Date, format: String) -> String {
     }
 }
 
-struct ContentView: View {
+let ordinalFormatter: NumberFormatter = {
+    let nf = NumberFormatter()
+    nf.numberStyle = .ordinal
+    return nf
+}()
+
+extension String {
+    /// If string is a parse-able integer, return it's localized ordinal representation
+    /// Otherwise return nil
+    var toOrdinal: String? {
+        guard let parsed = Int(self) else { return nil }
+        let number = NSNumber(value: parsed)
+        return ordinalFormatter.string(from: number)
+    }
+    
+    /// Convert numbers inside string to ordinal
+    var toOrdinalAll: String {
+        return self
+            .split(separator: /\s+/)
+            .map({ String($0) })
+            .map({ $0.toOrdinal ?? $0 })
+            .joined(separator: " ")
+    }
+}
+
+struct PrimaryView: View {
+    let date = Date()
+    var body: some View {
+        VStack {
+            Text("\(string(from: date, format: "MMMM dd '-' F EEEE").toOrdinalAll)")
+            Text("\(string(from: date, format: "D 'Day -' ww 'Week").toOrdinalAll)")
+            Text("\(string(from: date, format: "YYYY GG"))")
+            Text("")
+            Text("\(string(from: date, format: "hh:mm:ss a"))")
+            Text("\(string(from: date, format: "vvvv (z)XXX"))")
+        }
+    }
+}
+
+struct EverythingView: View {
     let data = [
         ("Era", "GGGG"),
         ("Year", "YYYY"),
@@ -62,6 +101,21 @@ struct ContentView: View {
     }
 }
 
+struct ContentView: View {
+    var body: some View {
+        TabView {
+            PrimaryView().tabItem {
+                Image(systemName: "calendar.badge.clock")
+                Text("Main")
+            }
+            EverythingView().tabItem {
+                Image(systemName: "clock.badge.questionmark.fill")
+                Text("Debug")
+            }
+        }
+    }
+}
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
@@ -74,4 +128,5 @@ struct ContentView_Previews: PreviewProvider {
             ContentView()
         }
     }
+    
 }
