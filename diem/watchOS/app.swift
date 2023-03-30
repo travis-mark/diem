@@ -1,25 +1,16 @@
-//
-//  diemApp.swift
-//  diem Watch App
-//
+//  diem/watchOS - app.swift
 //  Created by Travis Luckenbaugh on 3/26/23.
-//
 
 import SwiftUI
 
-func diem() -> String {
-    let df = DateFormatter()
-    df.dateFormat = "D"
-    return df.string(from: Date())
-}
-
 struct ContentView: View {
+    let date = Date()
     var body: some View {
         VStack {
-            Image(systemName: "sun.max.fill")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Day \(diem())")
+            Text("\(string(from: date, format: "MMMM dd").toOrdinalAll)")
+            Text("\(string(from: date, format: "F EEEE").toOrdinalAll)")
+            Text("\(string(from: date, format: "D 'Day'").toOrdinalAll)")
+            Text("\(string(from: date, format: "ww 'Week'").toOrdinalAll)")
         }
         .padding()
     }

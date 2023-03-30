@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1FAD1B7B29D12A690059DDA1 /* diemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B7A29D12A690059DDA1 /* diemApp.swift */; };
+		1F6A345029D63C3D0073C110 /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A344F29D63C3D0073C110 /* lib.swift */; };
+		1F6A345129D63CEC0073C110 /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A344F29D63C3D0073C110 /* lib.swift */; };
+		1FAD1B7B29D12A690059DDA1 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B7A29D12A690059DDA1 /* app.swift */; };
 		1FAD1B7F29D12A6A0059DDA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B7E29D12A6A0059DDA1 /* Assets.xcassets */; };
 		1FAD1B8229D12A6A0059DDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8129D12A6A0059DDA1 /* Preview Assets.xcassets */; };
 		1FAD1B8829D12A6A0059DDA1 /* diem Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1FAD1B8D29D12A6A0059DDA1 /* diemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8C29D12A6A0059DDA1 /* diemApp.swift */; };
+		1FAD1B8D29D12A6A0059DDA1 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8C29D12A6A0059DDA1 /* app.swift */; };
 		1FAD1B9129D12A6B0059DDA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B9029D12A6B0059DDA1 /* Assets.xcassets */; };
 		1FAD1B9429D12A6B0059DDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -41,12 +43,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F6A344F29D63C3D0073C110 /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
 		1FAD1B7729D12A690059DDA1 /* diem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diem.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FAD1B7A29D12A690059DDA1 /* diemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diemApp.swift; sourceTree = "<group>"; };
+		1FAD1B7A29D12A690059DDA1 /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
 		1FAD1B7E29D12A6A0059DDA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FAD1B8129D12A6A0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "diem Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FAD1B8C29D12A6A0059DDA1 /* diemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diemApp.swift; sourceTree = "<group>"; };
+		1FAD1B8C29D12A6A0059DDA1 /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
 		1FAD1B9029D12A6B0059DDA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,11 +72,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F6A344E29D6360C0073C110 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1F6A344F29D63C3D0073C110 /* lib.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		1FAD1B6E29D12A690059DDA1 = {
 			isa = PBXGroup;
 			children = (
-				1FAD1B7929D12A690059DDA1 /* diem */,
-				1FAD1B8B29D12A6A0059DDA1 /* diem Watch App */,
+				1F6A344E29D6360C0073C110 /* Shared */,
+				1FAD1B7929D12A690059DDA1 /* iOS */,
+				1FAD1B8B29D12A6A0059DDA1 /* watchOS */,
 				1FAD1B7829D12A690059DDA1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,14 +99,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1FAD1B7929D12A690059DDA1 /* diem */ = {
+		1FAD1B7929D12A690059DDA1 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1FAD1B7A29D12A690059DDA1 /* diemApp.swift */,
+				1FAD1B7A29D12A690059DDA1 /* app.swift */,
 				1FAD1B7E29D12A6A0059DDA1 /* Assets.xcassets */,
 				1FAD1B8029D12A6A0059DDA1 /* Preview Content */,
 			);
-			path = diem;
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		1FAD1B8029D12A6A0059DDA1 /* Preview Content */ = {
@@ -105,14 +117,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1FAD1B8B29D12A6A0059DDA1 /* diem Watch App */ = {
+		1FAD1B8B29D12A6A0059DDA1 /* watchOS */ = {
 			isa = PBXGroup;
 			children = (
-				1FAD1B8C29D12A6A0059DDA1 /* diemApp.swift */,
+				1FAD1B8C29D12A6A0059DDA1 /* app.swift */,
 				1FAD1B9029D12A6B0059DDA1 /* Assets.xcassets */,
 				1FAD1B9229D12A6B0059DDA1 /* Preview Content */,
 			);
-			path = "diem Watch App";
+			path = watchOS;
 			sourceTree = "<group>";
 		};
 		1FAD1B9229D12A6B0059DDA1 /* Preview Content */ = {
@@ -225,7 +237,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FAD1B7B29D12A690059DDA1 /* diemApp.swift in Sources */,
+				1FAD1B7B29D12A690059DDA1 /* app.swift in Sources */,
+				1F6A345029D63C3D0073C110 /* lib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +246,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FAD1B8D29D12A6A0059DDA1 /* diemApp.swift in Sources */,
+				1F6A345129D63CEC0073C110 /* lib.swift in Sources */,
+				1FAD1B8D29D12A6A0059DDA1 /* app.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +378,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"diem Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"watchOS/Preview Content\"";
 				DEVELOPMENT_TEAM = PGUSZZ68XF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -394,7 +408,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"diem Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"watchOS/Preview Content\"";
 				DEVELOPMENT_TEAM = PGUSZZ68XF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -426,7 +440,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"diem/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = PGUSZZ68XF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -459,7 +473,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"diem/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = PGUSZZ68XF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
