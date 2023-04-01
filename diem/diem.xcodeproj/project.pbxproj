@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F47E37729D8EFB8006B0ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5AD07629D7B79A0080A373 /* Assets.xcassets */; };
+		1F47E37829D8EFBE006B0ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5AD07629D7B79A0080A373 /* Assets.xcassets */; };
 		1F5AD06F29D7B7990080A373 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5AD06E29D7B7990080A373 /* WidgetKit.framework */; };
 		1F5AD07129D7B7990080A373 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5AD07029D7B7990080A373 /* SwiftUI.framework */; };
 		1F5AD07429D7B7990080A373 /* widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5AD07329D7B7990080A373 /* widgets.swift */; };
@@ -18,11 +20,9 @@
 		1F6A345029D63C3D0073C110 /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A344F29D63C3D0073C110 /* lib.swift */; };
 		1F6A345129D63CEC0073C110 /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A344F29D63C3D0073C110 /* lib.swift */; };
 		1FAD1B7B29D12A690059DDA1 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B7A29D12A690059DDA1 /* app.swift */; };
-		1FAD1B7F29D12A6A0059DDA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B7E29D12A6A0059DDA1 /* Assets.xcassets */; };
 		1FAD1B8229D12A6A0059DDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8129D12A6A0059DDA1 /* Preview Assets.xcassets */; };
 		1FAD1B8829D12A6A0059DDA1 /* diem Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1FAD1B8D29D12A6A0059DDA1 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8C29D12A6A0059DDA1 /* app.swift */; };
-		1FAD1B9129D12A6B0059DDA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B9029D12A6B0059DDA1 /* Assets.xcassets */; };
 		1FAD1B9429D12A6B0059DDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -79,11 +79,9 @@
 		1F6A344F29D63C3D0073C110 /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
 		1FAD1B7729D12A690059DDA1 /* diem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B7A29D12A690059DDA1 /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
-		1FAD1B7E29D12A6A0059DDA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FAD1B8129D12A6A0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "diem Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B8C29D12A6A0059DDA1 /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
-		1FAD1B9029D12A6B0059DDA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,7 +126,6 @@
 			children = (
 				1F5AD07329D7B7990080A373 /* widgets.swift */,
 				1F5AD07529D7B7990080A373 /* widgets.intentdefinition */,
-				1F5AD07629D7B79A0080A373 /* Assets.xcassets */,
 				1F5AD07829D7B79A0080A373 /* Info.plist */,
 			);
 			path = widgets;
@@ -138,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				1F6A344F29D63C3D0073C110 /* lib.swift */,
+				1F5AD07629D7B79A0080A373 /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -168,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				1FAD1B7A29D12A690059DDA1 /* app.swift */,
-				1FAD1B7E29D12A6A0059DDA1 /* Assets.xcassets */,
 				1FAD1B8029D12A6A0059DDA1 /* Preview Content */,
 			);
 			path = iOS;
@@ -186,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				1FAD1B8C29D12A6A0059DDA1 /* app.swift */,
-				1FAD1B9029D12A6B0059DDA1 /* Assets.xcassets */,
 				1FAD1B9229D12A6B0059DDA1 /* Preview Content */,
 			);
 			path = watchOS;
@@ -312,8 +308,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F47E37829D8EFBE006B0ABD /* Assets.xcassets in Resources */,
 				1FAD1B8229D12A6A0059DDA1 /* Preview Assets.xcassets in Resources */,
-				1FAD1B7F29D12A6A0059DDA1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,8 +317,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F47E37729D8EFB8006B0ABD /* Assets.xcassets in Resources */,
 				1FAD1B9429D12A6B0059DDA1 /* Preview Assets.xcassets in Resources */,
-				1FAD1B9129D12A6B0059DDA1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +615,8 @@
 				DEVELOPMENT_TEAM = PGUSZZ68XF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = diem;
+				INFOPLIST_KEY_CFBundleDisplayName = Diem;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -652,7 +649,8 @@
 				DEVELOPMENT_TEAM = PGUSZZ68XF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = diem;
+				INFOPLIST_KEY_CFBundleDisplayName = Diem;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
