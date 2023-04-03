@@ -47,10 +47,33 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct widgetsEntryView : View {
+    @Environment(\.widgetFamily) var family: WidgetFamily
     var entry: Provider.Entry
-
+        
     var body: some View {
-        Text("\(string(from: entry.date, format: "'Day' D"))")
+        switch family {
+        case .systemSmall: Text("systemSmall")
+        case .systemMedium: Text("systemMedium")
+        case .systemLarge: Text("systemLarge")
+        case .systemExtraLarge: Text("systemExtraLarge")
+        case .accessoryCircular:
+            VStack {
+                Text("Day")
+                    .fontWeight(.bold)
+                    .widgetAccentable()
+                Text(string(from: entry.date, format: "D"))
+            }
+        case .accessoryRectangular:
+            VStack {
+                Text("\(string(from: entry.date, format: "MMMM d")) - \(string(from: entry.date, format: "F EEEE").toOrdinalAll)")
+                    .fontWeight(.bold)
+                    .widgetAccentable()
+                Text("\(string(from: entry.date, format: "D 'Day -' ww 'Week").toOrdinalAll)")
+            }
+        case .accessoryInline:
+            Text("\(string(from: entry.date, format: "'Day' D"))")
+        default: Text("default")
+        }
     }
 }
 
