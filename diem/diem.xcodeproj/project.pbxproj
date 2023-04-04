@@ -83,6 +83,7 @@
 		1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "diem Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B8C29D12A6A0059DDA1 /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
 		1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1FD5F02429DBCEAB005B3622 /* diem-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "diem-Watch-App-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +144,7 @@
 		1FAD1B6E29D12A690059DDA1 = {
 			isa = PBXGroup;
 			children = (
+				1FD5F02429DBCEAB005B3622 /* diem-Watch-App-Info.plist */,
 				1F6A344E29D6360C0073C110 /* Shared */,
 				1FAD1B7929D12A690059DDA1 /* iOS */,
 				1FAD1B8B29D12A6A0059DDA1 /* watchOS */,
@@ -552,6 +554,7 @@
 				DEVELOPMENT_TEAM = PGUSZZ68XF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "diem-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = diem;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.tl.diem;
@@ -583,6 +586,7 @@
 				DEVELOPMENT_TEAM = PGUSZZ68XF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "diem-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = diem;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.tl.diem;

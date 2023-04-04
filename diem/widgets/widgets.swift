@@ -9,24 +9,31 @@ import WidgetKit
 import SwiftUI
 import Intents
 
-struct Provider: IntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+struct DiemEntry: TimelineEntry {
+    let date: Date
+    let configuration: DiemIntent
+}
+
+let defaultDiem = "MMMM d"
+
+struct DiemProvider: IntentTimelineProvider {
+    func placeholder(in context: Context) -> DiemEntry {
+        DiemEntry(date: Date(), configuration: DiemIntent())
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
+    func getSnapshot(for configuration: DiemIntent, in context: Context, completion: @escaping (DiemEntry) -> ()) {
+        let entry = DiemEntry(date: Date(), configuration: configuration)
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
+    func getTimeline(for configuration: DiemIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        var entries: [DiemEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
+            let entry = DiemEntry(date: entryDate, configuration: configuration)
             entries.append(entry)
         }
 
@@ -34,34 +41,45 @@ struct Provider: IntentTimelineProvider {
         completion(timeline)
     }
 
-    func recommendations() -> [IntentRecommendation<ConfigurationIntent>] {
-        return [
-            IntentRecommendation(intent: ConfigurationIntent(), description: "Day of Year")
+    func recommendations() -> [IntentRecommendation<DiemIntent>] {
+        let data = [
+            ("MMMM d", "Date", true),
+            ("F EEEE", "Day", true),
+            ("'Day' D", "Year Day", false),
+            ("'Week' ww", "Year Week", false)
         ]
+        return data.map({
+            let intent = DiemIntent()
+            intent.format = $0.0
+            intent.useOrdinal = NSNumber(value: $0.2)
+            return IntentRecommendation(intent: intent, description: $0.1)
+        })
     }
 }
 
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let configuration: ConfigurationIntent
-}
 
 struct widgetsEntryView : View {
     @Environment(\.widgetFamily) var family: WidgetFamily
-    var entry: Provider.Entry
+    var entry: DiemEntry
         
     var body: some View {
+        let format = entry.configuration.format ?? defaultDiem
         switch family {
         case .systemSmall: Text("systemSmall")
         case .systemMedium: Text("systemMedium")
         case .systemLarge: Text("systemLarge")
         case .systemExtraLarge: Text("systemExtraLarge")
         case .accessoryCircular:
+            let parts = format.split(separator:" ").map({
+                entry.configuration.useOrdinal?.boolValue ?? false
+                ? String($0).toOrdinalAll
+                : String($0)
+            })
             VStack {
-                Text("Day")
+                Text(string(from: entry.date, format: parts[0]))
                     .fontWeight(.bold)
                     .widgetAccentable()
-                Text(string(from: entry.date, format: "D"))
+                Text(string(from: entry.date, format: parts[1]))
             }
         case .accessoryRectangular:
             VStack {
@@ -70,8 +88,8 @@ struct widgetsEntryView : View {
                     .widgetAccentable()
                 Text("\(string(from: entry.date, format: "D 'Day -' ww 'Week").toOrdinalAll)")
             }
-        case .accessoryInline:
-            Text("\(string(from: entry.date, format: "'Day' D"))")
+        case .accessoryInline, .accessoryCorner:
+            Text("\(string(from: entry.date, format: format))")
         default: Text("default")
         }
     }
@@ -81,7 +99,7 @@ struct widgetsEntryView : View {
     let kind: String = "widgets"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
             widgetsEntryView(entry: entry)
         }
         .configurationDisplayName("Day of Year")
@@ -91,7 +109,7 @@ struct widgetsEntryView : View {
 
 struct widgets_Previews: PreviewProvider {
     static var previews: some View {
-        widgetsEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        widgetsEntryView(entry: DiemEntry(date: Date(), configuration: DiemIntent()))
             .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
     }
 }
