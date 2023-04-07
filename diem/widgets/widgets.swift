@@ -11,43 +11,38 @@ import Intents
 
 struct DiemEntry: TimelineEntry {
     let date: Date
-    let configuration: DiemIntent
 }
 
-struct DiemProvider: IntentTimelineProvider {
-    func placeholder(in context: Context) -> DiemEntry {
-        DiemEntry(date: Date(), configuration: DiemIntent())
-    }
-
-    func getSnapshot(for configuration: DiemIntent, in context: Context, completion: @escaping (DiemEntry) -> ()) {
-        let entry = DiemEntry(date: Date(), configuration: configuration)
+struct DiemProvider: TimelineProvider {
+    func getSnapshot(in context: Context, completion: @escaping (DiemEntry) -> Void) {
+        let entry = DiemEntry(date: Date())
         completion(entry)
     }
-
-    func getTimeline(for configuration: DiemIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    
+    func getTimeline(in context: Context, completion: @escaping (Timeline<DiemEntry>) -> Void) {
         var entries: [DiemEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = DiemEntry(date: entryDate, configuration: configuration)
+            let entry = DiemEntry(date: entryDate)
             entries.append(entry)
         }
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
-
-    func recommendations() -> [IntentRecommendation<DiemIntent>] {
-        return [IntentRecommendation(intent: DiemIntent(), description: "")]
+    
+    func placeholder(in context: Context) -> DiemEntry {
+        DiemEntry(date: Date())
     }
 }
 
 struct DateWidget: Widget {
     let kind: String = "com.tl.diem.widget.date"
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
+        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
             VStack {
                 Text(string(from: entry.date, format: "MMMM"))
                     .fontWeight(.bold)
@@ -57,14 +52,14 @@ struct DateWidget: Widget {
         }
         .configurationDisplayName("Date")
         .description("Shows Date")
-        .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
+        .supportedFamilies([.accessoryCircular, .accessoryCorner])
     }
 }
 
 struct DayWidget: Widget {
     let kind: String = "com.tl.diem.widget.day"
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
+        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
             VStack {
                 Text(string(from: entry.date, format: "F").toOrdinal)
                     .fontWeight(.bold)
@@ -74,14 +69,14 @@ struct DayWidget: Widget {
         }
         .configurationDisplayName("Day")
         .description("Shows Position in Month")
-        .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
+        .supportedFamilies([.accessoryCircular, .accessoryCorner])
     }
 }
 
 struct YearDayWidget: Widget {
     let kind: String = "com.tl.diem.widget.yearday"
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
+        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
             VStack {
                 Text("Day")
                     .fontWeight(.bold)
@@ -91,14 +86,14 @@ struct YearDayWidget: Widget {
         }
         .configurationDisplayName("Day of Year")
         .description("Shows Day of Year")
-        .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
+        .supportedFamilies([.accessoryCircular, .accessoryCorner])
     }
 }
 
 struct YearWeekWidget: Widget {
     let kind: String = "com.tl.diem.widget.yearweek"
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
+        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
             VStack {
                 Text("Week")
                     .fontWeight(.bold)
@@ -108,14 +103,62 @@ struct YearWeekWidget: Widget {
         }
         .configurationDisplayName("Week of Year")
         .description("Shows Week of Year")
-        .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
+        .supportedFamilies([.accessoryCircular, .accessoryCorner])
+    }
+}
+
+struct DateInlineWidget: Widget {
+    let kind: String = "com.tl.diem.widget.dateInline"
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
+            Text(string(from: entry.date, format: "MMMM d"))
+        }
+        .configurationDisplayName("Date")
+        .description("Shows Date")
+        .supportedFamilies([.accessoryInline])
+    }
+}
+
+struct DayInlineWidget: Widget {
+    let kind: String = "com.tl.diem.widget.dayInline"
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
+            Text(string(from: entry.date, format: "F EEEE").toOrdinalAll)
+        }
+        .configurationDisplayName("Day")
+        .description("Shows Position in Month")
+        .supportedFamilies([.accessoryInline])
+    }
+}
+
+struct YearDayInlineWidget: Widget {
+    let kind: String = "com.tl.diem.widget.yearDayInline"
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
+            Text(string(from: entry.date, format: "'Day' D"))
+        }
+        .configurationDisplayName("Day of Year")
+        .description("Shows Day of Year")
+        .supportedFamilies([.accessoryInline])
+    }
+}
+
+struct YearWeekInlineWidget: Widget {
+    let kind: String = "com.tl.diem.widget.yearWeekInline"
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
+            Text(string(from: entry.date, format: "'Week' ww"))
+        }
+        .configurationDisplayName("Week of Year")
+        .description("Shows Week of Year")
+        .supportedFamilies([.accessoryInline])
     }
 }
 
 struct EverythingWidget: Widget {
     let kind: String = "com.tl.diem.widget.everything"
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
+        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
             VStack {
                 Text("\(string(from: entry.date, format: "MMMM d")) - \(string(from: entry.date, format: "F EEEE").toOrdinalAll)")
                     .fontWeight(.bold)
@@ -135,5 +178,10 @@ struct EverythingWidget: Widget {
         DayWidget()
         YearDayWidget()
         YearWeekWidget()
+        DateInlineWidget()
+        DayInlineWidget()
+        YearDayInlineWidget()
+        YearWeekInlineWidget()
+        EverythingWidget()
     }
 }
