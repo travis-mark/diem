@@ -25,10 +25,10 @@ let ordinalFormatter: NumberFormatter = {
 extension String {
     /// If string is a parse-able integer, return it's localized ordinal representation
     /// Otherwise return nil
-    var toOrdinal: String? {
-        guard let parsed = Int(self) else { return nil }
+    var toOrdinal: String {
+        guard let parsed = Int(self) else { return self }
         let number = NSNumber(value: parsed)
-        return ordinalFormatter.string(from: number)
+        return ordinalFormatter.string(from: number) ?? self
     }
     
     /// Convert numbers inside string to ordinal
@@ -36,7 +36,7 @@ extension String {
         return self
             .split(separator: /\s+/)
             .map({ String($0) })
-            .map({ $0.toOrdinal ?? $0 })
+            .map({ $0.toOrdinal })
             .joined(separator: " ")
     }
 }

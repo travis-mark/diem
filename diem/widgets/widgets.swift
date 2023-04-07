@@ -14,8 +14,6 @@ struct DiemEntry: TimelineEntry {
     let configuration: DiemIntent
 }
 
-let defaultDiem = "MMMM d"
-
 struct DiemProvider: IntentTimelineProvider {
     func placeholder(in context: Context) -> DiemEntry {
         DiemEntry(date: Date(), configuration: DiemIntent())
@@ -42,74 +40,100 @@ struct DiemProvider: IntentTimelineProvider {
     }
 
     func recommendations() -> [IntentRecommendation<DiemIntent>] {
-        let data = [
-            ("MMMM d", "Date", true),
-            ("F EEEE", "Day", true),
-            ("'Day' D", "Year Day", false),
-            ("'Week' ww", "Year Week", false)
-        ]
-        return data.map({
-            let intent = DiemIntent()
-            intent.format = $0.0
-            intent.useOrdinal = NSNumber(value: $0.2)
-            return IntentRecommendation(intent: intent, description: $0.1)
-        })
+        return [IntentRecommendation(intent: DiemIntent(), description: "")]
     }
 }
 
-
-struct widgetsEntryView : View {
-    @Environment(\.widgetFamily) var family: WidgetFamily
-    var entry: DiemEntry
-        
-    var body: some View {
-        let format = entry.configuration.format ?? defaultDiem
-        switch family {
-        case .systemSmall: Text("systemSmall")
-        case .systemMedium: Text("systemMedium")
-        case .systemLarge: Text("systemLarge")
-        case .systemExtraLarge: Text("systemExtraLarge")
-        case .accessoryCircular:
-            let parts = format.split(separator:" ").map({
-                entry.configuration.useOrdinal?.boolValue ?? false
-                ? String($0).toOrdinalAll
-                : String($0)
-            })
+struct DateWidget: Widget {
+    let kind: String = "com.tl.diem.widget.date"
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
             VStack {
-                Text(string(from: entry.date, format: parts[0]))
+                Text(string(from: entry.date, format: "MMMM"))
                     .fontWeight(.bold)
                     .widgetAccentable()
-                Text(string(from: entry.date, format: parts[1]))
+                Text(string(from: entry.date, format: "d"))
             }
-        case .accessoryRectangular:
+        }
+        .configurationDisplayName("Date")
+        .description("Shows Date")
+        .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
+    }
+}
+
+struct DayWidget: Widget {
+    let kind: String = "com.tl.diem.widget.day"
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
+            VStack {
+                Text(string(from: entry.date, format: "F").toOrdinal)
+                    .fontWeight(.bold)
+                    .widgetAccentable()
+                Text(string(from: entry.date, format: "EEE"))
+            }
+        }
+        .configurationDisplayName("Day")
+        .description("Shows Position in Month")
+        .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
+    }
+}
+
+struct YearDayWidget: Widget {
+    let kind: String = "com.tl.diem.widget.yearday"
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
+            VStack {
+                Text("Day")
+                    .fontWeight(.bold)
+                    .widgetAccentable()
+                Text(string(from: entry.date, format: "D"))
+            }
+        }
+        .configurationDisplayName("Day of Year")
+        .description("Shows Day of Year")
+        .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
+    }
+}
+
+struct YearWeekWidget: Widget {
+    let kind: String = "com.tl.diem.widget.yearweek"
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
+            VStack {
+                Text("Week")
+                    .fontWeight(.bold)
+                    .widgetAccentable()
+                Text(string(from: entry.date, format: "ww"))
+            }
+        }
+        .configurationDisplayName("Week of Year")
+        .description("Shows Week of Year")
+        .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
+    }
+}
+
+struct EverythingWidget: Widget {
+    let kind: String = "com.tl.diem.widget.everything"
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
             VStack {
                 Text("\(string(from: entry.date, format: "MMMM d")) - \(string(from: entry.date, format: "F EEEE").toOrdinalAll)")
                     .fontWeight(.bold)
                     .widgetAccentable()
-                Text("\(string(from: entry.date, format: "D 'Day -' ww 'Week").toOrdinalAll)")
+                Text("\(string(from: entry.date, format: "'Day' D - 'Week' ww"))")
             }
-        case .accessoryInline, .accessoryCorner:
-            Text("\(string(from: entry.date, format: format))")
-        default: Text("default")
         }
+        .configurationDisplayName("Today")
+        .description("Shows Date Info")
+        .supportedFamilies([.accessoryRectangular])
     }
 }
 
-@main struct widgets: Widget {
-    let kind: String = "widgets"
-
-    var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: DiemIntent.self, provider: DiemProvider()) { entry in
-            widgetsEntryView(entry: entry)
-        }
-        .configurationDisplayName("Day of Year")
-        .description("")
-    }
-}
-
-struct widgets_Previews: PreviewProvider {
-    static var previews: some View {
-        widgetsEntryView(entry: DiemEntry(date: Date(), configuration: DiemIntent()))
-            .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+@main struct DiemWidgetBundle: WidgetBundle {
+    @WidgetBundleBuilder var body: some Widget {
+        DateWidget()
+        DayWidget()
+        YearDayWidget()
+        YearWeekWidget()
     }
 }
