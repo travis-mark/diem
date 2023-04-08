@@ -7,12 +7,15 @@ struct ContentView: View {
     let date = Date()
     var body: some View {
         VStack {
-            Text("\(string(from: date, format: "MMMM dd").toOrdinalAll)")
-            Text("\(string(from: date, format: "F EEEE").toOrdinalAll)")
-            Text("\(string(from: date, format: "D 'Day'").toOrdinalAll)")
-            Text("\(string(from: date, format: "ww 'Week'").toOrdinalAll)")
+            HStack {
+                DateView(date: date).modifier(WidgetBoxModifier())
+                DayView(date: date).modifier(WidgetBoxModifier())
+            }
+            HStack {
+                YearDayView(date: date).modifier(WidgetBoxModifier())
+                YearWeekView(date: date).modifier(WidgetBoxModifier())
+            }
         }
-        .padding()
     }
 }
 

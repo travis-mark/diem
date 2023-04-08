@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F3980AE29E0F80B001CDACB /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3980AD29E0F80B001CDACB /* view.swift */; };
+		1F3980AF29E0F80B001CDACB /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3980AD29E0F80B001CDACB /* view.swift */; };
+		1F3980B029E0F80B001CDACB /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3980AD29E0F80B001CDACB /* view.swift */; };
 		1F47E37729D8EFB8006B0ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5AD07629D7B79A0080A373 /* Assets.xcassets */; };
 		1F47E37829D8EFBE006B0ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F5AD07629D7B79A0080A373 /* Assets.xcassets */; };
 		1F5AD06F29D7B7990080A373 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5AD06E29D7B7990080A373 /* WidgetKit.framework */; };
@@ -69,6 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F3980AD29E0F80B001CDACB /* view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = view.swift; sourceTree = "<group>"; };
 		1F5AD06C29D7B7990080A373 /* widgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F5AD06E29D7B7990080A373 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1F5AD07029D7B7990080A373 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -135,8 +139,9 @@
 		1F6A344E29D6360C0073C110 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1F6A344F29D63C3D0073C110 /* lib.swift */,
 				1F5AD07629D7B79A0080A373 /* Assets.xcassets */,
+				1F6A344F29D63C3D0073C110 /* lib.swift */,
+				1F3980AD29E0F80B001CDACB /* view.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3980B029E0F80B001CDACB /* view.swift in Sources */,
 				1F5AD08229D7B8A60080A373 /* lib.swift in Sources */,
 				1F5AD07929D7B79A0080A373 /* widgets.intentdefinition in Sources */,
 				1F5AD07429D7B7990080A373 /* widgets.swift in Sources */,
@@ -342,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FAD1B7B29D12A690059DDA1 /* app.swift in Sources */,
+				1F3980AE29E0F80B001CDACB /* view.swift in Sources */,
 				1F6A345029D63C3D0073C110 /* lib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3980AF29E0F80B001CDACB /* view.swift in Sources */,
 				1F5AD07A29D7B79A0080A373 /* widgets.intentdefinition in Sources */,
 				1F6A345129D63CEC0073C110 /* lib.swift in Sources */,
 				1FAD1B8D29D12A6A0059DDA1 /* app.swift in Sources */,

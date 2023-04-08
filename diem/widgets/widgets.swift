@@ -43,12 +43,7 @@ struct DateWidget: Widget {
     let kind: String = "com.tl.diem.widget.date"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            VStack {
-                Text(string(from: entry.date, format: "MMMM"))
-                    .fontWeight(.bold)
-                    .widgetAccentable()
-                Text(string(from: entry.date, format: "d"))
-            }
+            DateView(date: entry.date)
         }
         .configurationDisplayName("Date")
         .description("Shows Date")
@@ -60,12 +55,7 @@ struct DayWidget: Widget {
     let kind: String = "com.tl.diem.widget.day"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            VStack {
-                Text(string(from: entry.date, format: "F").toOrdinal)
-                    .fontWeight(.bold)
-                    .widgetAccentable()
-                Text(string(from: entry.date, format: "EEE"))
-            }
+            DayView(date: entry.date)
         }
         .configurationDisplayName("Day")
         .description("Shows Position in Month")
@@ -77,12 +67,7 @@ struct YearDayWidget: Widget {
     let kind: String = "com.tl.diem.widget.yearday"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            VStack {
-                Text("Day")
-                    .fontWeight(.bold)
-                    .widgetAccentable()
-                Text(string(from: entry.date, format: "D"))
-            }
+            YearDayView(date: entry.date)
         }
         .configurationDisplayName("Day of Year")
         .description("Shows Day of Year")
@@ -94,12 +79,7 @@ struct YearWeekWidget: Widget {
     let kind: String = "com.tl.diem.widget.yearweek"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            VStack {
-                Text("Week")
-                    .fontWeight(.bold)
-                    .widgetAccentable()
-                Text(string(from: entry.date, format: "ww"))
-            }
+            YearWeekView(date: entry.date)
         }
         .configurationDisplayName("Week of Year")
         .description("Shows Week of Year")
@@ -111,7 +91,7 @@ struct DateInlineWidget: Widget {
     let kind: String = "com.tl.diem.widget.dateInline"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            Text(string(from: entry.date, format: "MMMM d"))
+            DateInlineView(date: entry.date)
         }
         .configurationDisplayName("Date")
         .description("Shows Date")
@@ -123,7 +103,7 @@ struct DayInlineWidget: Widget {
     let kind: String = "com.tl.diem.widget.dayInline"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            Text(string(from: entry.date, format: "F EEEE").toOrdinalAll)
+            DayInlineView(date: entry.date)
         }
         .configurationDisplayName("Day")
         .description("Shows Position in Month")
@@ -135,7 +115,7 @@ struct YearDayInlineWidget: Widget {
     let kind: String = "com.tl.diem.widget.yearDayInline"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            Text(string(from: entry.date, format: "'Day' D"))
+            YearDayInlineView(date: entry.date)
         }
         .configurationDisplayName("Day of Year")
         .description("Shows Day of Year")
@@ -147,7 +127,7 @@ struct YearWeekInlineWidget: Widget {
     let kind: String = "com.tl.diem.widget.yearWeekInline"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            Text(string(from: entry.date, format: "'Week' ww"))
+            YearWeekInlineView(date: entry.date)
         }
         .configurationDisplayName("Week of Year")
         .description("Shows Week of Year")
@@ -159,12 +139,7 @@ struct EverythingWidget: Widget {
     let kind: String = "com.tl.diem.widget.everything"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            VStack {
-                Text("\(string(from: entry.date, format: "MMMM d")) - \(string(from: entry.date, format: "F EEEE").toOrdinalAll)")
-                    .fontWeight(.bold)
-                    .widgetAccentable()
-                Text("\(string(from: entry.date, format: "'Day' D - 'Week' ww"))")
-            }
+            EverythingView(date: entry.date)
         }
         .configurationDisplayName("Today")
         .description("Shows Date Info")
