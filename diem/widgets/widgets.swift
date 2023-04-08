@@ -99,38 +99,14 @@ struct DateInlineWidget: Widget {
     }
 }
 
-struct DayInlineWidget: Widget {
-    let kind: String = "com.tl.diem.widget.dayInline"
+struct YearInlineWidget: Widget {
+    let kind: String = "com.tl.diem.widget.yearInline"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            DayInlineView(date: entry.date)
+            YearInlineView(date: entry.date)
         }
-        .configurationDisplayName("Day")
-        .description("Shows Position in Month")
-        .supportedFamilies([.accessoryInline])
-    }
-}
-
-struct YearDayInlineWidget: Widget {
-    let kind: String = "com.tl.diem.widget.yearDayInline"
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            YearDayInlineView(date: entry.date)
-        }
-        .configurationDisplayName("Day of Year")
-        .description("Shows Day of Year")
-        .supportedFamilies([.accessoryInline])
-    }
-}
-
-struct YearWeekInlineWidget: Widget {
-    let kind: String = "com.tl.diem.widget.yearWeekInline"
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            YearWeekInlineView(date: entry.date)
-        }
-        .configurationDisplayName("Week of Year")
-        .description("Shows Week of Year")
+        .configurationDisplayName("YTD")
+        .description("Shows Day and Week of Year")
         .supportedFamilies([.accessoryInline])
     }
 }
@@ -154,9 +130,7 @@ struct EverythingWidget: Widget {
         YearDayWidget()
         YearWeekWidget()
         DateInlineWidget()
-        DayInlineWidget()
-        YearDayInlineWidget()
-        YearWeekInlineWidget()
+        YearInlineWidget()
         EverythingWidget()
     }
 }

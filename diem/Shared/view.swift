@@ -57,28 +57,15 @@ struct YearWeekView: View {
 struct DateInlineView: View {
     let date: Date
     var body: some View {
-        Text(string(from: date, format: "MMMM d"))
+        Text("\(string(from: date, format: "MMM d")) - \(string(from: date, format: "F EEEE").toOrdinalAll)")
     }
 }
 
-struct DayInlineView: View {
-    let date: Date
-    var body: some View {
-        Text(string(from: date, format: "F EEEE").toOrdinalAll)
-    }
-}
 
-struct YearDayInlineView: View {
+struct YearInlineView: View {
     let date: Date
     var body: some View {
-        Text(string(from: date, format: "'Day' D"))
-    }
-}
-
-struct YearWeekInlineView: View {
-    let date: Date
-    var body: some View {
-        Text(string(from: date, format: "'Week' ww"))
+        Text(string(from: date, format: "'Day' D - 'Week' ww"))
     }
 }
 
@@ -86,7 +73,7 @@ struct EverythingView: View {
     let date: Date
     var body: some View {
         VStack {
-            Text("\(string(from: date, format: "MMMM d")) - \(string(from: date, format: "F EEEE").toOrdinalAll)")
+            Text("\(string(from: date, format: "MMM d")) - \(string(from: date, format: "F EEEE").toOrdinalAll)")
                 .fontWeight(.bold)
                 .widgetAccentable()
             Text("\(string(from: date, format: "'Day' D - 'Week' ww"))")
