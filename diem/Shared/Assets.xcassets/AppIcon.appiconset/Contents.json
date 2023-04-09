@@ -1,13 +1,13 @@
 {
   "images" : [
     {
-      "filename" : "sun-sp-1024-ios.png",
+      "filename" : "sun-ios-1024.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
     },
     {
-      "filename" : "sun-sp-1024-watchos.png",
+      "filename" : "sun-watchos-1024.png",
       "idiom" : "universal",
       "platform" : "watchos",
       "size" : "1024x1024"
