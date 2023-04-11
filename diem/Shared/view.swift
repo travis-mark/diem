@@ -73,7 +73,7 @@ struct EverythingView: View {
     let date: Date
     var body: some View {
         VStack {
-            Text("\(string(from: date, format: "MMM d")) - \(string(from: date, format: "F EEEE").toOrdinalAll)")
+            Text("\(string(from: date, format: "MMM d")) - \(string(from: date, format: "F EEE").toOrdinalAll)")
                 .fontWeight(.bold)
                 .widgetAccentable()
             Text("\(string(from: date, format: "'Day' D - 'Week' ww"))")
