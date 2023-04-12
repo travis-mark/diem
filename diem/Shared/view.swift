@@ -87,7 +87,7 @@ struct WidgetBoxModifier: ViewModifier {
             .aspectRatio(contentMode: .fill)
             .frame(maxWidth: .infinity)
             .padding()
-            .background(Color(UIColor.lightGray))
+            .background(Color.secondary)
             .cornerRadius(8)
     }
 }
