@@ -60,10 +60,29 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 @main struct diemApp: App {
+    @Environment(\.scenePhase) var scenePhase
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .onChange(of: scenePhase) { scenePhase in
+            switch scenePhase {
+            case .background:
+                addActions()
+            default:
+                break
+            }
+        }
     }
-    
+
+    private func addActions() {
+        let date = Date()
+        UIApplication.shared.shortcutItems = [
+            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: string(from: date, format: "MMMM d")),
+            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: string(from: date, format: "F EEE").toOrdinalAll),
+            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: string(from: date, format: "'Day' D")),
+            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: string(from: date, format: "'Week' ww")),
+        ]
+    }
 }
