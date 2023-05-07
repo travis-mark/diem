@@ -87,7 +87,9 @@ struct WidgetBoxModifier: ViewModifier {
             .aspectRatio(contentMode: .fill)
             .frame(maxWidth: .infinity)
             .padding()
-            .background(Color.secondary)
-            .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.gray, lineWidth: 1)
+            )
     }
 }

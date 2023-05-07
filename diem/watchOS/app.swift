@@ -6,16 +6,7 @@ import SwiftUI
 struct ContentView: View {
     let date = Date()
     var body: some View {
-        VStack {
-            HStack {
-                DateView(date: date).modifier(WidgetBoxModifier())
-                DayView(date: date).modifier(WidgetBoxModifier())
-            }
-            HStack {
-                YearDayView(date: date).modifier(WidgetBoxModifier())
-                YearWeekView(date: date).modifier(WidgetBoxModifier())
-            }
-        }
+        EverythingView(date: date)
     }
 }
 

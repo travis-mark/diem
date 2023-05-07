@@ -34,11 +34,10 @@ struct PrimaryView: View {
                 EverythingView(date: date)
                     .modifier(WidgetBoxModifier())
             }
-
-            VStack(spacing: 4) {
-                Text("Adding Widgets on iPhone").bold()
-                Text("Long-press on an empty space on your phone's home screen. Tap the [+] button in the top left corner and find the Diem widget you want to add. Press and hold the widget and drag it to the desired location on your home screen.")
-            }
+//            VStack(spacing: 4) {
+//                Text("Adding Widgets on iPhone").bold()
+//                Text("Long-press on an empty space on your phone's home screen. Tap the [+] button in the top left corner and find the Diem widget you want to add. Press and hold the widget and drag it to the desired location on your home screen.")
+//            }
             VStack(spacing: 4) {
                 Text("Adding Widgets on Apple Watch").bold()
                 Text("Long-press in the center of the watch. Tap the (Edit) button in the bottom right corner and swipe right to edit complications. Select the complications to replace and scroll to find the Diem widget you want to add.")
