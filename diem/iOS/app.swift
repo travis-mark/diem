@@ -4,7 +4,7 @@
 import SwiftUI
 
 struct PrimaryView: View {
-    let date = Date()
+    @State private var date = Date()
     var body: some View {
         VStack(spacing: 20) {
             VStack {
@@ -42,7 +42,14 @@ struct PrimaryView: View {
                 Text("Adding Widgets on Apple Watch").bold()
                 Text("Long-press in the center of the watch. Tap the (Edit) button in the bottom right corner and swipe right to edit complications. Select the complications to replace and scroll to find the Diem widget you want to add.")
             }
-        }.padding(20)
+        }
+        .padding(20)
+        .onAppear {
+            date = Date()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            date = Date()
+        }
     }
 }
 

@@ -4,9 +4,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    let date = Date()
+    @State private var date = Date()
     var body: some View {
-        EverythingView(date: date)
+        EverythingView(date: date).onAppear {
+            date = Date()
+        }.onReceive(NotificationCenter.default.publisher(for: WKExtension.applicationDidBecomeActiveNotification)) { _ in
+            date = Date()
+        }
     }
 }
 
