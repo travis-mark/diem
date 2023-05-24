@@ -38,6 +38,10 @@ struct PrimaryView: View {
                 Text("Adding Widgets on Apple Watch").bold()
                 Text("Long-press in the center of the watch. Tap the (Edit) button in the bottom right corner and swipe right to edit complications. Select the complications to replace and scroll to find the Diem widget you want to add.")
             }
+            VStack {
+                Text("Start Lisp Test")
+                ExprView(expr: .cell(.symbol("vstack"), .string("Hello, parens!")))
+            }
         }
         .padding(20)
         .onAppear {
