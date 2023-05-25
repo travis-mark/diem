@@ -40,7 +40,7 @@ struct PrimaryView: View {
             }
             VStack {
                 Text("Start Lisp Test")
-                ExprView(expr: .cell(.symbol("vstack"), .string("Hello, parens!")))
+                ExprView(expr: .cell(.symbol("vstack"), .cell(.string("Hello, parens!"), .cell(.cell(.symbol("nsdateformat"), .string("D")), .null))))
             }
         }
         .padding(20)

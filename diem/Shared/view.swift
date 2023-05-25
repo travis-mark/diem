@@ -26,7 +26,7 @@ extension Expr: CustomStringConvertible {
         case .null:
             return "()"
         case .cell(let head, let tail):
-            return "(\(head.description) \(unroll(tail).map({ $0.description }).joined(separator: " "))"
+            return "(\(head.description) \(unroll(tail).map({ $0.description }).joined(separator: " ")))"
         }
     }
 }
@@ -66,9 +66,13 @@ struct ExprView: View {
                         ExprView(expr: expr)
                     }
                 })
-            default:
-                return AnyView(Text(expr.description))
+            case .symbol("nsdateformat"):
+                if case let .string(format) = tail {
+                    return AnyView(Text(string(from: Date(), format: format)))
+                }
+            default: break
             }
+            return AnyView(Text(expr.description))
         }
     }
 }
