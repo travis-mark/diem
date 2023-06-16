@@ -30,6 +30,13 @@ struct PrimaryView: View {
                 }
             }
             VStack {
+                Text("Inline Widgets").bold()
+                DateInlineView(date: date)
+                    .modifier(WidgetBoxModifier())
+                YearInlineView(date: date)
+                    .modifier(WidgetBoxModifier())
+            }
+            VStack {
                 Text("Large Widgets").bold()
                 EverythingView(date: date)
                     .modifier(WidgetBoxModifier())
@@ -37,10 +44,6 @@ struct PrimaryView: View {
             VStack(spacing: 4) {
                 Text("Adding Widgets on Apple Watch").bold()
                 Text("Long-press in the center of the watch. Tap the (Edit) button in the bottom right corner and swipe right to edit complications. Select the complications to replace and scroll to find the Diem widget you want to add.")
-            }
-            VStack {
-                Text("Start Lisp Test")
-                ExprView(expr: .cell(.symbol("vstack"), .cell(.string("Hello, parens!"), .cell(.cell(.symbol("nsdateformat"), .string("D")), .null))))
             }
         }
         .padding(20)
