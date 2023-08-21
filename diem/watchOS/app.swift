@@ -6,7 +6,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var date = Date()
     var body: some View {
-        EverythingView(date: date).onAppear {
+        DateWidgetView(entry: DiemEntry(date: date, intent: everythingIntent)).onAppear {
             date = Date()
         }.onReceive(NotificationCenter.default.publisher(for: WKExtension.applicationDidBecomeActiveNotification)) { _ in
             date = Date()

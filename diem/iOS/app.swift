@@ -11,34 +11,34 @@ struct PrimaryView: View {
                 Text("Small Widgets").bold()
                 HStack(spacing: 8) {
                     VStack {
-                        DateView(date: date)
+                        DateWidgetView(entry: DiemEntry(date: date, intent: dateIntent))
                             .modifier(WidgetBoxModifier())
                     }
                     VStack {
-                        DayView(date: date)
+                        DateWidgetView(entry: DiemEntry(date: date, intent: dayIntent))
                             .modifier(WidgetBoxModifier())
                     }
                     VStack {
-                        YearDayView(date: date)
+                        DateWidgetView(entry: DiemEntry(date: date, intent: yearDayIntent))
                             .modifier(WidgetBoxModifier())
                     }
                     
                     VStack {
-                        YearWeekView(date: date)
+                        DateWidgetView(entry: DiemEntry(date: date, intent: yearWeekIntent))
                             .modifier(WidgetBoxModifier())
                     }
                 }
             }
             VStack {
                 Text("Inline Widgets").bold()
-                DateInlineView(date: date)
+                DateWidgetView(entry: DiemEntry(date: date, intent: dateInlineIntent))
                     .modifier(WidgetBoxModifier())
-                YearInlineView(date: date)
+                DateWidgetView(entry: DiemEntry(date: date, intent: yearInlineIntent))
                     .modifier(WidgetBoxModifier())
             }
             VStack {
                 Text("Large Widgets").bold()
-                EverythingView(date: date)
+                DateWidgetView(entry: DiemEntry(date: date, intent: everythingIntent))
                     .modifier(WidgetBoxModifier())
             }
             VStack(spacing: 4) {
