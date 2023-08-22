@@ -88,10 +88,10 @@ struct ContentView_Previews: PreviewProvider {
     private func addActions() {
         let date = Date()
         UIApplication.shared.shortcutItems = [
-            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: string(from: date, format: "MMMM d")),
-            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: string(from: date, format: "F EEE").toOrdinalAll),
-            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: string(from: date, format: "'Day' D")),
-            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: string(from: date, format: "'Week' ww")),
+            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: evalDateFormat("MMM/s d/s", date)),
+            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: evalDateFormat("F/o EEE/s", date)),
+            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: evalDateFormat("Day D/s", date)),
+            UIApplicationShortcutItem(type: "com.tl.diem.shortcut.info", localizedTitle: evalDateFormat("Week ww/s", date)),
         ]
     }
 }
