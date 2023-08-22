@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F370F802A92DD870065B93B /* DiemIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1F370F7F2A92DD870065B93B /* DiemIntents.intentdefinition */; };
-		1F370F812A92DD870065B93B /* DiemIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1F370F7F2A92DD870065B93B /* DiemIntents.intentdefinition */; };
-		1F370F822A92DD870065B93B /* DiemIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1F370F7F2A92DD870065B93B /* DiemIntents.intentdefinition */; };
 		1F3980AE29E0F80B001CDACB /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3980AD29E0F80B001CDACB /* view.swift */; };
 		1F3980AF29E0F80B001CDACB /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3980AD29E0F80B001CDACB /* view.swift */; };
 		1F3980B029E0F80B001CDACB /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3980AD29E0F80B001CDACB /* view.swift */; };
@@ -86,7 +83,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1F370F7F2A92DD870065B93B /* DiemIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = DiemIntents.intentdefinition; sourceTree = "<group>"; };
 		1F3980AD29E0F80B001CDACB /* view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = view.swift; sourceTree = "<group>"; };
 		1F39811B29E39BFB001CDACB /* widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = widget.swift; sourceTree = "<group>"; };
 		1F5AD06C29D7B7990080A373 /* widgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +154,6 @@
 				1F6A344F29D63C3D0073C110 /* lib.swift */,
 				1F3980AD29E0F80B001CDACB /* view.swift */,
 				1F39811B29E39BFB001CDACB /* widget.swift */,
-				1F370F7F2A92DD870065B93B /* DiemIntents.intentdefinition */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -356,7 +351,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F3980B029E0F80B001CDACB /* view.swift in Sources */,
-				1F370F822A92DD870065B93B /* DiemIntents.intentdefinition in Sources */,
 				1F5AD08229D7B8A60080A373 /* lib.swift in Sources */,
 				1F39811E29E39BFB001CDACB /* widget.swift in Sources */,
 				1F5AD07429D7B7990080A373 /* widgets.swift in Sources */,
@@ -368,7 +362,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FAD1B7B29D12A690059DDA1 /* app.swift in Sources */,
-				1F370F802A92DD870065B93B /* DiemIntents.intentdefinition in Sources */,
 				1F3980AE29E0F80B001CDACB /* view.swift in Sources */,
 				1F6A345029D63C3D0073C110 /* lib.swift in Sources */,
 				1F39811C29E39BFB001CDACB /* widget.swift in Sources */,
@@ -380,7 +373,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F3980AF29E0F80B001CDACB /* view.swift in Sources */,
-				1F370F812A92DD870065B93B /* DiemIntents.intentdefinition in Sources */,
 				1F6A345129D63CEC0073C110 /* lib.swift in Sources */,
 				1F39811D29E39BFB001CDACB /* widget.swift in Sources */,
 				1FAD1B8D29D12A6A0059DDA1 /* app.swift in Sources */,
