@@ -15,11 +15,12 @@ struct DiemProvider: TimelineProvider {
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<DiemEntry>) -> Void) {
         var entries: [DiemEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+        
+        // Beginning of each day for 5 days
+        let calendar = Calendar.current
+        let todayStart = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+        for day in 1 ... 5 {
+            let entryDate = calendar.date(byAdding: .day, value: day, to: todayStart)!
             let entry = DiemEntry(date: entryDate)
             entries.append(entry)
         }
