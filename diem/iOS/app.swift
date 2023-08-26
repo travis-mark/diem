@@ -56,9 +56,47 @@ struct PrimaryView: View {
     }
 }
 
+struct ButtonView: View {
+  
+  var body: some View {
+    
+    VStack {
+        
+      Button(action: {
+          setupNotifications()
+      }) {
+        Text("Tap Me")
+          .font(.headline)
+          .foregroundColor(.white)
+          .padding()
+          .background(Color.blue)
+          .cornerRadius(10)
+      }
+      
+    }
+    
+  }
+  
+}
+
 struct ContentView: View {
     var body: some View {
-        PrimaryView()
+        TabView {
+
+          PrimaryView()
+            .tabItem {
+              Image(systemName: "applewatch")
+                Text("Watch")
+            }
+
+            ButtonView()
+            .tabItem {
+              Image(systemName: "bell.fill")
+              Text("Alerts ")
+            }
+
+        }
+        
     }
 }
 

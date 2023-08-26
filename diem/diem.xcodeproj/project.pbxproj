@@ -28,6 +28,9 @@
 		1FAD1B8829D12A6A0059DDA1 /* diem Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1FAD1B8D29D12A6A0059DDA1 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8C29D12A6A0059DDA1 /* app.swift */; };
 		1FAD1B9429D12A6B0059DDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */; };
+		1FF0AD882A9A1AA800F31BD3 /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0AD872A9A1AA800F31BD3 /* alert.swift */; };
+		1FF0AD892A9A1AA800F31BD3 /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0AD872A9A1AA800F31BD3 /* alert.swift */; };
+		1FF0AD8A2A9A1AA800F31BD3 /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0AD872A9A1AA800F31BD3 /* alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +102,7 @@
 		1FAD1B8C29D12A6A0059DDA1 /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
 		1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1FD5F02429DBCEAB005B3622 /* diem-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "diem-Watch-App-Info.plist"; sourceTree = "<group>"; };
+		1FF0AD872A9A1AA800F31BD3 /* alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alert.swift; sourceTree = "<group>"; };
 		1FF228C32A3C8A3700424CEC /* diem-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "diem-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				1F5AD07629D7B79A0080A373 /* Assets.xcassets */,
+				1FF0AD872A9A1AA800F31BD3 /* alert.swift */,
 				1F6A344F29D63C3D0073C110 /* lib.swift */,
 				1F3980AD29E0F80B001CDACB /* view.swift */,
 				1F39811B29E39BFB001CDACB /* widget.swift */,
@@ -353,6 +358,7 @@
 				1F3980B029E0F80B001CDACB /* view.swift in Sources */,
 				1F5AD08229D7B8A60080A373 /* lib.swift in Sources */,
 				1F39811E29E39BFB001CDACB /* widget.swift in Sources */,
+				1FF0AD8A2A9A1AA800F31BD3 /* alert.swift in Sources */,
 				1F5AD07429D7B7990080A373 /* widgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +370,7 @@
 				1FAD1B7B29D12A690059DDA1 /* app.swift in Sources */,
 				1F3980AE29E0F80B001CDACB /* view.swift in Sources */,
 				1F6A345029D63C3D0073C110 /* lib.swift in Sources */,
+				1FF0AD882A9A1AA800F31BD3 /* alert.swift in Sources */,
 				1F39811C29E39BFB001CDACB /* widget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +382,7 @@
 				1F3980AF29E0F80B001CDACB /* view.swift in Sources */,
 				1F6A345129D63CEC0073C110 /* lib.swift in Sources */,
 				1F39811D29E39BFB001CDACB /* widget.swift in Sources */,
+				1FF0AD892A9A1AA800F31BD3 /* alert.swift in Sources */,
 				1FAD1B8D29D12A6A0059DDA1 /* app.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
