@@ -31,6 +31,7 @@
 		1FF0AD882A9A1AA800F31BD3 /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0AD872A9A1AA800F31BD3 /* alert.swift */; };
 		1FF0AD892A9A1AA800F31BD3 /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0AD872A9A1AA800F31BD3 /* alert.swift */; };
 		1FF0AD8A2A9A1AA800F31BD3 /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0AD872A9A1AA800F31BD3 /* alert.swift */; };
+		1FF0AD932A9C1FBE00F31BD3 /* dateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0AD922A9C1FBE00F31BD3 /* dateTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1FAD1B8629D12A6A0059DDA1;
 			remoteInfo = "diem Watch App";
+		};
+		1FF0AD942A9C1FBE00F31BD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FAD1B6F29D12A690059DDA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FAD1B7629D12A690059DDA1;
+			remoteInfo = diem;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -103,6 +111,8 @@
 		1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1FD5F02429DBCEAB005B3622 /* diem-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "diem-Watch-App-Info.plist"; sourceTree = "<group>"; };
 		1FF0AD872A9A1AA800F31BD3 /* alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alert.swift; sourceTree = "<group>"; };
+		1FF0AD902A9C1FBE00F31BD3 /* Diem Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Diem Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FF0AD922A9C1FBE00F31BD3 /* dateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateTests.swift; sourceTree = "<group>"; };
 		1FF228C32A3C8A3700424CEC /* diem-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "diem-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +134,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1FAD1B8429D12A6A0059DDA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FF0AD8D2A9C1FBE00F31BD3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -169,6 +186,7 @@
 				1FF228C32A3C8A3700424CEC /* diem-Info.plist */,
 				1FD5F02429DBCEAB005B3622 /* diem-Watch-App-Info.plist */,
 				1F6A344E29D6360C0073C110 /* Shared */,
+				1FF0AD912A9C1FBE00F31BD3 /* Tests */,
 				1FAD1B7929D12A690059DDA1 /* iOS */,
 				1FAD1B8B29D12A6A0059DDA1 /* watchOS */,
 				1F5AD07229D7B7990080A373 /* widgets */,
@@ -183,6 +201,7 @@
 				1FAD1B7729D12A690059DDA1 /* diem.app */,
 				1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */,
 				1F5AD06C29D7B7990080A373 /* widgetsExtension.appex */,
+				1FF0AD902A9C1FBE00F31BD3 /* Diem Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,6 +238,14 @@
 				1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1FF0AD912A9C1FBE00F31BD3 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1FF0AD922A9C1FBE00F31BD3 /* dateTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +307,24 @@
 			productReference = 1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1FF0AD8F2A9C1FBE00F31BD3 /* Diem Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FF0AD982A9C1FBE00F31BD3 /* Build configuration list for PBXNativeTarget "Diem Tests" */;
+			buildPhases = (
+				1FF0AD8C2A9C1FBE00F31BD3 /* Sources */,
+				1FF0AD8D2A9C1FBE00F31BD3 /* Frameworks */,
+				1FF0AD8E2A9C1FBE00F31BD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1FF0AD952A9C1FBE00F31BD3 /* PBXTargetDependency */,
+			);
+			name = "Diem Tests";
+			productName = "Diem Tests";
+			productReference = 1FF0AD902A9C1FBE00F31BD3 /* Diem Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -299,6 +344,10 @@
 					1FAD1B8629D12A6A0059DDA1 = {
 						CreatedOnToolsVersion = 14.2;
 					};
+					1FF0AD8F2A9C1FBE00F31BD3 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 1FAD1B7629D12A690059DDA1;
+					};
 				};
 			};
 			buildConfigurationList = 1FAD1B7229D12A690059DDA1 /* Build configuration list for PBXProject "diem" */;
@@ -317,6 +366,7 @@
 				1FAD1B7629D12A690059DDA1 /* diem */,
 				1FAD1B8629D12A6A0059DDA1 /* diem Watch App */,
 				1F5AD06B29D7B7990080A373 /* widgetsExtension */,
+				1FF0AD8F2A9C1FBE00F31BD3 /* Diem Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -345,6 +395,13 @@
 			files = (
 				1F47E37729D8EFB8006B0ABD /* Assets.xcassets in Resources */,
 				1FAD1B9429D12A6B0059DDA1 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FF0AD8E2A9C1FBE00F31BD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +444,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1FF0AD8C2A9C1FBE00F31BD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FF0AD932A9C1FBE00F31BD3 /* dateTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -399,6 +464,11 @@
 			isa = PBXTargetDependency;
 			target = 1FAD1B8629D12A6A0059DDA1 /* diem Watch App */;
 			targetProxy = 1FAD1B8929D12A6A0059DDA1 /* PBXContainerItemProxy */;
+		};
+		1FF0AD952A9C1FBE00F31BD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FAD1B7629D12A690059DDA1 /* diem */;
+			targetProxy = 1FF0AD942A9C1FBE00F31BD3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -711,6 +781,47 @@
 			};
 			name = Release;
 		};
+		1FF0AD962A9C1FBE00F31BD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PGUSZZ68XF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tl.Diem-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/diem.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/diem";
+			};
+			name = Debug;
+		};
+		1FF0AD972A9C1FBE00F31BD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PGUSZZ68XF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tl.Diem-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/diem.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/diem";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -746,6 +857,15 @@
 			buildConfigurations = (
 				1FAD1B9C29D12A6B0059DDA1 /* Debug */,
 				1FAD1B9D29D12A6B0059DDA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FF0AD982A9C1FBE00F31BD3 /* Build configuration list for PBXNativeTarget "Diem Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FF0AD962A9C1FBE00F31BD3 /* Debug */,
+				1FF0AD972A9C1FBE00F31BD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
