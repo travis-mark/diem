@@ -56,16 +56,13 @@ struct PrimaryView: View {
     }
 }
 
-struct ButtonView: View {
-  
+struct AlertsView: View {
   var body: some View {
-    
     VStack {
-        
       Button(action: {
           setupNotifications()
       }) {
-        Text("Tap Me")
+        Text("5th Tuesday")
           .font(.headline)
           .foregroundColor(.white)
           .padding()
@@ -82,21 +79,17 @@ struct ButtonView: View {
 struct ContentView: View {
     var body: some View {
         TabView {
-
-          PrimaryView()
-            .tabItem {
-              Image(systemName: "applewatch")
-                Text("Watch")
-            }
-
-            ButtonView()
-            .tabItem {
-              Image(systemName: "bell.fill")
-              Text("Alerts ")
-            }
-
+            PrimaryView()
+                .tabItem {
+                    Image(systemName: "applewatch")
+                    Text("Watch")
+                }
+            AlertsView()
+                .tabItem {
+                    Image(systemName: "bell.fill")
+                    Text("Alerts")
+                }
         }
-        
     }
 }
 
