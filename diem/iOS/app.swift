@@ -57,23 +57,41 @@ struct PrimaryView: View {
 }
 
 struct AlertsView: View {
-  var body: some View {
-    VStack {
-      Button(action: {
-          setupNotifications()
-      }) {
-        Text("5th Tuesday")
-          .font(.headline)
-          .foregroundColor(.white)
-          .padding()
-          .background(Color.blue)
-          .cornerRadius(10)
-      }
-      
+    @State var weekday: Int = 0
+    @State var weekdayOrdinal: Int = 0
+    var dateComponents: DateComponents {
+        DateComponents(weekday: weekday + 1, weekdayOrdinal: weekdayOrdinal + 1)
     }
-    
-  }
-  
+    var body: some View {
+        VStack {
+            Spacer(minLength: 20)
+            Button(action: {
+                setupNotifications(components: dateComponents)
+            }) {
+                Text("Create Notification on \(nextDate(after:Date(), matching:dateComponents))")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+            Spacer(minLength: 20)
+            HStack {
+                Picker(selection: $weekday, label: Text("Day")) {
+                    ForEach(0..<7) { index in
+                        Text(Calendar.current.weekdaySymbols[index])
+                    }
+                }
+                Spacer()
+                Picker(selection: $weekdayOrdinal, label: Text("Ordinal")) {
+                    ForEach(1..<6) { index in
+                        Text(ordinalFormatter.string(from: NSNumber(value: index))!)
+                    }
+                }
+            }
+            Spacer(minLength: 20)
+        }
+    }
 }
 
 struct ContentView: View {
