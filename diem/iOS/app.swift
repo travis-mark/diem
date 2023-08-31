@@ -57,6 +57,68 @@ struct PrimaryView: View {
 }
 
 struct AlertsView: View {
+    @State var requests: [UNNotificationRequest] = []
+    @State var child: UNNotificationRequest?
+    var hasChild: Binding<Bool> {
+        Binding(get: { self.child != nil }, set: {_ in })
+    }
+    var body: some View {
+        VStack {
+            List {
+                ForEach(requests, id: \.self) { request in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(request.content.title).font(.body)
+                            Text(request.content.subtitle).font(.caption)
+                        }
+                    }.swipeActions {
+                        Button(role: .destructive) {
+                            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [request.identifier])
+                        } label: {
+                          Label("Delete", systemImage: "trash")
+                        }
+                    }.onTapGesture {
+                        child = request
+                    }
+                }
+            }.task {
+                requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
+            }
+            Button() {
+                let id = UUID().uuidString
+                let t0 = Date()
+                let t1 = nextDate(after: t0, matching: DateComponents(weekday: 1, weekdayOrdinal: 1))
+                let dt = t1.timeIntervalSince1970 - t0.timeIntervalSince1970
+                let content = UNMutableNotificationContent()
+                content.title = evalDateFormat("F/o EEEE/s", t1)
+                content.subtitle = "..."
+                content.body = "(╯°□°)╯ ┻━┻"
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: dt, repeats: false)
+                let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+                child = request
+            } label: {
+                Text("Create Notification")
+                    .font(.headline)
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(Color.orange)
+                    .cornerRadius(10)
+            }
+            Spacer(minLength: 10)
+        }.sheet(isPresented: hasChild) {
+            AlertsDetail(alert: child!)
+        }
+    }
+}
+
+struct AlertsDetail: View {
+    var alert: UNNotificationRequest
+    var body: some View {
+        Text("TODO")
+    }
+}
+
+struct AlertsViewOld: View {
     @State var weekday: Int = 0
     @State var weekdayOrdinal: Int = 0
     var dateComponents: DateComponents {
