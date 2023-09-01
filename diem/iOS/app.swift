@@ -106,15 +106,100 @@ struct AlertsView: View {
             }
             Spacer(minLength: 10)
         }.sheet(isPresented: hasChild) {
-            AlertsDetail(alert: child!)
+            AlertsDetail()
         }
     }
 }
 
+enum NotificationFrequencyUnit {
+    case daily
+    case weekly
+    case monthly
+    case yearly
+}
+
 struct AlertsDetail: View {
-    var alert: UNNotificationRequest
+    // TODO: Move state to class
+    @State var contentTitle: String = ""
+    @State var contentSubtitle: String = ""
+    @State var contentBody: String = ""
+    @State var notificationFrequencyUnit: NotificationFrequencyUnit = .daily
+    @State var notificationFrequencySubunit: NotificationFrequencyUnit = .daily
+    @State var notificationFrequencyCount: Int = 1
+    @State var notificationFrequencyDateComponents: [DateComponents] = []
+    
     var body: some View {
-        Text("TODO")
+        List {
+            Section {
+                HStack {
+                    Text("Title")
+                    Spacer()
+                    TextField("", text: $contentTitle)
+                        .multilineTextAlignment(.trailing)
+                }
+                HStack {
+                    Text("Subtitle")
+                    Spacer()
+                    TextField("", text: $contentSubtitle)
+                        .multilineTextAlignment(.trailing)
+                }
+                HStack {
+                    Text("Body")
+                    Spacer()
+                    TextField("", text: $contentBody)
+                        .multilineTextAlignment(.trailing)
+                }
+            }
+            Section {
+                HStack {
+                    Text("Frequency")
+                    Spacer()
+                    Picker("", selection: $notificationFrequencyUnit) {
+                        Text("Daily").tag(NotificationFrequencyUnit.daily)
+                        Text("Weekly").tag(NotificationFrequencyUnit.weekly)
+                        Text("Monthly").tag(NotificationFrequencyUnit.monthly)
+                        Text("Yearly").tag(NotificationFrequencyUnit.yearly)
+                    }
+                }
+                HStack {
+                    Text("Every")
+                    Spacer()
+                    Picker("", selection: $notificationFrequencyCount) {
+                        ForEach(1..<1000) { index in
+                            Text(String(index)).tag(index)
+                        }
+                    }
+                    switch notificationFrequencyUnit {
+                    case .daily: notificationFrequencyCount == 1 ? Text("Day") : Text("Days")
+                    case .weekly: notificationFrequencyCount == 1 ? Text("Week") : Text("Weeks")
+                    case .monthly: notificationFrequencyCount == 1 ? Text("Month") : Text("Months")
+                    case .yearly: notificationFrequencyCount == 1 ? Text("Year") : Text("Years")
+                    }
+                }
+            }
+            if notificationFrequencyUnit == .weekly {
+                Section {
+                    ForEach(Array(Calendar.current.weekdaySymbols.enumerated()), id: \.0) { symbol in
+                        HStack {
+                            Text(symbol.element)
+                            Spacer()
+                            if notificationFrequencyDateComponents.contains(DateComponents(weekday: symbol.offset)) {
+                                Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                            }
+                        }.onTapGesture {
+                            if let index = notificationFrequencyDateComponents.firstIndex(of: DateComponents(weekday: symbol.offset)) {
+                                notificationFrequencyDateComponents.remove(at: index)
+                            } else {
+                                notificationFrequencyDateComponents.append(DateComponents(weekday: symbol.offset))
+                            }
+                        }
+                    }
+                }
+            }
+            // TODO: Monthly view
+            // TODO: Yearly View
+            // TODO: Save notification
+        }
     }
 }
 
