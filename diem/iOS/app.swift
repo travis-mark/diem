@@ -106,7 +106,12 @@ struct AlertsView: View {
             }
             Spacer(minLength: 10)
         }.sheet(isPresented: hasChild) {
-            AlertsDetail()
+            AlertsDetail(action: {
+                child = nil
+                Task() {
+                    requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
+                }
+            })
         }
     }
 }
@@ -128,78 +133,103 @@ struct AlertsDetail: View {
     @State var notificationFrequencyCount: Int = 1
     @State var notificationFrequencyDateComponents: [DateComponents] = []
     
+    let action: (() -> Void)?
+    
     var body: some View {
-        List {
-            Section {
-                HStack {
-                    Text("Title")
-                    Spacer()
-                    TextField("", text: $contentTitle)
-                        .multilineTextAlignment(.trailing)
-                }
-                HStack {
-                    Text("Subtitle")
-                    Spacer()
-                    TextField("", text: $contentSubtitle)
-                        .multilineTextAlignment(.trailing)
-                }
-                HStack {
-                    Text("Body")
-                    Spacer()
-                    TextField("", text: $contentBody)
-                        .multilineTextAlignment(.trailing)
-                }
-            }
-            Section {
-                HStack {
-                    Text("Frequency")
-                    Spacer()
-                    Picker("", selection: $notificationFrequencyUnit) {
-                        Text("Daily").tag(NotificationFrequencyUnit.daily)
-                        Text("Weekly").tag(NotificationFrequencyUnit.weekly)
-                        Text("Monthly").tag(NotificationFrequencyUnit.monthly)
-                        Text("Yearly").tag(NotificationFrequencyUnit.yearly)
-                    }
-                }
-                HStack {
-                    Text("Every")
-                    Spacer()
-                    Picker("", selection: $notificationFrequencyCount) {
-                        ForEach(1..<1000) { index in
-                            Text(String(index)).tag(index)
-                        }
-                    }
-                    switch notificationFrequencyUnit {
-                    case .daily: notificationFrequencyCount == 1 ? Text("Day") : Text("Days")
-                    case .weekly: notificationFrequencyCount == 1 ? Text("Week") : Text("Weeks")
-                    case .monthly: notificationFrequencyCount == 1 ? Text("Month") : Text("Months")
-                    case .yearly: notificationFrequencyCount == 1 ? Text("Year") : Text("Years")
-                    }
-                }
-            }
-            if notificationFrequencyUnit == .weekly {
+        VStack {
+            List {
                 Section {
-                    ForEach(Array(Calendar.current.weekdaySymbols.enumerated()), id: \.0) { symbol in
-                        HStack {
-                            Text(symbol.element)
-                            Spacer()
-                            if notificationFrequencyDateComponents.contains(DateComponents(weekday: symbol.offset)) {
-                                Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                    HStack {
+                        Text("Title")
+                        Spacer()
+                        TextField("", text: $contentTitle)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    HStack {
+                        Text("Subtitle")
+                        Spacer()
+                        TextField("", text: $contentSubtitle)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    HStack {
+                        Text("Body")
+                        Spacer()
+                        TextField("", text: $contentBody)
+                            .multilineTextAlignment(.trailing)
+                    }
+                }
+                Section {
+                    HStack {
+                        Text("Frequency")
+                        Spacer()
+                        Picker("", selection: $notificationFrequencyUnit) {
+                            Text("Daily").tag(NotificationFrequencyUnit.daily)
+                            Text("Weekly").tag(NotificationFrequencyUnit.weekly)
+                            Text("Monthly").tag(NotificationFrequencyUnit.monthly)
+                            Text("Yearly").tag(NotificationFrequencyUnit.yearly)
+                        }
+                    }
+                    HStack {
+                        Text("Every")
+                        Spacer()
+                        Picker("", selection: $notificationFrequencyCount) {
+                            ForEach(1..<1000) { index in
+                                Text(String(index)).tag(index)
                             }
-                        }.onTapGesture {
-                            if let index = notificationFrequencyDateComponents.firstIndex(of: DateComponents(weekday: symbol.offset)) {
-                                notificationFrequencyDateComponents.remove(at: index)
-                            } else {
-                                notificationFrequencyDateComponents.append(DateComponents(weekday: symbol.offset))
+                        }
+                        switch notificationFrequencyUnit {
+                        case .daily: notificationFrequencyCount == 1 ? Text("Day") : Text("Days")
+                        case .weekly: notificationFrequencyCount == 1 ? Text("Week") : Text("Weeks")
+                        case .monthly: notificationFrequencyCount == 1 ? Text("Month") : Text("Months")
+                        case .yearly: notificationFrequencyCount == 1 ? Text("Year") : Text("Years")
+                        }
+                    }
+                }
+                if notificationFrequencyUnit == .weekly {
+                    Section {
+                        ForEach(Array(Calendar.current.weekdaySymbols.enumerated()), id: \.0) { symbol in
+                            HStack {
+                                Text(symbol.element)
+                                Spacer()
+                                if notificationFrequencyDateComponents.contains(DateComponents(weekday: symbol.offset)) {
+                                    Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
+                                }
+                            }.onTapGesture {
+                                if let index = notificationFrequencyDateComponents.firstIndex(of: DateComponents(weekday: symbol.offset)) {
+                                    notificationFrequencyDateComponents.remove(at: index)
+                                } else {
+                                    notificationFrequencyDateComponents.append(DateComponents(weekday: symbol.offset))
+                                }
                             }
                         }
                     }
                 }
+                // TODO: Monthly view
+                // TODO: Yearly View
+                // TODO: Save notification
             }
-            // TODO: Monthly view
-            // TODO: Yearly View
-            // TODO: Save notification
+            Button("Save") {
+                let id = UUID().uuidString
+                let content = UNMutableNotificationContent()
+                content.title = contentTitle
+                content.subtitle = contentSubtitle
+                content.body = contentBody
+                let dateComponents = DateComponents(hour:8, minute: 30)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request) { (error) in
+                    // TODO: Error path
+                    action?()
+                }
+            }
+            .font(.headline)
+            .foregroundColor(Color.white)
+            .padding()
+            .background(Color.orange)
+            .cornerRadius(10)
+            .padding(10)
         }
+        
     }
 }
 
