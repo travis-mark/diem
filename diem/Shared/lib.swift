@@ -11,6 +11,7 @@ private func string(from date: Date, format: String) -> String {
     } else {
         let df = DateFormatter()
         df.dateFormat = format
+        df.timeZone = TimeZone.current
         dateFormatters[format] = df
         return df.string(from: date)
     }
