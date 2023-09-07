@@ -20,26 +20,21 @@ func nextDate(after date: Date, matching components: DateComponents) -> Date {
     return Calendar.current.nextDate(after: date, matching: components, matchingPolicy: .strict)!
 }
 
-func setupNotifications(components: DateComponents) {
-    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-        if granted {
-            let t0 = Date()
-            let t1 = nextDate(after: t0, matching: components)
-            let dt = t1.timeIntervalSince1970 - t0.timeIntervalSince1970
-            let id = "date_\(isoDateFormatter.string(from: t1))"
-            let content = UNMutableNotificationContent()
-            content.title = evalDateFormat("F/o EEEE/s", t1)
-            content.subtitle = "..."
-            content.body = "(╯°□°)╯ ┻━┻"
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: dt, repeats: false)
-            // Wrap content and trigger in a request
-            let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-            // Add the request to the notification center
-            UNUserNotificationCenter.current().add(request) { (error) in
-                // TODO: Error path
-            }
-        } else {
-            // TODO: Error path
-        }
+func setupNotifications(content: UNNotificationContent, components: DateComponents, previouslyGranted: Bool = false) async throws {
+    if !previouslyGranted {
+        let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
+        guard granted else { return }
+    }
+    let id = UUID().uuidString
+    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+    let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+    try await UNUserNotificationCenter.current().add(request)
+}
+
+func setupNotifications(content: UNNotificationContent, componentsArray: [DateComponents]) async throws {
+    let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
+    guard granted else { return }
+    for components in componentsArray {
+        try await setupNotifications(content: content, components: components, previouslyGranted: true)
     }
 }

@@ -209,17 +209,17 @@ struct AlertsDetail: View {
                 // TODO: Save notification
             }
             Button("Save") {
-                let id = UUID().uuidString
                 let content = UNMutableNotificationContent()
                 content.title = contentTitle
                 content.subtitle = contentSubtitle
                 content.body = contentBody
-                let dateComponents = DateComponents(hour:8, minute: 30)
-                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-                let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request) { (error) in
-                    // TODO: Error path
-                    action?()
+                async {
+                    do {
+                        try await setupNotifications(content: content, componentsArray: notificationFrequencyDateComponents)
+                        action?()
+                    } catch (let error) {
+                        NSLog(error.localizedDescription)
+                    }
                 }
             }
             .font(.headline)
@@ -230,44 +230,6 @@ struct AlertsDetail: View {
             .padding(10)
         }
         
-    }
-}
-
-struct AlertsViewOld: View {
-    @State var weekday: Int = 0
-    @State var weekdayOrdinal: Int = 0
-    var dateComponents: DateComponents {
-        DateComponents(weekday: weekday + 1, weekdayOrdinal: weekdayOrdinal + 1)
-    }
-    var body: some View {
-        VStack {
-            Spacer(minLength: 20)
-            Button(action: {
-                setupNotifications(components: dateComponents)
-            }) {
-                Text("Create Notification on \(nextDate(after:Date(), matching:dateComponents))")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }
-            Spacer(minLength: 20)
-            HStack {
-                Picker(selection: $weekday, label: Text("Day")) {
-                    ForEach(0..<7) { index in
-                        Text(Calendar.current.weekdaySymbols[index])
-                    }
-                }
-                Spacer()
-                Picker(selection: $weekdayOrdinal, label: Text("Ordinal")) {
-                    ForEach(1..<6) { index in
-                        Text(ordinalFormatter.string(from: NSNumber(value: index))!)
-                    }
-                }
-            }
-            Spacer(minLength: 20)
-        }
     }
 }
 
