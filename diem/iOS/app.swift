@@ -69,7 +69,12 @@ struct AlertsView: View {
                     HStack {
                         VStack(alignment: .leading) {
                             Text(request.content.title).font(.body)
-                            Text(request.content.subtitle).font(.caption)
+                            if !request.content.subtitle.isEmpty {
+                                Text(request.content.subtitle).font(.caption)
+                            }
+                            if let displayString = request.trigger?.displayString {
+                                Text(displayString)
+                            }
                         }
                     }.swipeActions {
                         Button(role: .destructive) {
@@ -191,14 +196,14 @@ struct AlertsDetail: View {
                             HStack {
                                 Text(symbol.element)
                                 Spacer()
-                                if notificationFrequencyDateComponents.contains(DateComponents(weekday: symbol.offset)) {
+                                if notificationFrequencyDateComponents.contains(DateComponents(weekday: symbol.offset + 1)) {
                                     Image(systemName: "checkmark").foregroundColor(Color("AccentColor"))
                                 }
                             }.onTapGesture {
                                 if let index = notificationFrequencyDateComponents.firstIndex(of: DateComponents(weekday: symbol.offset)) {
                                     notificationFrequencyDateComponents.remove(at: index)
                                 } else {
-                                    notificationFrequencyDateComponents.append(DateComponents(weekday: symbol.offset))
+                                    notificationFrequencyDateComponents.append(DateComponents(weekday: symbol.offset + 1))
                                 }
                             }
                         }
@@ -206,14 +211,13 @@ struct AlertsDetail: View {
                 }
                 // TODO: Monthly view
                 // TODO: Yearly View
-                // TODO: Save notification
             }
             Button("Save") {
                 let content = UNMutableNotificationContent()
                 content.title = contentTitle
                 content.subtitle = contentSubtitle
                 content.body = contentBody
-                async {
+                Task() {
                     do {
                         try await setupNotifications(content: content, componentsArray: notificationFrequencyDateComponents)
                         action?()

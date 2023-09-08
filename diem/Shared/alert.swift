@@ -38,3 +38,26 @@ func setupNotifications(content: UNNotificationContent, componentsArray: [DateCo
         try await setupNotifications(content: content, components: components, previouslyGranted: true)
     }
 }
+
+let triggerDateFormatter: DateFormatter = {
+    let df = DateFormatter()
+    df.dateStyle = .short
+    df.timeStyle = .short
+    return df
+}()
+
+extension UNNotificationTrigger {
+    var displayString: String {
+        if let timeTrigger = self as? UNTimeIntervalNotificationTrigger,
+            let nextDate = timeTrigger.nextTriggerDate() {
+            return triggerDateFormatter.string(from: nextDate)
+        } else if let calendarTrigger = self as? UNCalendarNotificationTrigger,
+            let nextDate = calendarTrigger.nextTriggerDate() {
+            return triggerDateFormatter.string(from: nextDate)
+        } else if let locationTrigger = self as? UNLocationNotificationTrigger {
+            return locationTrigger.region.identifier
+        } else {
+            return "<unknown>"
+        }
+    }
+}
