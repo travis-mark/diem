@@ -23,6 +23,7 @@
 		1F5AD08229D7B8A60080A373 /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A344F29D63C3D0073C110 /* lib.swift */; };
 		1F6A345029D63C3D0073C110 /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A344F29D63C3D0073C110 /* lib.swift */; };
 		1F6A345129D63CEC0073C110 /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A344F29D63C3D0073C110 /* lib.swift */; };
+		1F96981C2BF6CF9400DE9246 /* health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F96981B2BF6CF9400DE9246 /* health.swift */; };
 		1FAD1B7B29D12A690059DDA1 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B7A29D12A690059DDA1 /* app.swift */; };
 		1FAD1B8229D12A6A0059DDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8129D12A6A0059DDA1 /* Preview Assets.xcassets */; };
 		1FAD1B8829D12A6A0059DDA1 /* diem Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -103,6 +104,8 @@
 		1F5AD07629D7B79A0080A373 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F5AD07829D7B79A0080A373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F6A344F29D63C3D0073C110 /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
+		1F96981A2BF6CF3900DE9246 /* diem.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = diem.entitlements; sourceTree = "<group>"; };
+		1F96981B2BF6CF9400DE9246 /* health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = health.swift; sourceTree = "<group>"; };
 		1FAD1B7729D12A690059DDA1 /* diem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B7A29D12A690059DDA1 /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
 		1FAD1B8129D12A6A0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 		1FAD1B6E29D12A690059DDA1 = {
 			isa = PBXGroup;
 			children = (
+				1F96981A2BF6CF3900DE9246 /* diem.entitlements */,
 				1FF228C32A3C8A3700424CEC /* diem-Info.plist */,
 				1FD5F02429DBCEAB005B3622 /* diem-Watch-App-Info.plist */,
 				1F6A344E29D6360C0073C110 /* Shared */,
@@ -210,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				1FAD1B7A29D12A690059DDA1 /* app.swift */,
+				1F96981B2BF6CF9400DE9246 /* health.swift */,
 				1FAD1B8029D12A6A0059DDA1 /* Preview Content */,
 			);
 			path = iOS;
@@ -429,6 +434,7 @@
 				1F6A345029D63C3D0073C110 /* lib.swift in Sources */,
 				1FF0AD882A9A1AA800F31BD3 /* alert.swift in Sources */,
 				1F39811C29E39BFB001CDACB /* widget.swift in Sources */,
+				1F96981C2BF6CF9400DE9246 /* health.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +722,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = diem.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS/Preview Content\"";
@@ -751,6 +758,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = diem.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS/Preview Content\"";

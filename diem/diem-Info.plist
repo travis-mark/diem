@@ -4,5 +4,9 @@
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Show per day view of health metrics</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Show per day view of health metrics</string>
 </dict>
 </plist>

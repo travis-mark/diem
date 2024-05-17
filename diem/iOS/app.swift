@@ -237,6 +237,47 @@ struct AlertsDetail: View {
     }
 }
 
+// TODO: 2024-05-15 TL Do I want optional compare view?
+struct HealthView: View {
+    @ObservedObject var state = HealthState()
+    @State private var selectedDate = Date()
+    
+    var body: some View {
+        VStack {
+            List {
+                // TODO: 2024-05-15 TL Read units from model
+                HStack {
+                    Text("Body Mass")
+                    Spacer()
+                    Text("\(state.data, specifier: "%.1f")")
+                }
+            }.onAppear {
+                Task() {
+                    // TODO: 2024-05-15 TL Set date to today
+                    await state.startup()
+                }
+            }
+            Spacer()
+            // TODO: 2024-05-15 TL Fix rendering
+            // TODO: 2024-05-15 TL Left / right arrows
+            DatePicker(
+                "Select a Date",
+                selection: $selectedDate,
+                displayedComponents: .date
+            ).onChange(of: selectedDate) { newDate in
+                let calendar = Calendar.current
+                let begin = calendar.startOfDay(for: newDate)
+                guard let end = calendar.date(byAdding: .day, value: 1, to: begin)?.addingTimeInterval(-1) else { return }
+                state.dateRange = (begin, end)
+                Task() {
+                    await state.startup()
+                }
+            }
+            
+        }
+    }
+}
+
 struct ContentView: View {
     var body: some View {
         TabView {
@@ -249,6 +290,11 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "bell.fill")
                     Text("Alerts")
+                }
+            HealthView()
+                .tabItem {
+                    Image(systemName: "heart.fill")
+                    Text("Health")
                 }
         }
     }
