@@ -4,10 +4,15 @@
 import Foundation
 import HealthKit
 
-enum HealthDataPoint {
+enum HealthDataValue {
     case loading
     case na
     case value(Double)
+}
+
+struct HealthDataPoint {
+    let value: HealthDataValue
+    let type: HKQuantityType
 }
 
 func dayRange(for date: Date) -> (Date, Date) {
@@ -16,6 +21,8 @@ func dayRange(for date: Date) -> (Date, Date) {
     let end = calendar.date(byAdding: .day, value: 1, to: begin)!.addingTimeInterval(-1)
     return (begin, end)
 }
+
+let bodyMass = HKQuantityType(.bodyMass)
 
 class HealthState: ObservableObject {
     var healthStore: HKHealthStore? = nil
@@ -35,28 +42,21 @@ class HealthState: ObservableObject {
     init() {
         self.healthStore = nil
         self.dateRange = dayRange(for: Date())
-        self.data = .loading
+        self.data = HealthDataPoint(value: .loading, type: bodyMass)
     }
     
     public func refresh() {
         Task {
             do {
                 DispatchQueue.main.async {
-                    self.data = .loading
+                    self.data = HealthDataPoint(value: .loading, type: bodyMass)
                 }
                 if HKHealthStore.isHealthDataAvailable() {
                     healthStore = HKHealthStore()
                     guard let healthStore = healthStore else { return }
                     
                     let allTypes: Set = [
-                        // Sample types from Apple's documentation
-                        //                    HKQuantityType.workoutType(),
-                        //                    HKQuantityType(.activeEnergyBurned),
-                        //                    HKQuantityType(.distanceCycling),
-                        //                    HKQuantityType(.distanceWalkingRunning),
-                        //                    HKQuantityType(.distanceWheelchair),
-                        //                    HKQuantityType(.heartRate)
-                        HKQuantityType(.bodyMass)
+                        bodyMass
                     ]
                     
                     // TODO: 2024-05-15 TL This call fails silently when not asking for write permissions. Why?
@@ -67,7 +67,7 @@ class HealthState: ObservableObject {
                     if auth == .sharingAuthorized {
                         let dateRangePredicate = HKQuery.predicateForSamples(withStart: dateRange.0, end: dateRange.1)
                         let descriptor = HKSampleQueryDescriptor(
-                            predicates: [.quantitySample(type: HKQuantityType(.bodyMass), predicate: dateRangePredicate)],
+                            predicates: [.quantitySample(type: bodyMass, predicate: dateRangePredicate)],
                             sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
                             limit: 1
                         )
@@ -76,12 +76,13 @@ class HealthState: ObservableObject {
                             // TODO: TL 2024-05-23 Aggregate results
                             for result in results {
                                 DispatchQueue.main.async { [unowned self] in
-                                    data = .value(result.quantity.doubleValue(for: .pound()))
+                                    let value = result.quantity.doubleValue(for: .pound())
+                                    data = HealthDataPoint(value: .value(value), type: bodyMass)
                                 }
                             }
                         } else {
                             DispatchQueue.main.async { [unowned self] in
-                                data = .na
+                                data = HealthDataPoint(value: .na, type: bodyMass)
                             }
                         }
                     }

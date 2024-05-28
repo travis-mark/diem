@@ -1,0 +1,113 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "--" : {
+
+    },
+    "%.1f" : {
+
+    },
+    "Adding Widgets on Apple Watch" : {
+
+    },
+    "Alerts" : {
+
+    },
+    "Body" : {
+
+    },
+    "Create Notification" : {
+
+    },
+    "Daily" : {
+
+    },
+    "Day" : {
+
+    },
+    "Days" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Every" : {
+
+    },
+    "Frequency" : {
+
+    },
+    "Health" : {
+
+    },
+    "HKQuantityTypeIdentifierBodyMass" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weight"
+          }
+        }
+      }
+    },
+    "Inline Widgets" : {
+
+    },
+    "Large Widgets" : {
+
+    },
+    "Long-press in the center of the watch. Tap the (Edit) button in the bottom right corner and swipe right to edit complications. Select the complications to replace and scroll to find the Diem widget you want to add." : {
+
+    },
+    "Month" : {
+
+    },
+    "Monthly" : {
+
+    },
+    "Months" : {
+
+    },
+    "Save" : {
+
+    },
+    "Select a Date" : {
+
+    },
+    "Small Widgets" : {
+
+    },
+    "Subtitle" : {
+
+    },
+    "Title" : {
+
+    },
+    "Watch" : {
+
+    },
+    "Week" : {
+
+    },
+    "Weekly" : {
+
+    },
+    "Weeks" : {
+
+    },
+    "Year" : {
+
+    },
+    "Yearly" : {
+
+    },
+    "Years" : {
+
+    }
+  },
+  "version" : "1.0"
+}

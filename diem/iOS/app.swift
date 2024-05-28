@@ -241,11 +241,10 @@ struct HealthDataPointView: View {
     let data: HealthDataPoint
     
     var body: some View {
-        // TODO: 2024-05-15 TL Read units from model
         HStack {
-            Text("Body Mass")
+            Text(LocalizedStringKey(data.type.identifier))
             Spacer()
-            switch (data) {
+            switch (data.value) {
             case .loading: ProgressView()
             case .na: Text("--")
             case .value(let value): Text("\(value, specifier: "%.1f")")
