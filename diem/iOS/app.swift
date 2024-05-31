@@ -264,20 +264,34 @@ struct HealthView: View {
                 HealthDataPointView(data: state.data)
             }.onAppear {
                 Task() {
-                    // TODO: 2024-05-15 TL Set date to today
                     state.refresh()
                 }
             }
             Spacer()
-            // TODO: 2024-05-15 TL Fix rendering
-            // TODO: 2024-05-15 TL Left / right arrows
-            DatePicker(
-                "Select a Date",
-                selection: $selectedDate,
-                displayedComponents: .date
-            ).onChange(of: selectedDate) { newDate in
-                state.dateRange = dayRange(for: selectedDate)
+            HStack {
+                Button() {
+                    self.selectedDate = Calendar.current.date(byAdding: .day, value: -1, to: self.selectedDate)!
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 24, weight: .bold))
+                }.padding(22)
+                DatePicker(
+                    "",
+                    selection: $selectedDate,
+                    displayedComponents: .date
+                ).onChange(of: selectedDate) { newDate in
+                    state.dateRange = dayRange(for: selectedDate)
+                }
+                .frame(width: 160)
+                .labelsHidden()
+                Button() {
+                    self.selectedDate = Calendar.current.date(byAdding: .day, value: +1, to: self.selectedDate)!
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 24, weight: .bold))
+                }.padding(22)
             }
+            
             
         }
     }
