@@ -43,6 +43,17 @@
     "Health" : {
 
     },
+    "HKQuantityTypeIdentifierBodyFatPercentage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Body Fat %"
+          }
+        }
+      }
+    },
     "HKQuantityTypeIdentifierBodyMass" : {
       "extractionState" : "manual",
       "localizations" : {

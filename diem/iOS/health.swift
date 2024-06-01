@@ -22,7 +22,8 @@ func dayRange(for date: Date) -> (Date, Date) {
     return (begin, end)
 }
 
-let bodyMass = HKQuantityType(.bodyMass)
+private let bodyFatPercentageType = HKQuantityType(.bodyFatPercentage)
+private let bodyMassType = HKQuantityType(.bodyMass)
 
 class HealthState: ObservableObject {
     var healthStore: HKHealthStore? = nil
@@ -31,9 +32,12 @@ class HealthState: ObservableObject {
             refresh()
         }
     }
-    
-    // TODO: 2024-05-15 TL Expand data structure
-    @Published var data: HealthDataPoint {
+    @Published var bodyFatPercentage: HealthDataPoint {
+        didSet {
+            objectWillChange.send()
+        }
+    }
+    @Published var bodyMass: HealthDataPoint {
         didSet {
             objectWillChange.send()
         }
@@ -42,50 +46,71 @@ class HealthState: ObservableObject {
     init() {
         self.healthStore = nil
         self.dateRange = dayRange(for: Date())
-        self.data = HealthDataPoint(value: .loading, type: bodyMass)
+        self.bodyFatPercentage = HealthDataPoint(value: .loading, type: bodyFatPercentageType)
+        self.bodyMass = HealthDataPoint(value: .loading, type: bodyMassType)
     }
     
     public func refresh() {
         Task {
             do {
                 DispatchQueue.main.async {
-                    self.data = HealthDataPoint(value: .loading, type: bodyMass)
+                    self.bodyMass = HealthDataPoint(value: .loading, type: bodyMassType)
                 }
                 if HKHealthStore.isHealthDataAvailable() {
                     healthStore = HKHealthStore()
                     guard let healthStore = healthStore else { return }
-                    
                     let allTypes: Set = [
-                        bodyMass
+                        bodyFatPercentageType,
+                        bodyMassType,
                     ]
-                    
+                    let dateRangePredicate = HKQuery.predicateForSamples(withStart: dateRange.0, end: dateRange.1)
                     // TODO: 2024-05-15 TL This call fails silently when not asking for write permissions. Why?
                     try await healthStore.requestAuthorization(toShare: allTypes, read: allTypes)
                     
-                    // TODO: 2024-05-15 TL Start loop for multiple values
-                    let auth = healthStore.authorizationStatus(for: HKQuantityType(.bodyMass))
-                    if auth == .sharingAuthorized {
-                        let dateRangePredicate = HKQuery.predicateForSamples(withStart: dateRange.0, end: dateRange.1)
+                    // Body fat %
+                    if healthStore.authorizationStatus(for: bodyFatPercentageType) == .sharingAuthorized {
                         let descriptor = HKSampleQueryDescriptor(
-                            predicates: [.quantitySample(type: bodyMass, predicate: dateRangePredicate)],
+                            predicates: [.quantitySample(type: bodyFatPercentageType, predicate: dateRangePredicate)],
                             sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
                             limit: 1
                         )
                         let results = try await descriptor.result(for: healthStore)
                         if results.count > 0 {
-                            // TODO: TL 2024-05-23 Aggregate results
-                            for result in results {
-                                DispatchQueue.main.async { [unowned self] in
-                                    let value = result.quantity.doubleValue(for: .pound())
-                                    data = HealthDataPoint(value: .value(value), type: bodyMass)
-                                }
+                            let values = results.map { $0.quantity.doubleValue(for: .percent()) }
+                            let mean = values.reduce(0.0, { $0 + $1 }) / Double(values.count)
+                            DispatchQueue.main.async { [unowned self] in
+                                bodyFatPercentage = HealthDataPoint(value: .value(mean), type: bodyFatPercentageType)
                             }
                         } else {
                             DispatchQueue.main.async { [unowned self] in
-                                data = HealthDataPoint(value: .na, type: bodyMass)
+                                bodyFatPercentage = HealthDataPoint(value: .na, type: bodyFatPercentageType)
                             }
                         }
                     }
+                    
+                    // Body mass
+                    if healthStore.authorizationStatus(for: bodyMassType) == .sharingAuthorized {
+                        let descriptor = HKSampleQueryDescriptor(
+                            predicates: [.quantitySample(type: bodyMassType, predicate: dateRangePredicate)],
+                            sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
+                            limit: 1
+                        )
+                        let results = try await descriptor.result(for: healthStore)
+                        if results.count > 0 {
+                            let values = results.map { $0.quantity.doubleValue(for: .pound()) }
+                            let mean = values.reduce(0.0, { $0 + $1 }) / Double(values.count)
+                            DispatchQueue.main.async { [unowned self] in
+                                bodyMass = HealthDataPoint(value: .value(mean), type: bodyMassType)
+                            }
+                        } else {
+                            DispatchQueue.main.async { [unowned self] in
+                                bodyMass = HealthDataPoint(value: .na, type: bodyMassType)
+                            }
+                        }
+                    }
+                    
+                    // TODO: TL 2024-05-31 Add more measurements
+                    
                 } else {
                     // TODO: 2024-05-15 TL Do I need an else here?
                 }

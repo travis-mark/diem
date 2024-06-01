@@ -240,6 +240,7 @@ struct AlertsDetail: View {
 struct HealthDataPointView: View {
     let data: HealthDataPoint
     
+    // TODO: TL 2024-05-31 Units: pounds, percents
     var body: some View {
         HStack {
             Text(LocalizedStringKey(data.type.identifier))
@@ -261,7 +262,8 @@ struct HealthView: View {
     var body: some View {
         VStack {
             List {
-                HealthDataPointView(data: state.data)
+                HealthDataPointView(data: state.bodyFatPercentage)
+                HealthDataPointView(data: state.bodyMass)
             }.onAppear {
                 Task() {
                     state.refresh()
