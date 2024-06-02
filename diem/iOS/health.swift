@@ -7,8 +7,35 @@ import HealthKit
 enum HealthDataValue {
     case loading
     case na
-    case value(Double)
+    case value(Double, HKUnit)
+    
+    var displayString: String {
+        switch (self) {
+        case .value(let value, let unit):
+            // TODO: TL 2024-06-01 Find a better way to do this
+            if HKUnit.pound() === unit {
+                let formatter = NumberFormatter()
+                formatter.minimumFractionDigits = 1
+                formatter.maximumFractionDigits = 1
+                return "\(formatter.string(from: NSNumber(value: value)) ?? "--") lbs"
+            } else if HKUnit.percent() === unit {
+                let formatter = NumberFormatter()
+                formatter.minimumFractionDigits = 1
+                formatter.maximumFractionDigits = 1
+                return "\(formatter.string(from: NSNumber(value: value * 100)) ?? "--") %"
+            } else {
+                let formatter = NumberFormatter()
+                formatter.minimumFractionDigits = 1
+                formatter.maximumFractionDigits = 1
+                return "\(formatter.string(from: NSNumber(value: value)) ?? "--") EACH"
+            }
+        default:
+            return "--"
+        }
+    }
 }
+
+
 
 struct HealthDataPoint {
     let value: HealthDataValue
@@ -67,8 +94,10 @@ class HealthState: ObservableObject {
                     // TODO: 2024-05-15 TL This call fails silently when not asking for write permissions. Why?
                     try await healthStore.requestAuthorization(toShare: allTypes, read: allTypes)
                     
+                    
                     // Body fat %
                     if healthStore.authorizationStatus(for: bodyFatPercentageType) == .sharingAuthorized {
+                        let units = try! await healthStore.preferredUnits(for: Set([bodyFatPercentageType]))[bodyFatPercentageType]!
                         let descriptor = HKSampleQueryDescriptor(
                             predicates: [.quantitySample(type: bodyFatPercentageType, predicate: dateRangePredicate)],
                             sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
@@ -76,10 +105,10 @@ class HealthState: ObservableObject {
                         )
                         let results = try await descriptor.result(for: healthStore)
                         if results.count > 0 {
-                            let values = results.map { $0.quantity.doubleValue(for: .percent()) }
+                            let values = results.map { $0.quantity.doubleValue(for: units) }
                             let mean = values.reduce(0.0, { $0 + $1 }) / Double(values.count)
                             DispatchQueue.main.async { [unowned self] in
-                                bodyFatPercentage = HealthDataPoint(value: .value(mean), type: bodyFatPercentageType)
+                                bodyFatPercentage = HealthDataPoint(value: .value(mean, units), type: bodyFatPercentageType)
                             }
                         } else {
                             DispatchQueue.main.async { [unowned self] in
@@ -90,6 +119,7 @@ class HealthState: ObservableObject {
                     
                     // Body mass
                     if healthStore.authorizationStatus(for: bodyMassType) == .sharingAuthorized {
+                        let units = try! await healthStore.preferredUnits(for: Set([bodyMassType]))[bodyMassType]!
                         let descriptor = HKSampleQueryDescriptor(
                             predicates: [.quantitySample(type: bodyMassType, predicate: dateRangePredicate)],
                             sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
@@ -97,10 +127,10 @@ class HealthState: ObservableObject {
                         )
                         let results = try await descriptor.result(for: healthStore)
                         if results.count > 0 {
-                            let values = results.map { $0.quantity.doubleValue(for: .pound()) }
+                            let values = results.map { $0.quantity.doubleValue(for: units) }
                             let mean = values.reduce(0.0, { $0 + $1 }) / Double(values.count)
                             DispatchQueue.main.async { [unowned self] in
-                                bodyMass = HealthDataPoint(value: .value(mean), type: bodyMassType)
+                                bodyMass = HealthDataPoint(value: .value(mean, units), type: bodyMassType)
                             }
                         } else {
                             DispatchQueue.main.async { [unowned self] in

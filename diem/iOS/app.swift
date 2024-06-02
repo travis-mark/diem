@@ -246,9 +246,10 @@ struct HealthDataPointView: View {
             Text(LocalizedStringKey(data.type.identifier))
             Spacer()
             switch (data.value) {
-            case .loading: ProgressView()
-            case .na: Text("--")
-            case .value(let value): Text("\(value, specifier: "%.1f")")
+            case .loading:
+                ProgressView()
+            default:
+                Text(data.value.displayString)
             }
         }
     }
