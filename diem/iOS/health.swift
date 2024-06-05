@@ -4,6 +4,34 @@
 import Foundation
 import HealthKit
 
+/// Format a value with its unit for display (ex: 160.3 lbs)
+///
+/// Matching against HKUnit requires requesting or retaining a reference to the HKUnit object via HKUnit.pound() and relying on the current behavior of it always being the same object.
+///
+/// Once matched, Apple's own MassFormatter uses "lb" not "lbs" for non-singular amounts
+///
+/// So I wrote my own incomplete implementation against NumberFormatter. Seriously, what does Apple even want here?
+func format(value: Double, unit: HKUnit) -> String {
+    switch (unit.unitString) {
+    case "lb":
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        return "\(formatter.string(from: NSNumber(value: value)) ?? "--") lbs"
+    case "%":
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        return "\(formatter.string(from: NSNumber(value: value * 100)) ?? "--") %"
+    default:
+        print("\(unit.unitString) not matched")
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        return "\(formatter.string(from: NSNumber(value: value)) ?? "--") EACH"
+    }
+}
+
 enum HealthDataValue {
     case loading
     case na
@@ -12,23 +40,7 @@ enum HealthDataValue {
     var displayString: String {
         switch (self) {
         case .value(let value, let unit):
-            // TODO: TL 2024-06-01 Find a better way to do this
-            if HKUnit.pound() === unit {
-                let formatter = NumberFormatter()
-                formatter.minimumFractionDigits = 1
-                formatter.maximumFractionDigits = 1
-                return "\(formatter.string(from: NSNumber(value: value)) ?? "--") lbs"
-            } else if HKUnit.percent() === unit {
-                let formatter = NumberFormatter()
-                formatter.minimumFractionDigits = 1
-                formatter.maximumFractionDigits = 1
-                return "\(formatter.string(from: NSNumber(value: value * 100)) ?? "--") %"
-            } else {
-                let formatter = NumberFormatter()
-                formatter.minimumFractionDigits = 1
-                formatter.maximumFractionDigits = 1
-                return "\(formatter.string(from: NSNumber(value: value)) ?? "--") EACH"
-            }
+            return format(value: value, unit: unit)
         default:
             return "--"
         }

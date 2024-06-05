@@ -239,8 +239,6 @@ struct AlertsDetail: View {
 
 struct HealthDataPointView: View {
     let data: HealthDataPoint
-    
-    // TODO: TL 2024-05-31 Units: pounds, percents
     var body: some View {
         HStack {
             Text(LocalizedStringKey(data.type.identifier))
