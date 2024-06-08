@@ -119,13 +119,13 @@ class HealthState: ObservableObject {
                 let allTypeSet = Set(allTypes)
                 try await store.requestAuthorization(toShare: allTypeSet, read: allTypeSet)
                 let dateRangePredicate = HKQuery.predicateForSamples(withStart: dateRange.0, end: dateRange.1)
-                var newPoints: [HealthDataPoint] = []
+                var collection: [HealthDataPoint] = []
                 for quantityType in allTypes {
                     let point = await fetch(quantityType: quantityType, predicate: dateRangePredicate)
-                    newPoints.append(point)
+                    collection.append(point)
                 }
+                let newPoints = collection // Copy annotation to satisfy Swift 6
                 DispatchQueue.main.async {
-                    // TODO: 2024-06-07 Swift 6 warning
                     self.points = newPoints
                 }
             } catch {
