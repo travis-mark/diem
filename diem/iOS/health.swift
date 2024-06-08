@@ -13,6 +13,11 @@ import HealthKit
 /// So I wrote my own incomplete implementation against NumberFormatter. Seriously, what does Apple even want here?
 func format(value: Double, unit: HKUnit) -> String {
     switch (unit.unitString) {
+    case "Cal": // Kcal reports as Cal
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 0
+        return "\(formatter.string(from: NSNumber(value: value * 1000)) ?? "--") Cal"
     case "lb":
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 1
@@ -102,6 +107,7 @@ class HealthState: ObservableObject {
         let allTypes = [
             HKQuantityType(.bodyFatPercentage),
             HKQuantityType(.bodyMass),
+            HKQuantityType(.activeEnergyBurned),
         ]
         points = allTypes.map({ HealthDataPoint(value: .loading, type: $0) })
         guard HKHealthStore.isHealthDataAvailable() else { return }

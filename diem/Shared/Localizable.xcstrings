@@ -37,6 +37,17 @@
     "Health" : {
 
     },
+    "HKQuantityTypeIdentifierActiveEnergyBurned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Energy Burned"
+          }
+        }
+      }
+    },
     "HKQuantityTypeIdentifierBodyFatPercentage" : {
       "extractionState" : "manual",
       "localizations" : {
