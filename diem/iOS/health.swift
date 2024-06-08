@@ -61,9 +61,6 @@ func dayRange(for date: Date) -> (Date, Date) {
     return (begin, end)
 }
 
-private let bodyFatPercentageType = HKQuantityType(.bodyFatPercentage)
-private let bodyMassType = HKQuantityType(.bodyMass)
-
 class HealthState: ObservableObject {
     var healthStore: HKHealthStore? = nil
     var dateRange: (Date, Date) = (Date(), Date()) {
@@ -71,12 +68,7 @@ class HealthState: ObservableObject {
             refresh()
         }
     }
-    @Published var bodyFatPercentage: HealthDataPoint {
-        didSet {
-            objectWillChange.send()
-        }
-    }
-    @Published var bodyMass: HealthDataPoint {
+    @Published var points: [HealthDataPoint] {
         didSet {
             objectWillChange.send()
         }
@@ -85,76 +77,50 @@ class HealthState: ObservableObject {
     init() {
         self.healthStore = nil
         self.dateRange = dayRange(for: Date())
-        self.bodyFatPercentage = HealthDataPoint(value: .loading, type: bodyFatPercentageType)
-        self.bodyMass = HealthDataPoint(value: .loading, type: bodyMassType)
+        self.points = []
+    }
+    
+    private func fetch(quantityType: HKQuantityType, predicate: NSPredicate) async -> HealthDataPoint {
+        let na = HealthDataPoint(value: .na, type: quantityType)
+        guard let healthStore = healthStore else { return na }
+        guard healthStore.authorizationStatus(for: quantityType) == .sharingAuthorized else { return na }
+        guard let units = try? await healthStore.preferredUnits(for: Set([quantityType]))[quantityType] else { return na }
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [.quantitySample(type: quantityType, predicate: predicate)],
+            sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
+            limit: 1
+        )
+        guard let results = try? await descriptor.result(for: healthStore) else { return na }
+        guard results.count > 0 else { return na }
+        let values = results.map { $0.quantity.doubleValue(for: units) }
+        let mean = values.reduce(0.0, { $0 + $1 }) / Double(values.count)
+        return HealthDataPoint(value: .value(mean, units), type: quantityType)
     }
     
     public func refresh() {
+        // TODO: TL 2024-05-31 Add more measurements
+        let allTypes = [
+            HKQuantityType(.bodyFatPercentage),
+            HKQuantityType(.bodyMass),
+        ]
+        points = allTypes.map({ HealthDataPoint(value: .loading, type: $0) })
+        guard HKHealthStore.isHealthDataAvailable() else { return }
+        healthStore = HKHealthStore()
+        guard let store = healthStore else { return }
         Task {
             do {
-                DispatchQueue.main.async {
-                    self.bodyMass = HealthDataPoint(value: .loading, type: bodyMassType)
+                // TODO: 2024-05-15 TL This call fails silently when not asking for write permissions. Why?
+                let allTypeSet = Set(allTypes)
+                try await store.requestAuthorization(toShare: allTypeSet, read: allTypeSet)
+                let dateRangePredicate = HKQuery.predicateForSamples(withStart: dateRange.0, end: dateRange.1)
+                var newPoints: [HealthDataPoint] = []
+                for quantityType in allTypes {
+                    let point = await fetch(quantityType: quantityType, predicate: dateRangePredicate)
+                    newPoints.append(point)
                 }
-                if HKHealthStore.isHealthDataAvailable() {
-                    healthStore = HKHealthStore()
-                    guard let healthStore = healthStore else { return }
-                    let allTypes: Set = [
-                        bodyFatPercentageType,
-                        bodyMassType,
-                    ]
-                    let dateRangePredicate = HKQuery.predicateForSamples(withStart: dateRange.0, end: dateRange.1)
-                    // TODO: 2024-05-15 TL This call fails silently when not asking for write permissions. Why?
-                    try await healthStore.requestAuthorization(toShare: allTypes, read: allTypes)
-                    
-                    
-                    // Body fat %
-                    if healthStore.authorizationStatus(for: bodyFatPercentageType) == .sharingAuthorized {
-                        let units = try! await healthStore.preferredUnits(for: Set([bodyFatPercentageType]))[bodyFatPercentageType]!
-                        let descriptor = HKSampleQueryDescriptor(
-                            predicates: [.quantitySample(type: bodyFatPercentageType, predicate: dateRangePredicate)],
-                            sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
-                            limit: 1
-                        )
-                        let results = try await descriptor.result(for: healthStore)
-                        if results.count > 0 {
-                            let values = results.map { $0.quantity.doubleValue(for: units) }
-                            let mean = values.reduce(0.0, { $0 + $1 }) / Double(values.count)
-                            DispatchQueue.main.async { [unowned self] in
-                                bodyFatPercentage = HealthDataPoint(value: .value(mean, units), type: bodyFatPercentageType)
-                            }
-                        } else {
-                            DispatchQueue.main.async { [unowned self] in
-                                bodyFatPercentage = HealthDataPoint(value: .na, type: bodyFatPercentageType)
-                            }
-                        }
-                    }
-                    
-                    // Body mass
-                    if healthStore.authorizationStatus(for: bodyMassType) == .sharingAuthorized {
-                        let units = try! await healthStore.preferredUnits(for: Set([bodyMassType]))[bodyMassType]!
-                        let descriptor = HKSampleQueryDescriptor(
-                            predicates: [.quantitySample(type: bodyMassType, predicate: dateRangePredicate)],
-                            sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
-                            limit: 1
-                        )
-                        let results = try await descriptor.result(for: healthStore)
-                        if results.count > 0 {
-                            let values = results.map { $0.quantity.doubleValue(for: units) }
-                            let mean = values.reduce(0.0, { $0 + $1 }) / Double(values.count)
-                            DispatchQueue.main.async { [unowned self] in
-                                bodyMass = HealthDataPoint(value: .value(mean, units), type: bodyMassType)
-                            }
-                        } else {
-                            DispatchQueue.main.async { [unowned self] in
-                                bodyMass = HealthDataPoint(value: .na, type: bodyMassType)
-                            }
-                        }
-                    }
-                    
-                    // TODO: TL 2024-05-31 Add more measurements
-                    
-                } else {
-                    // TODO: 2024-05-15 TL Do I need an else here?
+                DispatchQueue.main.async {
+                    // TODO: 2024-06-07 Swift 6 warning
+                    self.points = newPoints
                 }
             } catch {
                 // Typically, authorization requests only fail if you haven't set the

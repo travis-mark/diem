@@ -260,9 +260,8 @@ struct HealthView: View {
     
     var body: some View {
         VStack {
-            List {
-                HealthDataPointView(data: state.bodyFatPercentage)
-                HealthDataPointView(data: state.bodyMass)
+            List(state.points, id: \.type) { point in
+                HealthDataPointView(data: point)
             }.onAppear {
                 Task() {
                     state.refresh()
