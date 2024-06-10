@@ -12,6 +12,7 @@ import HealthKit
 ///
 /// So I wrote my own incomplete implementation against NumberFormatter. Seriously, what does Apple even want here?
 func format(value: Double, unit: HKUnit) -> String {
+    // TODO: 2024-06-09 "mi" and "count"
     switch (unit.unitString) {
     case "Cal": // Kcal reports as Cal
         let formatter = NumberFormatter()
@@ -103,11 +104,85 @@ class HealthState: ObservableObject {
     }
     
     public func refresh() {
-        // TODO: TL 2024-05-31 Add more measurements
+        
         let allTypes = [
+            // Things I know I care about
             HKQuantityType(.bodyFatPercentage),
             HKQuantityType(.bodyMass),
+            // TODO: 2024-06-09 Everything else - for research
             HKQuantityType(.activeEnergyBurned),
+            // TODO: 2024-06-09 - "Authorization to share the following types is disallowed: HKQuantityTypeIdentifierAppleExerciseTime, HKQuantityTypeIdentifierAppleWalkingSteadiness, HKQuantityTypeIdentifierAppleMoveTime, HKQuantityTypeIdentifierAppleSleepingWristTemperature, HKQuantityTypeIdentifierAtrialFibrillationBurden, HKQuantityTypeIdentifierAppleStandTime" - fuck you too, Apple
+//            HKQuantityType(.appleExerciseTime),
+//            HKQuantityType(.appleMoveTime),
+//            HKQuantityType(.appleSleepingWristTemperature),
+//            HKQuantityType(.appleStandTime),
+//            HKQuantityType(.appleWalkingSteadiness),
+            // TODO: 2024-06-09 - "Authorization to share the following types is disallowed: HKQuantityTypeIdentifierAtrialFibrillationBurden"
+//            HKQuantityType(.atrialFibrillationBurden),
+            HKQuantityType(.basalBodyTemperature),
+            HKQuantityType(.basalEnergyBurned),
+            HKQuantityType(.bloodAlcoholContent),
+            HKQuantityType(.bloodGlucose),
+            HKQuantityType(.bloodPressureDiastolic),
+            HKQuantityType(.bloodPressureSystolic),
+            HKQuantityType(.bodyMassIndex),
+            HKQuantityType(.bodyTemperature),
+            // TODO: 2024-06-09 iOS 17 only fields
+//            HKQuantityType(.cyclingCadence),
+//            HKQuantityType(.cyclingFunctionalThresholdPower),
+//            HKQuantityType(.cyclingPower),
+//            HKQuantityType(.cyclingSpeed),
+            HKQuantityType(.dietaryBiotin),
+            HKQuantityType(.dietaryCaffeine),
+            HKQuantityType(.dietaryCalcium),
+            HKQuantityType(.dietaryCarbohydrates),
+            HKQuantityType(.dietaryChloride),
+            HKQuantityType(.dietaryCholesterol),
+            HKQuantityType(.dietaryChromium),
+            HKQuantityType(.dietaryCopper),
+            HKQuantityType(.dietaryEnergyConsumed),
+            HKQuantityType(.dietaryFatMonounsaturated),
+            HKQuantityType(.dietaryFatPolyunsaturated),
+            HKQuantityType(.dietaryFatSaturated),
+            HKQuantityType(.dietaryFatTotal),
+            HKQuantityType(.dietaryFiber),
+            HKQuantityType(.dietaryFolate),
+            HKQuantityType(.dietaryIodine),
+            HKQuantityType(.dietaryIron),
+            HKQuantityType(.dietaryMagnesium),
+            HKQuantityType(.dietaryManganese),
+            HKQuantityType(.dietaryMolybdenum),
+            HKQuantityType(.dietaryNiacin),
+            HKQuantityType(.dietaryPantothenicAcid),
+            HKQuantityType(.dietaryPhosphorus),
+            HKQuantityType(.dietaryPotassium),
+            HKQuantityType(.dietaryProtein),
+            HKQuantityType(.dietaryRiboflavin),
+            HKQuantityType(.dietarySelenium),
+            HKQuantityType(.dietarySodium),
+            HKQuantityType(.dietarySugar),
+            HKQuantityType(.dietaryThiamin),
+            HKQuantityType(.dietaryVitaminA),
+            HKQuantityType(.dietaryVitaminB12),
+            HKQuantityType(.dietaryVitaminB6),
+            HKQuantityType(.dietaryVitaminC),
+            HKQuantityType(.dietaryVitaminD),
+            HKQuantityType(.dietaryVitaminE),
+            HKQuantityType(.dietaryVitaminK),
+            HKQuantityType(.dietaryWater),
+            HKQuantityType(.dietaryZinc),
+            HKQuantityType(.distanceCycling),
+            HKQuantityType(.distanceDownhillSnowSports),
+            HKQuantityType(.distanceSwimming),
+            HKQuantityType(.distanceWalkingRunning),
+            HKQuantityType(.distanceWheelchair),
+            HKQuantityType(.electrodermalActivity),
+            HKQuantityType(.environmentalAudioExposure),
+            HKQuantityType(.environmentalSoundReduction),
+            HKQuantityType(.flightsClimbed),
+            HKQuantityType(.forcedExpiratoryVolume1),
+            HKQuantityType(.forcedVitalCapacity),
+            // TODO: 2024-06-09 Start here
         ]
         points = allTypes.map({ HealthDataPoint(value: .loading, type: $0) })
         guard HKHealthStore.isHealthDataAvailable() else { return }
@@ -115,7 +190,7 @@ class HealthState: ObservableObject {
         guard let store = healthStore else { return }
         Task {
             do {
-                // TODO: 2024-05-15 TL This call fails silently when not asking for write permissions. Why?
+                // TODO: 2024-05-15 This call fails silently when not asking for write permissions. Why?
                 let allTypeSet = Set(allTypes)
                 try await store.requestAuthorization(toShare: allTypeSet, read: allTypeSet)
                 let dateRangePredicate = HKQuery.predicateForSamples(withStart: dateRange.0, end: dateRange.1)
