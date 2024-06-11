@@ -182,7 +182,50 @@ class HealthState: ObservableObject {
             HKQuantityType(.flightsClimbed),
             HKQuantityType(.forcedExpiratoryVolume1),
             HKQuantityType(.forcedVitalCapacity),
-            // TODO: 2024-06-09 Start here
+            HKQuantityType(.headphoneAudioExposure),
+            HKQuantityType(.heartRate),
+            HKQuantityType(.heartRateRecoveryOneMinute),
+            HKQuantityType(.heartRateVariabilitySDNN),
+            HKQuantityType(.height),
+            HKQuantityType(.inhalerUsage),
+            HKQuantityType(.insulinDelivery),
+            HKQuantityType(.leanBodyMass),
+            // TODO: 2024-06-09 - Authorization to share the following types is disallowed
+//            HKQuantityType(.nikeFuel),
+            HKQuantityType(.numberOfAlcoholicBeverages),
+            HKQuantityType(.numberOfTimesFallen),
+            HKQuantityType(.oxygenSaturation),
+            HKQuantityType(.peakExpiratoryFlowRate),
+            HKQuantityType(.peripheralPerfusionIndex),
+            // TODO: 2024-06-09 iOS 17 only fields
+//            HKQuantityType(.physicalEffort),
+            HKQuantityType(.pushCount),
+            HKQuantityType(.respiratoryRate),
+            HKQuantityType(.restingHeartRate),
+            HKQuantityType(.runningGroundContactTime),
+            HKQuantityType(.runningPower),
+            HKQuantityType(.runningSpeed),
+            HKQuantityType(.runningStrideLength),
+            HKQuantityType(.runningVerticalOscillation),
+            HKQuantityType(.sixMinuteWalkTestDistance),
+            HKQuantityType(.stairAscentSpeed),
+            HKQuantityType(.stairDescentSpeed),
+            HKQuantityType(.stepCount),
+            HKQuantityType(.swimmingStrokeCount),
+            // TODO: 2024-06-09 iOS 17 only fields
+//            HKQuantityType(.timeInDaylight),
+            HKQuantityType(.underwaterDepth),
+            HKQuantityType(.uvExposure),
+            HKQuantityType(.vo2Max),
+            HKQuantityType(.waistCircumference),
+            // TODO: 2024-06-09 - Authorization to share the following types is disallowed
+//            HKQuantityType(.walkingAsymmetryPercentage),
+            HKQuantityType(.walkingDoubleSupportPercentage),
+            // TODO: 2024-06-09 - Authorization to share the following types is disallowed
+//            HKQuantityType(.walkingHeartRateAverage),
+            HKQuantityType(.walkingSpeed),
+            HKQuantityType(.walkingStepLength),
+            HKQuantityType(.waterTemperature),
         ]
         points = allTypes.map({ HealthDataPoint(value: .loading, type: $0) })
         guard HKHealthStore.isHealthDataAvailable() else { return }
