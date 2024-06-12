@@ -12,8 +12,17 @@ import HealthKit
 ///
 /// So I wrote my own incomplete implementation against NumberFormatter. Seriously, what does Apple even want here?
 func format(value: Double, unit: HKUnit) -> String {
-    // TODO: 2024-06-09 "mi" and "count"
     switch (unit.unitString) {
+    case "count":
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1
+        return formatter.string(from: NSNumber(value: value)) ?? "--"
+    case "count/min":
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1
+        return "\(formatter.string(from: NSNumber(value: value)) ?? "--") / min"
     case "Cal": // Kcal reports as Cal
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
@@ -30,11 +39,10 @@ func format(value: Double, unit: HKUnit) -> String {
         formatter.maximumFractionDigits = 1
         return "\(formatter.string(from: NSNumber(value: value * 100)) ?? "--") %"
     default:
-        print("\(unit.unitString) not matched")
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 1
         formatter.maximumFractionDigits = 1
-        return "\(formatter.string(from: NSNumber(value: value)) ?? "--") EACH"
+        return "\(formatter.string(from: NSNumber(value: value)) ?? "--") \(unit.unitString)"
     }
 }
 
@@ -105,11 +113,10 @@ class HealthState: ObservableObject {
     
     public func refresh() {
         
+        // TODO: 2024-06-11 Finish health strings
         let allTypes = [
-            // Things I know I care about
             HKQuantityType(.bodyFatPercentage),
             HKQuantityType(.bodyMass),
-            // TODO: 2024-06-09 Everything else - for research
             HKQuantityType(.activeEnergyBurned),
             // TODO: 2024-06-09 - "Authorization to share the following types is disallowed: HKQuantityTypeIdentifierAppleExerciseTime, HKQuantityTypeIdentifierAppleWalkingSteadiness, HKQuantityTypeIdentifierAppleMoveTime, HKQuantityTypeIdentifierAppleSleepingWristTemperature, HKQuantityTypeIdentifierAtrialFibrillationBurden, HKQuantityTypeIdentifierAppleStandTime" - fuck you too, Apple
 //            HKQuantityType(.appleExerciseTime),
@@ -228,13 +235,17 @@ class HealthState: ObservableObject {
             HKQuantityType(.waterTemperature),
         ]
         points = allTypes.map({ HealthDataPoint(value: .loading, type: $0) })
+        for t in allTypes {
+            print(t.identifier)
+        }
         guard HKHealthStore.isHealthDataAvailable() else { return }
         healthStore = HKHealthStore()
         guard let store = healthStore else { return }
         Task {
             do {
+                
+                let allTypeSet: Set<HKQuantityType> = Set(allTypes)
                 // TODO: 2024-05-15 This call fails silently when not asking for write permissions. Why?
-                let allTypeSet = Set(allTypes)
                 try await store.requestAuthorization(toShare: allTypeSet, read: allTypeSet)
                 let dateRangePredicate = HKQuery.predicateForSamples(withStart: dateRange.0, end: dateRange.1)
                 var collection: [HealthDataPoint] = []
