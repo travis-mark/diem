@@ -362,7 +362,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Manganese"
           }
         }
       }
@@ -373,7 +373,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Molybdenum"
           }
         }
       }
@@ -384,7 +384,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Niacin"
           }
         }
       }
@@ -395,7 +395,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Pantothetic Acid"
           }
         }
       }
@@ -406,7 +406,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Phosphorus"
           }
         }
       }
@@ -417,7 +417,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Potassium"
           }
         }
       }
@@ -428,7 +428,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Protein"
           }
         }
       }
@@ -439,7 +439,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Riboflavin"
           }
         }
       }
@@ -450,7 +450,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Selenium"
           }
         }
       }
@@ -461,7 +461,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Sodium"
           }
         }
       }
@@ -472,7 +472,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Sugar"
           }
         }
       }
@@ -483,7 +483,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Thiamin"
           }
         }
       }
@@ -494,7 +494,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Vitamin A"
           }
         }
       }
@@ -505,7 +505,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Vitamin B6"
           }
         }
       }
@@ -516,7 +516,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Vitamin B12"
           }
         }
       }
@@ -527,7 +527,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Vitamin C"
           }
         }
       }
@@ -538,7 +538,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Vitamin D"
           }
         }
       }
@@ -549,7 +549,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Vitamin E"
           }
         }
       }
@@ -560,7 +560,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Vitamin K"
           }
         }
       }
@@ -571,7 +571,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Water"
           }
         }
       }
@@ -582,7 +582,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Zinc"
           }
         }
       }
@@ -593,7 +593,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Cycling Distance"
           }
         }
       }
@@ -604,7 +604,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Downhill Snow Sports Distance"
           }
         }
       }
@@ -615,7 +615,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Swimming Distance"
           }
         }
       }
@@ -626,7 +626,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Walking + Running Distance"
           }
         }
       }
@@ -637,7 +637,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Wheelchair Distance"
           }
         }
       }
@@ -648,7 +648,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Electrodermal Activity"
           }
         }
       }
@@ -659,7 +659,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Environmental Sound Levels"
           }
         }
       }
@@ -670,7 +670,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Environmental Sound Reduction"
           }
         }
       }
@@ -681,7 +681,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Flights Climbed"
           }
         }
       }
@@ -692,7 +692,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Forced Expiratory Volume, 1 sec"
           }
         }
       }
@@ -703,7 +703,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Forced Vital Capacity"
           }
         }
       }
@@ -714,7 +714,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Headphone Audio Levels"
           }
         }
       }
@@ -725,7 +725,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Heart Rate"
           }
         }
       }
@@ -747,7 +747,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Heart Rate Variability"
           }
         }
       }
@@ -758,7 +758,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Height"
           }
         }
       }
@@ -769,7 +769,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Inhaler Usage"
           }
         }
       }
@@ -780,7 +780,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Insulin Delivery"
           }
         }
       }
@@ -791,7 +791,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Lean Body Mass"
           }
         }
       }
@@ -802,7 +802,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Alcohol Consumption"
           }
         }
       }
@@ -835,7 +835,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Peak Expiratory Flow Rate"
           }
         }
       }
@@ -846,7 +846,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Peripheral Perfusion Index"
           }
         }
       }
@@ -857,7 +857,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Pushes"
           }
         }
       }
@@ -868,7 +868,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Respiratory Rate"
           }
         }
       }
@@ -879,7 +879,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Resting Heart Rate"
           }
         }
       }
@@ -901,7 +901,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Running Power"
           }
         }
       }
@@ -912,7 +912,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Running Speed"
           }
         }
       }
