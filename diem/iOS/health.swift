@@ -47,7 +47,6 @@ func format(value: Double, unit: HKUnit) -> String {
 }
 
 enum HealthDataValue {
-    case loading
     case na
     case value(Double, HKUnit)
     
@@ -61,11 +60,15 @@ enum HealthDataValue {
     }
 }
 
-
-
 struct HealthDataPoint {
     let value: HealthDataValue
     let type: HKQuantityType
+}
+
+enum HealthStateStatus {
+    case unknown
+    case loading
+    case ready([HealthDataPoint])
 }
 
 func dayRange(for date: Date) -> (Date, Date) {
@@ -82,7 +85,7 @@ class HealthState: ObservableObject {
             refresh()
         }
     }
-    @Published var points: [HealthDataPoint] {
+    @Published var state: HealthStateStatus {
         didSet {
             objectWillChange.send()
         }
@@ -91,7 +94,7 @@ class HealthState: ObservableObject {
     init() {
         self.healthStore = nil
         self.dateRange = dayRange(for: Date())
-        self.points = []
+        self.state = .unknown
     }
     
     private func fetch(quantityType: HKQuantityType, predicate: NSPredicate) async -> HealthDataPoint {
@@ -112,7 +115,6 @@ class HealthState: ObservableObject {
     }
     
     public func refresh() {
-        
         // TODO: 2024-06-11 Finish health strings
         let allTypes = [
             HKQuantityType(.bodyFatPercentage),
@@ -234,16 +236,16 @@ class HealthState: ObservableObject {
             HKQuantityType(.walkingStepLength),
             HKQuantityType(.waterTemperature),
         ]
-        points = allTypes.map({ HealthDataPoint(value: .loading, type: $0) })
-        for t in allTypes {
-            print(t.identifier)
+//        points = allTypes.map({ HealthDataPoint(value: .loading, type: $0) })
+        DispatchQueue.main.async {
+            self.state = .loading
         }
         guard HKHealthStore.isHealthDataAvailable() else { return }
         healthStore = HKHealthStore()
         guard let store = healthStore else { return }
+        
         Task {
             do {
-                
                 let allTypeSet: Set<HKQuantityType> = Set(allTypes)
                 // TODO: 2024-05-15 This call fails silently when not asking for write permissions. Why?
                 try await store.requestAuthorization(toShare: allTypeSet, read: allTypeSet)
@@ -253,9 +255,9 @@ class HealthState: ObservableObject {
                     let point = await fetch(quantityType: quantityType, predicate: dateRangePredicate)
                     collection.append(point)
                 }
-                let newPoints = collection // Copy annotation to satisfy Swift 6
+                let newState: HealthStateStatus = .ready(collection)
                 DispatchQueue.main.async {
-                    self.points = newPoints
+                    self.state = newState
                 }
             } catch {
                 // Typically, authorization requests only fail if you haven't set the

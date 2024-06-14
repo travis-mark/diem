@@ -243,12 +243,7 @@ struct HealthDataPointView: View {
         HStack {
             Text(LocalizedStringKey(data.type.identifier))
             Spacer()
-            switch (data.value) {
-            case .loading:
-                ProgressView()
-            default:
-                Text(data.value.displayString)
-            }
+            Text(data.value.displayString)
         }
     }
 }
@@ -260,11 +255,14 @@ struct HealthView: View {
     
     var body: some View {
         VStack {
-            List(state.points, id: \.type) { point in
-                HealthDataPointView(data: point)
-            }.onAppear {
-                Task() {
-                    state.refresh()
+            switch (state.state) {
+            case .unknown:
+                Text("TODO Unknown")
+            case .loading:
+                ProgressView()
+            case .ready(let points):
+                List(points, id: \.type) { point in
+                    HealthDataPointView(data: point)
                 }
             }
             Spacer()
@@ -291,8 +289,10 @@ struct HealthView: View {
                         .font(.system(size: 24, weight: .bold))
                 }.padding(22)
             }
-            
-            
+        }.onAppear {
+            Task() {
+                state.refresh()
+            }
         }
     }
 }
