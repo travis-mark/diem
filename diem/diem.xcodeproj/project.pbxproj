@@ -30,6 +30,9 @@
 		1FAD1B8829D12A6A0059DDA1 /* diem Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1FAD1B8D29D12A6A0059DDA1 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD1B8C29D12A6A0059DDA1 /* app.swift */; };
 		1FAD1B9429D12A6B0059DDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */; };
+		1FB77B7F2C307E2F002E7378 /* TextFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB77B7E2C307E2F002E7378 /* TextFileView.swift */; };
+		1FB77B812C307E91002E7378 /* health.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1FB77B802C307E91002E7378 /* health.csv */; };
+		1FB77B832C308257002E7378 /* DiemHealthKitTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB77B822C308257002E7378 /* DiemHealthKitTypes.swift */; };
 		1FF0AD882A9A1AA800F31BD3 /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0AD872A9A1AA800F31BD3 /* alert.swift */; };
 		1FF0AD892A9A1AA800F31BD3 /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0AD872A9A1AA800F31BD3 /* alert.swift */; };
 		1FF0AD8A2A9A1AA800F31BD3 /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0AD872A9A1AA800F31BD3 /* alert.swift */; };
@@ -114,6 +117,9 @@
 		1FAD1B8729D12A6A0059DDA1 /* diem Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "diem Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B8C29D12A6A0059DDA1 /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
 		1FAD1B9329D12A6B0059DDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1FB77B7E2C307E2F002E7378 /* TextFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFileView.swift; sourceTree = "<group>"; };
+		1FB77B802C307E91002E7378 /* health.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = health.csv; sourceTree = "<group>"; };
+		1FB77B822C308257002E7378 /* DiemHealthKitTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiemHealthKitTypes.swift; sourceTree = "<group>"; };
 		1FD5F02429DBCEAB005B3622 /* diem-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "diem-Watch-App-Info.plist"; sourceTree = "<group>"; };
 		1FF0AD872A9A1AA800F31BD3 /* alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alert.swift; sourceTree = "<group>"; };
 		1FF0AD902A9C1FBE00F31BD3 /* Diem Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Diem Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +188,8 @@
 				1F6A344F29D63C3D0073C110 /* lib.swift */,
 				1F3980AD29E0F80B001CDACB /* view.swift */,
 				1F39811B29E39BFB001CDACB /* widget.swift */,
+				1FB77B802C307E91002E7378 /* health.csv */,
+				1FB77B822C308257002E7378 /* DiemHealthKitTypes.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -219,6 +227,7 @@
 				1FAD1B7A29D12A690059DDA1 /* app.swift */,
 				1F96981B2BF6CF9400DE9246 /* health.swift */,
 				1FAD1B8029D12A6A0059DDA1 /* Preview Content */,
+				1FB77B7E2C307E2F002E7378 /* TextFileView.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -394,6 +403,7 @@
 			files = (
 				1F361DEB2C056E6F00977682 /* Localizable.xcstrings in Resources */,
 				1F47E37829D8EFBE006B0ABD /* Assets.xcassets in Resources */,
+				1FB77B812C307E91002E7378 /* health.csv in Resources */,
 				1FAD1B8229D12A6A0059DDA1 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +447,8 @@
 				1F3980AE29E0F80B001CDACB /* view.swift in Sources */,
 				1F6A345029D63C3D0073C110 /* lib.swift in Sources */,
 				1FF0AD882A9A1AA800F31BD3 /* alert.swift in Sources */,
+				1FB77B7F2C307E2F002E7378 /* TextFileView.swift in Sources */,
+				1FB77B832C308257002E7378 /* DiemHealthKitTypes.swift in Sources */,
 				1F39811C29E39BFB001CDACB /* widget.swift in Sources */,
 				1F96981C2BF6CF9400DE9246 /* health.swift in Sources */,
 			);

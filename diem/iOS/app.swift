@@ -315,6 +315,11 @@ struct ContentView: View {
                     Image(systemName: "heart.fill")
                     Text("Health")
                 }
+            TextFileView(url: Bundle.main.url(forResource: "health", withExtension: "csv")!)
+                .tabItem {
+                    Image(systemName: "doc.text")
+                    Text("File")
+                }
         }
     }
 }
