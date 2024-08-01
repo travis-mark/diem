@@ -19,7 +19,13 @@
     "Daily" : {
 
     },
+    "Date" : {
+
+    },
     "Day" : {
+
+    },
+    "Day of Year" : {
 
     },
     "Days" : {
@@ -29,6 +35,9 @@
 
     },
     "Every" : {
+
+    },
+    "File" : {
 
     },
     "Frequency" : {
@@ -1103,6 +1112,24 @@
     "Save" : {
 
     },
+    "Shows Date" : {
+
+    },
+    "Shows Date Info" : {
+
+    },
+    "Shows Day and Week of Year" : {
+
+    },
+    "Shows Day of Year" : {
+
+    },
+    "Shows Position in Month" : {
+
+    },
+    "Shows Week of Year" : {
+
+    },
     "Small Widgets" : {
 
     },
@@ -1112,10 +1139,19 @@
     "Title" : {
 
     },
+    "Today" : {
+
+    },
+    "TODO Unknown" : {
+
+    },
     "Watch" : {
 
     },
     "Week" : {
+
+    },
+    "Week of Year" : {
 
     },
     "Weekly" : {
@@ -1131,6 +1167,9 @@
 
     },
     "Years" : {
+
+    },
+    "YTD" : {
 
     }
   },

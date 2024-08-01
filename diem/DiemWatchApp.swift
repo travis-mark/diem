@@ -20,7 +20,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-@main struct diem_Watch_AppApp: App {
+@main struct DiemWatchApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

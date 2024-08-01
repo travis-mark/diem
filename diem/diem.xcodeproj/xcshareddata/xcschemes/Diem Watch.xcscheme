@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1430"
+   LastUpgradeVersion = "1540"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,9 +15,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1FAD1B8629D12A6A0059DDA1"
+               BuildableName = "Diem Watch.app"
+               BlueprintName = "Diem Watch"
+               ReferencedContainer = "container:diem.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "1FAD1B7629D12A690059DDA1"
-               BuildableName = "diem.app"
-               BlueprintName = "diem"
+               BuildableName = "Diem Phone.app"
+               BlueprintName = "Diem Phone"
                ReferencedContainer = "container:diem.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,19 +43,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1FF0AD8F2A9C1FBE00F31BD3"
-               BuildableName = "Diem Tests.xctest"
-               BlueprintName = "Diem Tests"
-               ReferencedContainer = "container:diem.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -56,9 +58,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1FAD1B7629D12A690059DDA1"
-            BuildableName = "diem.app"
-            BlueprintName = "diem"
+            BlueprintIdentifier = "1FAD1B8629D12A6A0059DDA1"
+            BuildableName = "Diem Watch.app"
+            BlueprintName = "Diem Watch"
             ReferencedContainer = "container:diem.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -73,9 +75,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1FAD1B7629D12A690059DDA1"
-            BuildableName = "diem.app"
-            BlueprintName = "diem"
+            BlueprintIdentifier = "1FAD1B8629D12A6A0059DDA1"
+            BuildableName = "Diem Watch.app"
+            BlueprintName = "Diem Watch"
             ReferencedContainer = "container:diem.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

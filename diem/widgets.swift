@@ -1,9 +1,19 @@
-//  diem/watchOS - widgets.swift
+//  diem/widgets - widgets.swift
 //  Created by Travis Luckenbaugh on 3/31/23.
 
 import WidgetKit
 import SwiftUI
 import Intents
+
+let smallFamilies: [WidgetFamily] = {
+#if os(iOS)
+    return [.systemSmall]
+#elseif os(watchOS)
+    return [.accessoryCircular, .accessoryCorner]
+#else
+    return []
+#endif
+}()
 
 struct DateWidget: Widget {
     let kind: String = "com.tl.diem.widget.date"
@@ -13,7 +23,7 @@ struct DateWidget: Widget {
         }
         .configurationDisplayName("Date")
         .description("Shows Date")
-        .supportedFamilies([.accessoryCircular, .accessoryCorner])
+        .supportedFamilies(smallFamilies)
     }
 }
 
@@ -25,7 +35,7 @@ struct DayWidget: Widget {
         }
         .configurationDisplayName("Day")
         .description("Shows Position in Month")
-        .supportedFamilies([.accessoryCircular, .accessoryCorner])
+        .supportedFamilies(smallFamilies)
     }
 }
 
@@ -37,7 +47,7 @@ struct YearDayWidget: Widget {
         }
         .configurationDisplayName("Day of Year")
         .description("Shows Day of Year")
-        .supportedFamilies([.accessoryCircular, .accessoryCorner])
+        .supportedFamilies(smallFamilies)
     }
 }
 
@@ -49,7 +59,7 @@ struct YearWeekWidget: Widget {
         }
         .configurationDisplayName("Week of Year")
         .description("Shows Week of Year")
-        .supportedFamilies([.accessoryCircular, .accessoryCorner])
+        .supportedFamilies(smallFamilies)
     }
 }
 
