@@ -4,6 +4,8 @@
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Show upcoming events</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Show per day view of health metrics</string>
 	<key>NSHealthUpdateUsageDescription</key>

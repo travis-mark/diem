@@ -310,6 +310,11 @@ struct ContentView: View {
                     Image(systemName: "bell.fill")
                     Text("Alerts")
                 }
+            UpcomingView()
+                .tabItem {
+                    Image(systemName: "calendar")
+                    Text("Up Next")
+                }
             HealthView()
                 .tabItem {
                     Image(systemName: "heart.fill")
