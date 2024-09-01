@@ -28,11 +28,44 @@ extension EKEvent: Identifiable {}
 import SwiftUI
 
 struct UpcomingEvent {
+    static let dateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "EEE MMM d"
+        return f
+    }()
+    
+    static let timeFormatter = {
+        let f = DateFormatter()
+        f.dateStyle = .none
+        f.timeStyle = .short
+        return f
+    }()
+    
     var calendarIdentifier: String
     var eventIdentifier: String
     var title: String
     var startDate: Date?
+    var endDate: Date?
     var occurances: Int = 1
+    
+    var formattedDateRange: String {
+        // TODO: 2024-08-31 Handle All Day Events
+        guard let startDate else { return "--" }
+        guard let endDate else { return "--" }
+        let formattedStartDate = UpcomingEvent.dateFormatter.string(from: startDate)
+        let formattedStartTime = UpcomingEvent.timeFormatter.string(from: startDate)
+        let formattedEndDate = UpcomingEvent.dateFormatter.string(from: endDate)
+        let formattedEndTime = UpcomingEvent.timeFormatter.string(from: endDate)
+        if (formattedStartDate == formattedEndDate) {
+            if (formattedStartTime == formattedEndTime) {
+                return "\(formattedStartDate) \(formattedStartTime)"
+            } else {
+                return "\(formattedStartDate) (\(formattedStartTime) - \(formattedEndTime))"
+            }
+        } else {
+            return "\(formattedStartDate) \(formattedStartTime) - \(formattedEndDate) \(formattedEndTime)"
+        }
+    }
 }
 
 struct UpcomingView: View {
@@ -48,17 +81,11 @@ struct UpcomingView: View {
                     VStack(alignment: .leading) {
                         Text(event.title)
                             .font(.headline)
-                        HStack {
-                            // TODO: 2024-08-31: start to end
-                            Text(event.startDate!.description)
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                            if event.occurances > 1 {
-                                Text("and \(event.occurances) other(s)")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
+                        Text(event.occurances == 1 
+                             ? event.formattedDateRange
+                             : "\(event.formattedDateRange) and \(event.occurances) other(s)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -80,6 +107,7 @@ struct UpcomingView: View {
                                 eventIdentifier: upcomingEvents[index].eventIdentifier,
                                 title: upcomingEvents[index].title,
                                 startDate: upcomingEvents[index].startDate,
+                                endDate: upcomingEvents[index].endDate,
                                 occurances: upcomingEvents[index].occurances + 1)
                         } else {
                             upcomingEvents.append(
@@ -87,7 +115,8 @@ struct UpcomingView: View {
                                     calendarIdentifier: event.calendar.calendarIdentifier,
                                     eventIdentifier: event.eventIdentifier,
                                     title: event.title,
-                                    startDate: event.startDate))
+                                    startDate: event.startDate,
+                                    endDate: event.endDate))
                         }
                     }
                     self.calendars = calendars
