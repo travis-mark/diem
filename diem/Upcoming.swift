@@ -1,31 +1,12 @@
 //  diem/iOS - Upcoming.swift
 //  Created by Travis Luckenbaugh on 8/31/24.
 
-
+import SwiftUI
 import EventKit
 
 let eventStore = EKEventStore()
-
-func fetchEventCalendars() async throws -> [EKCalendar] {
-    return try await withCheckedThrowingContinuation({ cc in
-        eventStore.requestAccess(to: .event) { (granted, error) in
-            if granted {
-                let calendars = eventStore.calendars(for: .event)
-                cc.resume(returning: calendars)
-            } else if let error {
-                cc.resume(throwing: error)
-            } else {
-                print("Access to calendar not granted")
-                abort()
-            }
-        }
-    })
-}
-
 extension EKCalendar: Identifiable {}
 extension EKEvent: Identifiable {}
-
-import SwiftUI
 
 struct UpcomingEvent {
     static let dateFormatter = {
@@ -46,25 +27,34 @@ struct UpcomingEvent {
     var title: String
     var startDate: Date?
     var endDate: Date?
+    var isAllDay: Bool
     var occurances: Int = 1
     
     var formattedDateRange: String {
-        // TODO: 2024-08-31 Handle All Day Events
         guard let startDate else { return "--" }
         guard let endDate else { return "--" }
         let formattedStartDate = UpcomingEvent.dateFormatter.string(from: startDate)
-        let formattedStartTime = UpcomingEvent.timeFormatter.string(from: startDate)
         let formattedEndDate = UpcomingEvent.dateFormatter.string(from: endDate)
-        let formattedEndTime = UpcomingEvent.timeFormatter.string(from: endDate)
-        if (formattedStartDate == formattedEndDate) {
-            if (formattedStartTime == formattedEndTime) {
-                return "\(formattedStartDate) \(formattedStartTime)"
+        if isAllDay {
+            if (formattedStartDate == formattedEndDate) {
+                return formattedStartDate
             } else {
-                return "\(formattedStartDate) (\(formattedStartTime) - \(formattedEndTime))"
+                return "\(formattedStartDate) - \(formattedEndDate)"
             }
         } else {
-            return "\(formattedStartDate) \(formattedStartTime) - \(formattedEndDate) \(formattedEndTime)"
+            let formattedStartTime = UpcomingEvent.timeFormatter.string(from: startDate)
+            let formattedEndTime = UpcomingEvent.timeFormatter.string(from: endDate)
+            if (formattedStartDate == formattedEndDate) {
+                if (formattedStartTime == formattedEndTime) {
+                    return "\(formattedStartDate) \(formattedStartTime)"
+                } else {
+                    return "\(formattedStartDate) (\(formattedStartTime) - \(formattedEndTime))"
+                }
+            } else {
+                return "\(formattedStartDate) \(formattedStartTime) - \(formattedEndDate) \(formattedEndTime)"
+            }
         }
+        
     }
 }
 
@@ -108,6 +98,7 @@ struct UpcomingView: View {
                                 title: upcomingEvents[index].title,
                                 startDate: upcomingEvents[index].startDate,
                                 endDate: upcomingEvents[index].endDate,
+                                isAllDay: upcomingEvents[index].isAllDay,
                                 occurances: upcomingEvents[index].occurances + 1)
                         } else {
                             upcomingEvents.append(
@@ -116,12 +107,13 @@ struct UpcomingView: View {
                                     eventIdentifier: event.eventIdentifier,
                                     title: event.title,
                                     startDate: event.startDate,
-                                    endDate: event.endDate))
+                                    endDate: event.endDate,
+                                    isAllDay: event.isAllDay
+                                ))
                         }
                     }
                     self.calendars = calendars
                     self.upcomingEvents = upcomingEvents
-                    print("Events (\(upcomingEvents.count))")
                     self.error = nil
                 } else if let error {
                     self.error = error
