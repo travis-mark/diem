@@ -64,6 +64,7 @@
 		1F64F0D92C5B09D80066C559 /* Info-Phone-Widgets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */; };
 		1F64F0DA2C5B09D80066C559 /* widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0D52C5B09D80066C559 /* widgets.swift */; };
 		1F64F0DB2C5B09D80066C559 /* widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0D52C5B09D80066C559 /* widgets.swift */; };
+		1FA8DC242C8D0DE200B4907B /* Workouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8DC232C8D0DE200B4907B /* Workouts.swift */; };
 		1FAD1B8829D12A6A0059DDA1 /* Diem Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* Diem Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1FAED2A62C83DE5300363626 /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAED2A52C83DE5300363626 /* Upcoming.swift */; };
 /* End PBXBuildFile section */
@@ -150,6 +151,7 @@
 		1F64F0D32C5B09D80066C559 /* Info-Watch-Widgets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Watch-Widgets.plist"; sourceTree = "<group>"; };
 		1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Phone-Widgets.plist"; sourceTree = "<group>"; };
 		1F64F0D52C5B09D80066C559 /* widgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = widgets.swift; sourceTree = "<group>"; };
+		1FA8DC232C8D0DE200B4907B /* Workouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workouts.swift; sourceTree = "<group>"; };
 		1FAD1B7729D12A690059DDA1 /* Diem Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diem Phone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B8729D12A6A0059DDA1 /* Diem Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diem Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAED2A52C83DE5300363626 /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				1F64F0C52C5B091E0066C559 /* Info-Phone.plist */,
 				1F64F0C62C5B091E0066C559 /* TextFileView.swift */,
 				1FAED2A52C83DE5300363626 /* Upcoming.swift */,
+				1FA8DC232C8D0DE200B4907B /* Workouts.swift */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F64F0CB2C5B091E0066C559 /* app.swift in Sources */,
+				1FA8DC242C8D0DE200B4907B /* Workouts.swift in Sources */,
 				1F64F0AC2C5B08C60066C559 /* widget.swift in Sources */,
 				1F64F0A22C5B08C60066C559 /* DiemHealthKitTypes.swift in Sources */,
 				1F64F0A72C5B08C60066C559 /* view.swift in Sources */,

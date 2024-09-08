@@ -305,11 +305,6 @@ struct ContentView: View {
                     Image(systemName: "applewatch")
                     Text("Watch")
                 }
-            AlertsView()
-                .tabItem {
-                    Image(systemName: "bell.fill")
-                    Text("Alerts")
-                }
             UpcomingView()
                 .tabItem {
                     Image(systemName: "calendar")
@@ -319,6 +314,16 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "heart.fill")
                     Text("Health")
+                }
+            WorkoutsView()
+                .tabItem {
+                    Image(systemName: "figure.run")
+                    Text("Workouts")
+                }
+            AlertsView()
+                .tabItem {
+                    Image(systemName: "bell.fill")
+                    Text("Alerts")
                 }
             TextFileView(url: Bundle.main.url(forResource: "health", withExtension: "csv")!)
                 .tabItem {
