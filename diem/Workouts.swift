@@ -3,6 +3,16 @@
 
 import HealthKit
 
+// TODO:TL:20240908: Units other than miles
+func formatDistance(_ distance: HKQuantity?) -> String {
+    guard let miles = distance?.doubleValue(for: .mile()) else { return "--" }
+    let formatter = NumberFormatter()
+    formatter.minimumFractionDigits = 1
+    formatter.maximumFractionDigits = 1
+    guard let milesFormatted = formatter.string(from: NSNumber(value: miles)) else { return "--" }
+    return "\(milesFormatted) mi"
+}
+
 func fetchWorkouts() async -> [HKWorkout] {
     return await withCheckedContinuation { cc in
         let store = HKHealthStore()
@@ -62,19 +72,18 @@ struct WorkoutsView: View {
                 VStack(alignment: .leading) {
                     if let selectedValue {
                         VStack(alignment: .leading) {
-                            HStack {
-                                Text(WorkoutsView.dateFormatter.string(from: selectedValue.startDate))
-                                Text(" - ")
-                                Text(WorkoutsView.dateFormatter.string(from: selectedValue.endDate))
-                            }.font(.title)
+                            Text(formatDateRange(selectedValue.startDate, selectedValue.endDate)).font(.title)
                             HStack {
                                 // TODO:TL:20240907: Distance
-                                // TODO:TL:20240907: Time formating
                                 // TODO:TL:20240907: Elev Gain
                                 // TODO:TL:20240907: Calories
                                 VStack(alignment: .leading) {
-                                    Text("Duration")
-                                    Text("\(selectedValue.duration)")
+                                    Text("Distance")
+                                    Text(formatDistance(selectedValue.totalDistance))
+                                }
+                                VStack(alignment: .leading) {
+                                    Text("Time")
+                                    Text("\(formatTimeInterval(selectedValue.duration))")
                                 }
                             }
                         }.padding()

@@ -9,19 +9,6 @@ extension EKCalendar: Identifiable {}
 extension EKEvent: Identifiable {}
 
 struct UpcomingEvent {
-    static let dateFormatter = {
-        let f = DateFormatter()
-        f.dateFormat = "EEE MMM d"
-        return f
-    }()
-    
-    static let timeFormatter = {
-        let f = DateFormatter()
-        f.dateStyle = .none
-        f.timeStyle = .short
-        return f
-    }()
-    
     var calendarIdentifier: String
     var eventIdentifier: String
     var title: String
@@ -30,32 +17,7 @@ struct UpcomingEvent {
     var isAllDay: Bool
     var occurances: Int = 1
     
-    var formattedDateRange: String {
-        guard let startDate else { return "--" }
-        guard let endDate else { return "--" }
-        let formattedStartDate = UpcomingEvent.dateFormatter.string(from: startDate)
-        let formattedEndDate = UpcomingEvent.dateFormatter.string(from: endDate)
-        if isAllDay {
-            if (formattedStartDate == formattedEndDate) {
-                return formattedStartDate
-            } else {
-                return "\(formattedStartDate) - \(formattedEndDate)"
-            }
-        } else {
-            let formattedStartTime = UpcomingEvent.timeFormatter.string(from: startDate)
-            let formattedEndTime = UpcomingEvent.timeFormatter.string(from: endDate)
-            if (formattedStartDate == formattedEndDate) {
-                if (formattedStartTime == formattedEndTime) {
-                    return "\(formattedStartDate) \(formattedStartTime)"
-                } else {
-                    return "\(formattedStartDate) (\(formattedStartTime) - \(formattedEndTime))"
-                }
-            } else {
-                return "\(formattedStartDate) \(formattedStartTime) - \(formattedEndDate) \(formattedEndTime)"
-            }
-        }
-        
-    }
+
 }
 
 struct UpcomingView: View {
@@ -72,8 +34,8 @@ struct UpcomingView: View {
                         Text(event.title)
                             .font(.headline)
                         Text(event.occurances == 1 
-                             ? event.formattedDateRange
-                             : "\(event.formattedDateRange) and \(event.occurances) other(s)")
+                             ? formatDateRange(event.startDate, event.endDate)
+                             : "\(formatDateRange(event.startDate, event.endDate)) and \(event.occurances) other(s)")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
