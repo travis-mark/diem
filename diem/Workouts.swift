@@ -3,6 +3,29 @@
 
 import HealthKit
 
+enum WorkoutDateRange {
+    case sevenDays
+    case oneMonth
+    case threeMonths
+    case sixMonths
+    case oneYear
+    
+    var startDate: Date? {
+        switch self {
+        case .sevenDays:
+            return Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        case .oneMonth:
+            return Calendar.current.date(byAdding: .month, value: -1, to: Date())
+        case .threeMonths:
+            return Calendar.current.date(byAdding: .month, value: -3, to: Date())
+        case .sixMonths:
+            return Calendar.current.date(byAdding: .month, value: -6, to: Date())
+        case .oneYear:
+            return Calendar.current.date(byAdding: .year, value: -1, to: Date())
+        }
+    }
+}
+
 // TODO:TL:20240908: Units other than miles
 func formatDistance(_ distance: HKQuantity?) -> String {
     guard let miles = distance?.doubleValue(for: .mile()) else { return "--" }
@@ -13,11 +36,9 @@ func formatDistance(_ distance: HKQuantity?) -> String {
     return "\(milesFormatted) mi"
 }
 
-func fetchWorkouts() async -> [HKWorkout] {
+func fetchWorkouts(startDate: Date? = nil) async -> [HKWorkout] {
     return await withCheckedContinuation { cc in
         let store = HKHealthStore()
-        let predicate = HKQuery.predicateForWorkouts(with: .running)
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
         store.requestAuthorization(toShare: Set(), read: Set<HKSampleType>([.workoutType()]), completion: {
             ok, error in
             if let error = error {
@@ -28,7 +49,14 @@ func fetchWorkouts() async -> [HKWorkout] {
                 cc.resume(returning: [])
                 return
             }
-            let query = HKSampleQuery(sampleType: .workoutType(), predicate: predicate, limit: 5, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
+            var predicates = [NSPredicate]()
+            predicates.append(HKQuery.predicateForWorkouts(with: .running))
+            if let startDate {
+                predicates.append(NSPredicate(format: "%K >= %@", HKPredicateKeyPathStartDate, startDate as CVarArg))
+            }
+            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+            let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+            let query = HKSampleQuery(sampleType: .workoutType(), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
                 if let error = error {
                     // TODO:TL:20240907: Error handling
                     print("Error fetching workouts: \(error.localizedDescription)")
@@ -56,6 +84,7 @@ struct WorkoutsView: View {
     let color = Color("AccentColor")
     @State var workouts: [HKWorkout]?
     @State var selectedValue: HKWorkout?
+    @State var selectedDateRange: WorkoutDateRange = .sevenDays 
     
     // TODO:TL:20240907: Date / time functions - merge with Upcoming
     static let dateFormatter = {
@@ -64,9 +93,14 @@ struct WorkoutsView: View {
         return f
     }()
     
+    func didSetSelectedDateRange() {
+        Task {
+            workouts = await fetchWorkouts(startDate: self.selectedDateRange.startDate)
+        }
+    }
+    
     var body: some View {
         // TODO:TL:20240907: List workouts
-        // TODO:TL:20240907: 7D | 1M | 3M | 6M | 1Y
         ZStack {
             if let workouts {
                 VStack(alignment: .leading) {
@@ -146,14 +180,25 @@ struct WorkoutsView: View {
                                 )
                         }
                     }
+                    if #available(iOS 17.0, *) {
+                        Picker("", selection: $selectedDateRange) {
+                            Text("7D").tag(WorkoutDateRange.sevenDays)
+                            Text("1M").tag(WorkoutDateRange.oneMonth)
+                            Text("3M").tag(WorkoutDateRange.threeMonths)
+                            Text("6M").tag(WorkoutDateRange.sixMonths)
+                            Text("1Y").tag(WorkoutDateRange.oneYear)
+                        }
+                        .onChange(of: selectedDateRange) {
+                            didSetSelectedDateRange()
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                    } else {
+                        // TODO:TL:20240919: Make iOS 17 min or find different approach
+                    }
                 }
             } else {
                 ProgressView()
             }
-        }.onAppear {
-            Task {
-                workouts = await fetchWorkouts()
-            }
-        }
+        }.onAppear(perform: didSetSelectedDateRange)
     }
 }
