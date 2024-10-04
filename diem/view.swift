@@ -6,8 +6,6 @@ import WidgetKit
 import SwiftUI
 import Intents
 
-
-
 struct DateWidgetView: View {
     let date: Date
     let textLabel: String
@@ -15,6 +13,23 @@ struct DateWidgetView: View {
     
     var body: some View {
         VStack {
+            Text(evalDateFormat(textLabel, date))
+                .fontWeight(.bold)
+                .widgetAccentable()
+            if detailTextLabel.isEmpty == false {
+                Text(evalDateFormat(detailTextLabel, date))
+            }
+        }
+    }
+}
+
+struct DateHWidgetView: View {
+    let date: Date
+    let textLabel: String
+    let detailTextLabel: String
+    
+    var body: some View {
+        HStack {
             Text(evalDateFormat(textLabel, date))
                 .fontWeight(.bold)
                 .widgetAccentable()
@@ -72,6 +87,18 @@ struct EverythingView: View {
     let date: Date
     var body: some View {
         DateWidgetView(date: date, textLabel: "MMM/s d/s - F/o EEE/s", detailTextLabel: "Day D/s - Week ww/s")
+    }
+}
+
+struct StackedView: View {
+    let date: Date
+    var body: some View {
+        VStack {
+            DateWidgetView(date: date, textLabel: "MMM/s", detailTextLabel: "d/s")
+            DateWidgetView(date: date, textLabel: "F/o", detailTextLabel: "EEE/s")
+            DateWidgetView(date: date, textLabel: "Day", detailTextLabel: "D/s")
+            DateWidgetView(date: date, textLabel: "Week", detailTextLabel: "ww/s")
+        }
     }
 }
 

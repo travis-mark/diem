@@ -1,6 +1,8 @@
 //  diem/iOS - app.swift
 //  Created by Travis Luckenbaugh on 3/26/23.
 
+// TODO: 2024-10-03 Fix landscape
+
 import SwiftUI
 
 struct PrimaryView: View {

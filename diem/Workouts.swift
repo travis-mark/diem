@@ -80,6 +80,8 @@ extension HKWorkout {
 import SwiftUI
 import Charts
 
+// TODO: 2024-10-03 Fix Landscape
+
 struct WorkoutsView: View {
     let color = Color("AccentColor")
     @State var workouts: [HKWorkout]?

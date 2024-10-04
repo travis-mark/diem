@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F44F4412CAF3FF7001D018B /* Diem Phone Widgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1F64F0772C5B053E0066C559 /* Diem Phone Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1F64F0702C5B053E0066C559 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5AD07029D7B7990080A373 /* SwiftUI.framework */; };
 		1F64F0712C5B053E0066C559 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5AD06E29D7B7990080A373 /* WidgetKit.framework */; };
 		1F64F0852C5B07FD0066C559 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5AD07029D7B7990080A373 /* SwiftUI.framework */; };
@@ -71,6 +72,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1F44F4422CAF3FF7001D018B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FAD1B6F29D12A690059DDA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F64F0682C5B053E0066C559;
+			remoteInfo = "Diem Phone Widgets";
+		};
 		1F64F07B2C5B05D20066C559 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1FAD1B6F29D12A690059DDA1 /* Project object */;
@@ -101,6 +109,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1F44F4412CAF3FF7001D018B /* Diem Phone Widgets.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +355,7 @@
 			dependencies = (
 				1F64F07C2C5B05D20066C559 /* PBXTargetDependency */,
 				1FAD1B8A29D12A6A0059DDA1 /* PBXTargetDependency */,
+				1F44F4432CAF3FF7001D018B /* PBXTargetDependency */,
 			);
 			name = "Diem Phone";
 			productName = diem;
@@ -565,6 +575,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1F44F4432CAF3FF7001D018B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F64F0682C5B053E0066C559 /* Diem Phone Widgets */;
+			targetProxy = 1F44F4422CAF3FF7001D018B /* PBXContainerItemProxy */;
+		};
 		1F64F07C2C5B05D20066C559 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1F64F0682C5B053E0066C559 /* Diem Phone Widgets */;
