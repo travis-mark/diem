@@ -84,7 +84,14 @@ import Charts
 
 struct WorkoutsView: View {
     let color = Color("AccentColor")
-    @State var workouts: [HKWorkout]?
+    @State var workouts: [HKWorkout]? {
+        didSet {
+            guard let workouts else { return }
+            if selectedValue == nil || !workouts.contains(selectedValue!) {
+                selectedValue = workouts.max { $0.startDate < $1.startDate }
+            }
+        }
+    }
     @State var selectedValue: HKWorkout?
     @State var selectedDateRange: WorkoutDateRange = .sevenDays 
     
@@ -110,7 +117,6 @@ struct WorkoutsView: View {
                         VStack(alignment: .leading) {
                             Text(formatDateRange(selectedValue.startDate, selectedValue.endDate)).font(.title)
                             HStack {
-                                // TODO:TL:20240907: Distance
                                 // TODO:TL:20240907: Elev Gain
                                 // TODO:TL:20240907: Calories
                                 VStack(alignment: .leading) {
@@ -128,9 +134,7 @@ struct WorkoutsView: View {
                             .font(.title)
                             .padding()
                     }
-                    
                     Chart(workouts, id: \.uuid) { item in
-                        // TODO:TL:20240907: Adjust opacity
                         AreaMark(
                             x: .value("Date", item.startDate),
                             y: .value("Distance", item.totalDistanceMiles)
@@ -151,8 +155,6 @@ struct WorkoutsView: View {
                             )
                             .foregroundStyle(color)
                         }
-                        // TODO:TL:20240907: Inner circle
-                        // TODO:TL:20240907: Highlight ring
                         PointMark(
                             x: .value("Date", item.startDate),
                             y: .value("Distance", item.totalDistanceMiles)
