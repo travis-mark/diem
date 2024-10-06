@@ -1,22 +1,21 @@
-//  diem/widgets - widgets.swift
+//  diem - WatchWidgets.swift
 //  Created by Travis Luckenbaugh on 3/31/23.
-
-// TODO: 2024-10-03 Do I need all of the individual phone widgets?
-// TODO: 2024-10-03 Re-connect watch widgets
 
 import WidgetKit
 import SwiftUI
 import Intents
 
-let smallFamilies: [WidgetFamily] = {
-#if os(iOS)
-    return [.systemSmall]
-#elseif os(watchOS)
-    return [.accessoryCircular, .accessoryCorner]
-#else
-    return []
-#endif
-}()
+let smallFamilies: [WidgetFamily] = [.accessoryCircular, .accessoryCorner]
+
+extension View {
+    func widgetBackground() -> some View {
+        if #available(watchOSApplicationExtension 10.0, *) {
+            return self.containerBackground(.background, for: .widget)
+        } else {
+            return self
+        }
+    }
+}
 
 struct DateWidget: Widget {
     let kind: String = "com.tl.diem.widget.date"
@@ -102,35 +101,6 @@ struct EverythingWidget: Widget {
     }
 }
 
-struct StackedWidget: Widget {
-    let kind: String = "com.tl.diem.widget.stacked"
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: DiemProvider()) { entry in
-            VStack {
-                DateHWidgetView(date: entry.date, textLabel: "MMM/s", detailTextLabel: "d/s")
-                DateHWidgetView(date: entry.date, textLabel: "F/o", detailTextLabel: "EEE/s")
-                DateHWidgetView(date: entry.date, textLabel: "Day", detailTextLabel: "D/s")
-                DateHWidgetView(date: entry.date, textLabel: "Week", detailTextLabel: "ww/s")
-            }
-            .unredacted()
-            .widgetBackground()
-        }
-        .configurationDisplayName("Today")
-        .description("Shows Date Info")
-        .supportedFamilies([.systemSmall])
-    }
-}
-
-extension View {
-    func widgetBackground() -> some View {
-        if #available(iOSApplicationExtension 17.0, *) {
-            return self.containerBackground(.background, for: .widget)
-        } else {
-            return self
-        }
-    }
-}
-
 @main struct DiemWidgetBundle: WidgetBundle {
     @WidgetBundleBuilder var body: some Widget {
         DateWidget()
@@ -140,6 +110,5 @@ extension View {
         DateInlineWidget()
         YearInlineWidget()
         EverythingWidget()
-        StackedWidget()
     }
 }

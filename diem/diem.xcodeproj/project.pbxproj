@@ -63,8 +63,9 @@
 		1F64F0D72C5B09D80066C559 /* Info-Watch-Widgets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0D32C5B09D80066C559 /* Info-Watch-Widgets.plist */; };
 		1F64F0D82C5B09D80066C559 /* Info-Phone-Widgets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */; };
 		1F64F0D92C5B09D80066C559 /* Info-Phone-Widgets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */; };
-		1F64F0DA2C5B09D80066C559 /* widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0D52C5B09D80066C559 /* widgets.swift */; };
-		1F64F0DB2C5B09D80066C559 /* widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0D52C5B09D80066C559 /* widgets.swift */; };
+		1F64F0DA2C5B09D80066C559 /* iOSWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0D52C5B09D80066C559 /* iOSWidgets.swift */; };
+		1F84C8092CB24138004BB77A /* WatchWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84C8072CB24138004BB77A /* WatchWidgets.swift */; };
+		1F84C80A2CB2423D004BB77A /* Diem Watch Widgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1F64F08C2C5B07FD0066C559 /* Diem Watch Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1FA8DC242C8D0DE200B4907B /* Workouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8DC232C8D0DE200B4907B /* Workouts.swift */; };
 		1FA8DC262C8E82F600B4907B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8DC252C8E82F600B4907B /* Date.swift */; };
 		1FAD1B8829D12A6A0059DDA1 /* Diem Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* Diem Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -85,6 +86,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1F64F0682C5B053E0066C559;
 			remoteInfo = "Diem Phone Widgets";
+		};
+		1F84C80B2CB2423D004BB77A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FAD1B6F29D12A690059DDA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F64F07D2C5B07FD0066C559;
+			remoteInfo = "Diem Watch Widgets";
 		};
 		1FAD1B8929D12A6A0059DDA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -120,6 +128,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1F84C80A2CB2423D004BB77A /* Diem Watch Widgets.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,7 +169,8 @@
 		1F64F0CF2C5B09650066C559 /* Info-Watch.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Watch.plist"; sourceTree = "<group>"; };
 		1F64F0D32C5B09D80066C559 /* Info-Watch-Widgets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Watch-Widgets.plist"; sourceTree = "<group>"; };
 		1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Phone-Widgets.plist"; sourceTree = "<group>"; };
-		1F64F0D52C5B09D80066C559 /* widgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = widgets.swift; sourceTree = "<group>"; };
+		1F64F0D52C5B09D80066C559 /* iOSWidgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSWidgets.swift; sourceTree = "<group>"; };
+		1F84C8072CB24138004BB77A /* WatchWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWidgets.swift; sourceTree = "<group>"; };
 		1FA8DC232C8D0DE200B4907B /* Workouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workouts.swift; sourceTree = "<group>"; };
 		1FA8DC252C8E82F600B4907B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1FAD1B7729D12A690059DDA1 /* Diem Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diem Phone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -252,6 +262,8 @@
 				1FA8DC252C8E82F600B4907B /* Date.swift */,
 				1F64F0C82C5B091E0066C559 /* health.swift */,
 				1F64F0C52C5B091E0066C559 /* Info-Phone.plist */,
+				1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */,
+				1F64F0D52C5B09D80066C559 /* iOSWidgets.swift */,
 				1F64F0C62C5B091E0066C559 /* TextFileView.swift */,
 				1FAED2A52C83DE5300363626 /* Upcoming.swift */,
 				1FA8DC232C8D0DE200B4907B /* Workouts.swift */,
@@ -264,18 +276,10 @@
 			children = (
 				1F64F0CE2C5B09650066C559 /* DiemWatchApp.swift */,
 				1F64F0CF2C5B09650066C559 /* Info-Watch.plist */,
+				1F64F0D32C5B09D80066C559 /* Info-Watch-Widgets.plist */,
+				1F84C8072CB24138004BB77A /* WatchWidgets.swift */,
 			);
 			name = watchOS;
-			sourceTree = "<group>";
-		};
-		1F64F0D22C5B09C40066C559 /* widgets */ = {
-			isa = PBXGroup;
-			children = (
-				1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */,
-				1F64F0D32C5B09D80066C559 /* Info-Watch-Widgets.plist */,
-				1F64F0D52C5B09D80066C559 /* widgets.swift */,
-			);
-			name = widgets;
 			sourceTree = "<group>";
 		};
 		1FAD1B6E29D12A690059DDA1 = {
@@ -285,7 +289,6 @@
 				1F64F0C02C5B08D90066C559 /* Tests */,
 				1F64F0C42C5B09150066C559 /* iOS */,
 				1F64F0CD2C5B095A0066C559 /* watchOS */,
-				1F64F0D22C5B09C40066C559 /* widgets */,
 				1F5AD06D29D7B7990080A373 /* Frameworks */,
 				1FAD1B7829D12A690059DDA1 /* Products */,
 			);
@@ -374,6 +377,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1F84C80C2CB2423D004BB77A /* PBXTargetDependency */,
 			);
 			name = "Diem Watch";
 			productName = "diem Watch App";
@@ -509,7 +513,7 @@
 				1F64F0A82C5B08C60066C559 /* view.swift in Sources */,
 				1F64F0A32C5B08C60066C559 /* DiemHealthKitTypes.swift in Sources */,
 				1F64F0AD2C5B08C60066C559 /* widget.swift in Sources */,
-				1F64F0DA2C5B09D80066C559 /* widgets.swift in Sources */,
+				1F64F0DA2C5B09D80066C559 /* iOSWidgets.swift in Sources */,
 				1F64F0B72C5B08C60066C559 /* alert.swift in Sources */,
 				1F64F0992C5B08C60066C559 /* lib.swift in Sources */,
 			);
@@ -520,9 +524,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F64F0AA2C5B08C60066C559 /* view.swift in Sources */,
+				1F84C8092CB24138004BB77A /* WatchWidgets.swift in Sources */,
 				1F64F0A52C5B08C60066C559 /* DiemHealthKitTypes.swift in Sources */,
 				1F64F0AF2C5B08C60066C559 /* widget.swift in Sources */,
-				1F64F0DB2C5B09D80066C559 /* widgets.swift in Sources */,
 				1F64F0B92C5B08C60066C559 /* alert.swift in Sources */,
 				1F64F09B2C5B08C60066C559 /* lib.swift in Sources */,
 			);
@@ -584,6 +588,11 @@
 			isa = PBXTargetDependency;
 			target = 1F64F0682C5B053E0066C559 /* Diem Phone Widgets */;
 			targetProxy = 1F64F07B2C5B05D20066C559 /* PBXContainerItemProxy */;
+		};
+		1F84C80C2CB2423D004BB77A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F64F07D2C5B07FD0066C559 /* Diem Watch Widgets */;
+			targetProxy = 1F84C80B2CB2423D004BB77A /* PBXContainerItemProxy */;
 		};
 		1FAD1B8A29D12A6A0059DDA1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
