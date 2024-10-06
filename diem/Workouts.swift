@@ -184,21 +184,17 @@ struct WorkoutsView: View {
                                 )
                         }
                     }
-                    if #available(iOS 17.0, *) {
-                        Picker("", selection: $selectedDateRange) {
-                            Text("7D").tag(WorkoutDateRange.sevenDays)
-                            Text("1M").tag(WorkoutDateRange.oneMonth)
-                            Text("3M").tag(WorkoutDateRange.threeMonths)
-                            Text("6M").tag(WorkoutDateRange.sixMonths)
-                            Text("1Y").tag(WorkoutDateRange.oneYear)
-                        }
-                        .onChange(of: selectedDateRange) {
-                            didSetSelectedDateRange()
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                    } else {
-                        // TODO:TL:20240919: Make iOS 17 min or find different approach
+                    Picker("", selection: $selectedDateRange) {
+                        Text("7D").tag(WorkoutDateRange.sevenDays)
+                        Text("1M").tag(WorkoutDateRange.oneMonth)
+                        Text("3M").tag(WorkoutDateRange.threeMonths)
+                        Text("6M").tag(WorkoutDateRange.sixMonths)
+                        Text("1Y").tag(WorkoutDateRange.oneYear)
                     }
+                    .onChange(of: selectedDateRange) {
+                        didSetSelectedDateRange()
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
             } else {
                 ProgressView()
