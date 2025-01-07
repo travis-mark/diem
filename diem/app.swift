@@ -1,62 +1,7 @@
 //  diem/iOS - app.swift
 //  Created by Travis Luckenbaugh on 3/26/23.
 
-// TODO: 2024-10-03 Fix landscape
-
 import SwiftUI
-
-struct PrimaryView: View {
-    @State private var date = Date()
-    var body: some View {
-        VStack(spacing: 20) {
-            VStack {
-                Text("Small Widgets").bold()
-                HStack(spacing: 8) {
-                    VStack {
-                        DateView(date: date)
-                            .modifier(WidgetBoxModifier())
-                    }
-                    VStack {
-                        DayView(date: date)
-                            .modifier(WidgetBoxModifier())
-                    }
-                    VStack {
-                        YearDayView(date: date)
-                            .modifier(WidgetBoxModifier())
-                    }
-                    
-                    VStack {
-                        YearWeekView(date: date)
-                            .modifier(WidgetBoxModifier())
-                    }
-                }
-            }
-            VStack {
-                Text("Inline Widgets").bold()
-                DateInlineView(date: date)
-                    .modifier(WidgetBoxModifier())
-                YearInlineView(date: date)
-                    .modifier(WidgetBoxModifier())
-            }
-            VStack {
-                Text("Large Widgets").bold()
-                EverythingView(date: date)
-                    .modifier(WidgetBoxModifier())
-            }
-            VStack(spacing: 4) {
-                Text("Adding Widgets on Apple Watch").bold()
-                Text("Long-press in the center of the watch. Tap the (Edit) button in the bottom right corner and swipe right to edit complications. Select the complications to replace and scroll to find the Diem widget you want to add.")
-            }
-        }
-        .padding(20)
-        .onAppear {
-            date = Date()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-            date = Date()
-        }
-    }
-}
 
 struct AlertsView: View {
     @State var requests: [UNNotificationRequest] = []
@@ -302,7 +247,7 @@ struct HealthView: View {
 struct ContentView: View {
     var body: some View {
         TabView {
-            PrimaryView()
+            WidgetPreviewView()
                 .tabItem {
                     Image(systemName: "applewatch")
                     Text("Watch")

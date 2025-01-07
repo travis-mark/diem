@@ -70,6 +70,7 @@
 		1FA8DC262C8E82F600B4907B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8DC252C8E82F600B4907B /* Date.swift */; };
 		1FAD1B8829D12A6A0059DDA1 /* Diem Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* Diem Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1FAED2A62C83DE5300363626 /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAED2A52C83DE5300363626 /* Upcoming.swift */; };
+		1FD356D62D2CA1460025F7D6 /* WidgetPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD356D52D2CA1370025F7D6 /* WidgetPreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +177,7 @@
 		1FAD1B7729D12A690059DDA1 /* Diem Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diem Phone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B8729D12A6A0059DDA1 /* Diem Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diem Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAED2A52C83DE5300363626 /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
+		1FD356D52D2CA1370025F7D6 /* WidgetPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewView.swift; sourceTree = "<group>"; };
 		1FF0AD902A9C1FBE00F31BD3 /* Diem Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Diem Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -266,6 +268,7 @@
 				1F64F0D52C5B09D80066C559 /* iOSWidgets.swift */,
 				1F64F0C62C5B091E0066C559 /* TextFileView.swift */,
 				1FAED2A52C83DE5300363626 /* Upcoming.swift */,
+				1FD356D52D2CA1370025F7D6 /* WidgetPreviewView.swift */,
 				1FA8DC232C8D0DE200B4907B /* Workouts.swift */,
 			);
 			name = iOS;
@@ -543,6 +546,7 @@
 				1F64F0A72C5B08C60066C559 /* view.swift in Sources */,
 				1F64F0B62C5B08C60066C559 /* alert.swift in Sources */,
 				1FAED2A62C83DE5300363626 /* Upcoming.swift in Sources */,
+				1FD356D62D2CA1460025F7D6 /* WidgetPreviewView.swift in Sources */,
 				1F64F0CC2C5B091E0066C559 /* health.swift in Sources */,
 				1FA8DC262C8E82F600B4907B /* Date.swift in Sources */,
 				1F64F0982C5B08C60066C559 /* lib.swift in Sources */,
