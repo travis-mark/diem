@@ -213,29 +213,10 @@ struct HealthView: View {
                 }
             }
             Spacer()
-            HStack {
-                Button() {
-                    self.selectedDate = Calendar.current.date(byAdding: .day, value: -1, to: self.selectedDate)!
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 24, weight: .bold))
-                }.padding(22)
-                DatePicker(
-                    "",
-                    selection: $selectedDate,
-                    displayedComponents: .date
-                ).onChange(of: selectedDate) { newDate in
+            DatePickerView(date: $selectedDate)
+                .onChange(of: selectedDate, initial: true, {_, newDate in
                     state.dateRange = dayRange(for: selectedDate)
-                }
-                .frame(width: 160)
-                .labelsHidden()
-                Button() {
-                    self.selectedDate = Calendar.current.date(byAdding: .day, value: +1, to: self.selectedDate)!
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 24, weight: .bold))
-                }.padding(22)
-            }
+            })
         }.onAppear {
             Task() {
                 state.refresh()

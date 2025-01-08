@@ -74,12 +74,15 @@ struct WidgetPreviewPortraitView: View {
 struct WidgetPreviewView: View {
     @State private var date = Date()
     var body: some View {
-        GeometryReader { geometry in
-            if geometry.size.width > geometry.size.height {
-                WidgetPreviewLandscapeView(date: date)
-            } else {
-                WidgetPreviewPortraitView(date: date)
+        VStack {
+            GeometryReader { geometry in
+                if geometry.size.width > geometry.size.height {
+                    WidgetPreviewLandscapeView(date: date)
+                } else {
+                    WidgetPreviewPortraitView(date: date)
+                }
             }
+            DatePickerView(date: $date)
         }
         .onAppear {
             date = Date()
