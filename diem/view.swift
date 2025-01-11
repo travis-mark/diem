@@ -17,7 +17,7 @@ struct DateWidgetView: View {
                 .fontWeight(.bold)
                 .widgetAccentable()
             if detailTextLabel.isEmpty == false {
-                Text(evalDateFormat(detailTextLabel, date))
+                Text(evalDateFormat(detailTextLabel, date)).multilineTextAlignment(.center)
             }
         }
     }
@@ -86,7 +86,7 @@ struct YearInlineView: View {
 struct EverythingView: View {
     let date: Date
     var body: some View {
-        DateWidgetView(date: date, textLabel: "MMM/s d/s - F/o EEE/s", detailTextLabel: "Day D/s - Week ww/s")
+        DateWidgetView(date: date, textLabel: "MMM/s d/s - F/o EEE/s", detailTextLabel: "Day D/s - Week ww/s\nD/d")
     }
 }
 

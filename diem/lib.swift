@@ -42,9 +42,22 @@ extension String {
     }
 }
 
+func dateDiff( _ start: Date, _ end: Date, _ unit: Calendar.Component) -> Int? {
+    return Calendar.current.dateComponents([.day], from: start, to: end).day
+}
+
+func dateDiffFormatted( _ start: Date, _ end: Date, _ unit: Calendar.Component) -> String {
+    guard let dayDiff = dateDiff(start, end, .day) else { return "No Calendar" }
+    if dayDiff == 0 { return "Today" }
+    if dayDiff == 1 { return "1 day ago" }
+    if dayDiff > 0 { return "\(dayDiff) days ago" }
+    if dayDiff == -1  { return "1 day from now" }
+    else  { return "\(-dayDiff) days from now" }
+}
+
 func evalDateFormat( _ input: String, _ date: Date) -> String {
     do {
-        let regex = try NSRegularExpression(pattern: "([A-Za-z]+)/([os])", options: [])
+        let regex = try NSRegularExpression(pattern: "([A-Za-z]+)/([dos])", options: [])
         let result = NSMutableString(string: input)
         
         regex.matches(in: input, range: NSRange(location: 0, length: input.utf16.count)).reversed().forEach({ match in
@@ -55,9 +68,18 @@ func evalDateFormat( _ input: String, _ date: Date) -> String {
                let range2 = Range(nsrange2, in: input) {
                 let match = input[range1]
                 let type = input[range2]
-                let replacement = type == "s"
-                    ? string(from: date, format: String(match))
-                    : string(from: date, format: String(match)).toOrdinal
+                let replacement: String = {
+                    switch type {
+                    case "d":
+                        return dateDiffFormatted(date, Date(), .day)
+                    case "s":
+                        return string(from: date, format: String(match))
+                    case "o":
+                        return string(from: date, format: String(match)).toOrdinal
+                    default:
+                        return String(type)
+                    }
+                }()
                 result.replaceCharacters(in: nsrange0, with: replacement)
             }
         })
