@@ -1,4 +1,4 @@
-//  diem/iOS - Upcoming.swift
+//  diem/iOS - UpcomingView.swift
 //  Created by Travis Luckenbaugh on 8/31/24.
 
 import SwiftUI
@@ -16,8 +16,6 @@ struct UpcomingEvent {
     var endDate: Date?
     var isAllDay: Bool
     var occurances: Int = 1
-    
-
 }
 
 struct UpcomingView: View {

@@ -53,15 +53,10 @@
 		1F64F0BE2C5B08C60066C559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0972C5B08C60066C559 /* Assets.xcassets */; };
 		1F64F0BF2C5B08C60066C559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0972C5B08C60066C559 /* Assets.xcassets */; };
 		1F64F0C22C5B08E60066C559 /* dateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0C12C5B08E60066C559 /* dateTests.swift */; };
-		1F64F0C92C5B091E0066C559 /* Info-Phone.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0C52C5B091E0066C559 /* Info-Phone.plist */; };
-		1F64F0CA2C5B091E0066C559 /* TextFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0C62C5B091E0066C559 /* TextFileView.swift */; };
-		1F64F0CB2C5B091E0066C559 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0C72C5B091E0066C559 /* app.swift */; };
+		1F64F0CB2C5B091E0066C559 /* DiemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0C72C5B091E0066C559 /* DiemApp.swift */; };
 		1F64F0CC2C5B091E0066C559 /* health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0C82C5B091E0066C559 /* health.swift */; };
 		1F64F0D02C5B09650066C559 /* DiemWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0CE2C5B09650066C559 /* DiemWatchApp.swift */; };
-		1F64F0D12C5B09650066C559 /* Info-Watch.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0CF2C5B09650066C559 /* Info-Watch.plist */; };
 		1F64F0D62C5B09D80066C559 /* Info-Watch-Widgets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0D32C5B09D80066C559 /* Info-Watch-Widgets.plist */; };
-		1F64F0D72C5B09D80066C559 /* Info-Watch-Widgets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0D32C5B09D80066C559 /* Info-Watch-Widgets.plist */; };
-		1F64F0D82C5B09D80066C559 /* Info-Phone-Widgets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */; };
 		1F64F0D92C5B09D80066C559 /* Info-Phone-Widgets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */; };
 		1F64F0DA2C5B09D80066C559 /* iOSWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F64F0D52C5B09D80066C559 /* iOSWidgets.swift */; };
 		1F84C8092CB24138004BB77A /* WatchWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84C8072CB24138004BB77A /* WatchWidgets.swift */; };
@@ -69,9 +64,10 @@
 		1FA8DC242C8D0DE200B4907B /* Workouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8DC232C8D0DE200B4907B /* Workouts.swift */; };
 		1FA8DC262C8E82F600B4907B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8DC252C8E82F600B4907B /* Date.swift */; };
 		1FAD1B8829D12A6A0059DDA1 /* Diem Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* Diem Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1FAED2A62C83DE5300363626 /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAED2A52C83DE5300363626 /* Upcoming.swift */; };
+		1FAED2A62C83DE5300363626 /* UpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAED2A52C83DE5300363626 /* UpcomingView.swift */; };
 		1FD356D62D2CA1460025F7D6 /* WidgetPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD356D52D2CA1370025F7D6 /* WidgetPreviewView.swift */; };
 		1FD356D82D2E158D0025F7D6 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD356D72D2E155E0025F7D6 /* DatePickerView.swift */; };
+		1FD356DA2D320F680025F7D6 /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD356D92D320F640025F7D6 /* HealthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,8 +160,7 @@
 		1F64F0972C5B08C60066C559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F64F0C12C5B08E60066C559 /* dateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateTests.swift; sourceTree = "<group>"; };
 		1F64F0C52C5B091E0066C559 /* Info-Phone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Phone.plist"; sourceTree = "<group>"; };
-		1F64F0C62C5B091E0066C559 /* TextFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFileView.swift; sourceTree = "<group>"; };
-		1F64F0C72C5B091E0066C559 /* app.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
+		1F64F0C72C5B091E0066C559 /* DiemApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiemApp.swift; sourceTree = "<group>"; };
 		1F64F0C82C5B091E0066C559 /* health.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = health.swift; sourceTree = "<group>"; };
 		1F64F0CE2C5B09650066C559 /* DiemWatchApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiemWatchApp.swift; sourceTree = "<group>"; };
 		1F64F0CF2C5B09650066C559 /* Info-Watch.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Watch.plist"; sourceTree = "<group>"; };
@@ -177,9 +172,10 @@
 		1FA8DC252C8E82F600B4907B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1FAD1B7729D12A690059DDA1 /* Diem Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diem Phone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B8729D12A6A0059DDA1 /* Diem Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diem Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FAED2A52C83DE5300363626 /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
+		1FAED2A52C83DE5300363626 /* UpcomingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingView.swift; sourceTree = "<group>"; };
 		1FD356D52D2CA1370025F7D6 /* WidgetPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewView.swift; sourceTree = "<group>"; };
 		1FD356D72D2E155E0025F7D6 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		1FD356D92D320F640025F7D6 /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthView.swift; sourceTree = "<group>"; };
 		1FF0AD902A9C1FBE00F31BD3 /* Diem Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Diem Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -262,15 +258,15 @@
 		1F64F0C42C5B09150066C559 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1F64F0C72C5B091E0066C559 /* app.swift */,
+				1F64F0C72C5B091E0066C559 /* DiemApp.swift */,
 				1FA8DC252C8E82F600B4907B /* Date.swift */,
 				1FD356D72D2E155E0025F7D6 /* DatePickerView.swift */,
 				1F64F0C82C5B091E0066C559 /* health.swift */,
+				1FD356D92D320F640025F7D6 /* HealthView.swift */,
 				1F64F0C52C5B091E0066C559 /* Info-Phone.plist */,
 				1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */,
 				1F64F0D52C5B09D80066C559 /* iOSWidgets.swift */,
-				1F64F0C62C5B091E0066C559 /* TextFileView.swift */,
-				1FAED2A52C83DE5300363626 /* Upcoming.swift */,
+				1FAED2A52C83DE5300363626 /* UpcomingView.swift */,
 				1FD356D52D2CA1370025F7D6 /* WidgetPreviewView.swift */,
 				1FA8DC232C8D0DE200B4907B /* Workouts.swift */,
 			);
@@ -416,7 +412,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					1FAD1B7629D12A690059DDA1 = {
 						CreatedOnToolsVersion = 14.2;
@@ -461,7 +457,6 @@
 				1F64F0BC2C5B08C60066C559 /* Assets.xcassets in Resources */,
 				1F64F0D62C5B09D80066C559 /* Info-Watch-Widgets.plist in Resources */,
 				1F64F09E2C5B08C60066C559 /* Localizable.xcstrings in Resources */,
-				1F64F0D82C5B09D80066C559 /* Info-Phone-Widgets.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +466,6 @@
 			files = (
 				1F64F0B42C5B08C60066C559 /* health.csv in Resources */,
 				1F64F0BE2C5B08C60066C559 /* Assets.xcassets in Resources */,
-				1F64F0D72C5B09D80066C559 /* Info-Watch-Widgets.plist in Resources */,
 				1F64F0A02C5B08C60066C559 /* Localizable.xcstrings in Resources */,
 				1F64F0D92C5B09D80066C559 /* Info-Phone-Widgets.plist in Resources */,
 			);
@@ -482,7 +476,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F64F0B12C5B08C60066C559 /* health.csv in Resources */,
-				1F64F0C92C5B091E0066C559 /* Info-Phone.plist in Resources */,
 				1F64F0BB2C5B08C60066C559 /* Assets.xcassets in Resources */,
 				1F64F09D2C5B08C60066C559 /* Localizable.xcstrings in Resources */,
 			);
@@ -494,7 +487,6 @@
 			files = (
 				1F64F0B32C5B08C60066C559 /* health.csv in Resources */,
 				1F64F0BD2C5B08C60066C559 /* Assets.xcassets in Resources */,
-				1F64F0D12C5B09650066C559 /* Info-Watch.plist in Resources */,
 				1F64F09F2C5B08C60066C559 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,19 +534,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F64F0CB2C5B091E0066C559 /* app.swift in Sources */,
+				1F64F0CB2C5B091E0066C559 /* DiemApp.swift in Sources */,
 				1FA8DC242C8D0DE200B4907B /* Workouts.swift in Sources */,
 				1F64F0AC2C5B08C60066C559 /* widget.swift in Sources */,
 				1F64F0A22C5B08C60066C559 /* DiemHealthKitTypes.swift in Sources */,
 				1F64F0A72C5B08C60066C559 /* view.swift in Sources */,
 				1F64F0B62C5B08C60066C559 /* alert.swift in Sources */,
-				1FAED2A62C83DE5300363626 /* Upcoming.swift in Sources */,
+				1FAED2A62C83DE5300363626 /* UpcomingView.swift in Sources */,
 				1FD356D62D2CA1460025F7D6 /* WidgetPreviewView.swift in Sources */,
 				1F64F0CC2C5B091E0066C559 /* health.swift in Sources */,
 				1FD356D82D2E158D0025F7D6 /* DatePickerView.swift in Sources */,
 				1FA8DC262C8E82F600B4907B /* Date.swift in Sources */,
 				1F64F0982C5B08C60066C559 /* lib.swift in Sources */,
-				1F64F0CA2C5B091E0066C559 /* TextFileView.swift in Sources */,
+				1FD356DA2D320F680025F7D6 /* HealthView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,6 +774,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -841,6 +834,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -859,7 +853,6 @@
 		1FAD1B9829D12A6B0059DDA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -891,7 +884,6 @@
 		1FAD1B9929D12A6B0059DDA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -924,7 +916,6 @@
 		1FAD1B9C29D12A6B0059DDA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = diem.entitlements;
@@ -964,7 +955,6 @@
 		1FAD1B9D29D12A6B0059DDA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = diem.entitlements;
