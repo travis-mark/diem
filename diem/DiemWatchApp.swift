@@ -27,6 +27,7 @@ struct ContentView: View {
                     date = offsetDate
                     previousValue = newValue
                 }
+            DateWidgetView(date: date, textLabel: "D/d", detailTextLabel: "")
             if offset != 0 {
                 Button(action: {
                     date = Date()

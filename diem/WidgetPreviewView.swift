@@ -82,6 +82,8 @@ struct WidgetPreviewView: View {
                     WidgetPreviewPortraitView(date: date)
                 }
             }
+            Spacer()
+            DateWidgetView(date: date, textLabel: "D/d", detailTextLabel: "")
             DatePickerView(date: $date)
         }
         .onAppear {
