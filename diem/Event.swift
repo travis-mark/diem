@@ -1,6 +1,11 @@
 import SwiftUI
 import EventKit
 
+// TODO: 2025-01-20 Fix top spacing
+// TODO: 2025-01-20 Detect / prevent duplicates
+// TODO: 2025-01-20 Handle recurring
+// TODO: 2025-01-20 Allow selections outside 1 month
+
 extension EKAuthorizationStatus {
     var canRead: Bool {
         if #available(iOS 17.0, *) {
@@ -168,7 +173,7 @@ struct UpcomingEvents: View {
     @State private var showingAddSheet = false
     
     var body: some View {
-        VStack {
+        NavigationView {
             List {
                 ForEach(eventStore.selectedEvents, id: \.eventIdentifier) { event in
                     VStack(alignment: .leading, spacing: 8) {
@@ -194,26 +199,17 @@ struct UpcomingEvents: View {
                     }
                 }
             }
-            Spacer()
-            HStack {
-                Spacer()
-                Button(action: {
-                    showingAddSheet = true
-                }) {
-                    Image(systemName: "plus")
-                        .font(.title2.bold())
-                        .foregroundColor(.white)
-                        .frame(width: 60, height: 60)
-                        .background(Color("AccentColor"))
-                        .clipShape(Circle())
-                        .shadow(radius: 4, y: 2)
-                }
-                .padding()
+            .navigationBarItems(trailing: Button(action: {
+                showingAddSheet = true
+            }) {
+                Image(systemName: "plus")
             }
-        }
-        .frame(maxHeight: .infinity)
-        .sheet(isPresented: $showingAddSheet) {
-            AddEventSheet(eventStore: eventStore)
+            )
+            .sheet(isPresented: $showingAddSheet) {
+                AddEventSheet(eventStore: eventStore)
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Upcoming")
         }
     }
 }
