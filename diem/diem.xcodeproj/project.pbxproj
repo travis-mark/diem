@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2DD9A62D3F291F003C3F34 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2DD9A52D3F291F003C3F34 /* Event.swift */; };
 		1F44F4412CAF3FF7001D018B /* Diem Phone Widgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1F64F0772C5B053E0066C559 /* Diem Phone Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1F64F0702C5B053E0066C559 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5AD07029D7B7990080A373 /* SwiftUI.framework */; };
 		1F64F0712C5B053E0066C559 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5AD06E29D7B7990080A373 /* WidgetKit.framework */; };
@@ -64,7 +65,6 @@
 		1FA8DC242C8D0DE200B4907B /* Workouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8DC232C8D0DE200B4907B /* Workouts.swift */; };
 		1FA8DC262C8E82F600B4907B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA8DC252C8E82F600B4907B /* Date.swift */; };
 		1FAD1B8829D12A6A0059DDA1 /* Diem Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1FAD1B8729D12A6A0059DDA1 /* Diem Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1FAED2A62C83DE5300363626 /* UpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAED2A52C83DE5300363626 /* UpcomingView.swift */; };
 		1FD356D62D2CA1460025F7D6 /* WidgetPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD356D52D2CA1370025F7D6 /* WidgetPreviewView.swift */; };
 		1FD356D82D2E158D0025F7D6 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD356D72D2E155E0025F7D6 /* DatePickerView.swift */; };
 		1FD356DA2D320F680025F7D6 /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD356D92D320F640025F7D6 /* HealthView.swift */; };
@@ -145,6 +145,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F2DD9A52D3F291F003C3F34 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1F5AD06E29D7B7990080A373 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1F5AD07029D7B7990080A373 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		1F64F0772C5B053E0066C559 /* Diem Phone Widgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Diem Phone Widgets.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,7 +173,6 @@
 		1FA8DC252C8E82F600B4907B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1FAD1B7729D12A690059DDA1 /* Diem Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diem Phone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD1B8729D12A6A0059DDA1 /* Diem Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diem Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FAED2A52C83DE5300363626 /* UpcomingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingView.swift; sourceTree = "<group>"; };
 		1FD356D52D2CA1370025F7D6 /* WidgetPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewView.swift; sourceTree = "<group>"; };
 		1FD356D72D2E155E0025F7D6 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		1FD356D92D320F640025F7D6 /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthView.swift; sourceTree = "<group>"; };
@@ -261,12 +261,12 @@
 				1F64F0C72C5B091E0066C559 /* DiemApp.swift */,
 				1FA8DC252C8E82F600B4907B /* Date.swift */,
 				1FD356D72D2E155E0025F7D6 /* DatePickerView.swift */,
+				1F2DD9A52D3F291F003C3F34 /* Event.swift */,
 				1F64F0C82C5B091E0066C559 /* health.swift */,
 				1FD356D92D320F640025F7D6 /* HealthView.swift */,
 				1F64F0C52C5B091E0066C559 /* Info-Phone.plist */,
 				1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */,
 				1F64F0D52C5B09D80066C559 /* iOSWidgets.swift */,
-				1FAED2A52C83DE5300363626 /* UpcomingView.swift */,
 				1FD356D52D2CA1370025F7D6 /* WidgetPreviewView.swift */,
 				1FA8DC232C8D0DE200B4907B /* Workouts.swift */,
 			);
@@ -540,12 +540,12 @@
 				1F64F0A22C5B08C60066C559 /* DiemHealthKitTypes.swift in Sources */,
 				1F64F0A72C5B08C60066C559 /* view.swift in Sources */,
 				1F64F0B62C5B08C60066C559 /* alert.swift in Sources */,
-				1FAED2A62C83DE5300363626 /* UpcomingView.swift in Sources */,
 				1FD356D62D2CA1460025F7D6 /* WidgetPreviewView.swift in Sources */,
 				1F64F0CC2C5B091E0066C559 /* health.swift in Sources */,
 				1FD356D82D2E158D0025F7D6 /* DatePickerView.swift in Sources */,
 				1FA8DC262C8E82F600B4907B /* Date.swift in Sources */,
 				1F64F0982C5B08C60066C559 /* lib.swift in Sources */,
+				1F2DD9A62D3F291F003C3F34 /* Event.swift in Sources */,
 				1FD356DA2D320F680025F7D6 /* HealthView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

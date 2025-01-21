@@ -16,10 +16,10 @@ import SwiftUI
                         Image(systemName: "applewatch")
                         Text("Watch")
                     }
-                UpcomingView()
+                UpcomingEvents()
                     .tabItem {
                         Image(systemName: "calendar")
-                        Text("Up Next")
+                        Text("Upcoming")
                     }
                 HealthView()
                     .tabItem {

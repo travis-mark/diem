@@ -25,7 +25,16 @@
     "7D" : {
 
     },
+    "Add from Calendar" : {
+
+    },
     "Adding Widgets on Apple Watch" : {
+
+    },
+    "Calendar Access Required" : {
+
+    },
+    "Cancel" : {
 
     },
     "Date" : {
@@ -38,6 +47,9 @@
 
     },
     "Distance" : {
+
+    },
+    "Grant Access" : {
 
     },
     "Health" : {
@@ -1100,6 +1112,9 @@
     "Monthly Sales" : {
 
     },
+    "Remove" : {
+
+    },
     "Reset" : {
 
     },
@@ -1124,6 +1139,9 @@
     "Small Widgets" : {
 
     },
+    "This app needs access to your calendar to show your events." : {
+
+    },
     "Time" : {
 
     },
@@ -1133,7 +1151,7 @@
     "TODO Unknown" : {
 
     },
-    "Up Next" : {
+    "Upcoming" : {
 
     },
     "Watch" : {
