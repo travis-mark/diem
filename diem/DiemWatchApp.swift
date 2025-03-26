@@ -21,13 +21,21 @@ struct ContentView: View {
                         loops += delta < 0 ? 1 : -1
                     }
                     let newOffset = newValue + (maxValue - minValue) * loops
-                    guard let offsetDate = Calendar.current.date(byAdding: .day, value: Int(newOffset), to: Date()) else {
-                        return
+                    var offsetDate: Date? = Date()
+                    if newOffset != 0 {
+                        offsetDate = Calendar.current.date(byAdding: .day, value: Int(newOffset), to: Date())
                     }
+                    // (day + 1) = day but (day - 1) = (day - 1)
+                    // so adding a second to positive offsets
+                    if let _offsetDate = offsetDate, newOffset > 0 {
+                        offsetDate = Calendar.current.date(byAdding: .second, value: 1, to: _offsetDate)
+                    }
+                    guard let offsetDate = offsetDate else { return }
                     date = offsetDate
                     previousValue = newValue
                 }
             DateWidgetView(date: date, textLabel: "D/d", detailTextLabel: "")
+            Text("\(offset)")
             if offset != 0 {
                 Button(action: {
                     date = Date()
