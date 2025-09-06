@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0F51D12E6C8343004D1C7A /* HealthWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0F51D02E6C8343004D1C7A /* HealthWeightView.swift */; };
 		1F2DD9A62D3F291F003C3F34 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2DD9A52D3F291F003C3F34 /* Event.swift */; };
 		1F44F4412CAF3FF7001D018B /* Diem Phone Widgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1F64F0772C5B053E0066C559 /* Diem Phone Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1F64F0702C5B053E0066C559 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5AD07029D7B7990080A373 /* SwiftUI.framework */; };
@@ -145,6 +146,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F0F51D02E6C8343004D1C7A /* HealthWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthWeightView.swift; sourceTree = "<group>"; };
 		1F2DD9A52D3F291F003C3F34 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1F5AD06E29D7B7990080A373 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1F5AD07029D7B7990080A373 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -264,6 +266,7 @@
 				1F2DD9A52D3F291F003C3F34 /* Event.swift */,
 				1F64F0C82C5B091E0066C559 /* health.swift */,
 				1FD356D92D320F640025F7D6 /* HealthView.swift */,
+				1F0F51D02E6C8343004D1C7A /* HealthWeightView.swift */,
 				1F64F0C52C5B091E0066C559 /* Info-Phone.plist */,
 				1F64F0D42C5B09D80066C559 /* Info-Phone-Widgets.plist */,
 				1F64F0D52C5B09D80066C559 /* iOSWidgets.swift */,
@@ -534,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F0F51D12E6C8343004D1C7A /* HealthWeightView.swift in Sources */,
 				1F64F0CB2C5B091E0066C559 /* DiemApp.swift in Sources */,
 				1FA8DC242C8D0DE200B4907B /* Workouts.swift in Sources */,
 				1F64F0AC2C5B08C60066C559 /* widget.swift in Sources */,
@@ -626,7 +630,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tl.diem.phone-widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tl.diem.phone.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -658,7 +662,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tl.diem.phone-widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tl.diem.phone.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -691,7 +695,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tl.diem.watch-widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tl.diem.watch.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -723,7 +727,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tl.diem.watch-widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tl.diem.watch.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

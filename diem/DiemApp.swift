@@ -11,6 +11,7 @@ import SwiftUI
     var body: some Scene {
         WindowGroup {
             TabView {
+                HealthWeightView()
                 WidgetPreviewView()
                     .tabItem {
                         Image(systemName: "applewatch")
